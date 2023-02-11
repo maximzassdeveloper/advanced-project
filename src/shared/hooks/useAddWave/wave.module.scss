@@ -1,0 +1,26 @@
+.wave {
+  position: absolute;
+  display: block;
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s forwards;
+  box-shadow: 0 0 0 5px var(--primary-color);
+  border-radius: inherit;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes click-wave {
+  0% {
+    height: 100%;
+    width: 100%;
+    opacity: 0.15;
+  }
+  100% {
+    height: calc(100% + 10px);
+    width: calc(100% + 10px);
+    opacity: 0;
+  }
+}

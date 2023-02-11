@@ -3,7 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BuildOptions } from './types/config'
 
 export function buildLoaders(options: BuildOptions): RuleSetRule[] {
-  const { isDev } = options
+  const { isDev, paths } = options
 
   const typescriptLoader = {
     test: /\.tsx?$/,
@@ -20,11 +20,19 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
         options: {
           modules: {
             auto: /\.module\.\w+$/i,
-            localIdentName: isDev ? '[name]--[hash:base64:5]' : '[hash:base64:8]',
+            localIdentName: isDev ? '[local]--[hash:base64:5]' : '[hash:base64:8]',
           },
         },
       },
-      'sass-loader',
+      {
+        loader: 'sass-loader',
+        options: {
+          additionalData: '@import "mixins";',
+          sassOptions: {
+            includePaths: [paths.styles],
+          },
+        },
+      },
     ],
   }
 

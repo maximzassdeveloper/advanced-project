@@ -1,0 +1,29 @@
+.button {
+  position: relative;
+  display: inline-block;
+  border-radius: 3px;
+  user-select: none;
+  white-space: nowrap;
+  padding: 6px 20px;
+  touch-action: manipulation;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:disabled {
+    background: var(--disabled-color) !important;
+    color: var(--disabled-text-color) !important;
+    border: 1px solid var(--disabled-border-color) !important;
+    cursor: not-allowed;
+  }
+
+  @include focus-visible-outline;
+
+  &.primary {
+    background: var(--primary-color);
+    color: var(--primary-text-color);
+
+    &:hover {
+      background: var(--hover-primary-color);
+    }
+  }
+}

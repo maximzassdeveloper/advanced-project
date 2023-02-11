@@ -1,6 +1,22 @@
-.app.dark {
+body.dark {
   --bg-color: #333;
   --primary-color: #8a31d2;
+  --primary-text-color: #fff;
+  --hover-primary-color: #b161f2;
   --secondary-color: #979797;
+  --hover-secondary-color: #adadad;
   --text-color: #eee;
+  --border-color: #424242;
+  --bg-color-800: #252525;
+  --shadow-primary-color: rgba(138, 49, 210, 0.2);
+
+  --disabled-color: #565656;
+  --disabled-text-color: #cacaca;
+  --disabled-border-color: #838383;
+
+  // Header
+  --header-bg-color: #222;
+
+  // Sidebar
+  --sidebar-bg-color: #222;
 }

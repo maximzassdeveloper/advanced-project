@@ -3,20 +3,21 @@ import { Configuration } from 'webpack'
 export type BuildMode = Configuration['mode']
 
 export interface BuildPaths {
-	enrty: string
-	output: string
-	html: string
-	src: string
+  enrty: string
+  output: string
+  html: string
+  src: string
+  styles: string
 }
 
 export interface BuildOptions {
-	mode: BuildMode
-	paths: BuildPaths
-	isDev: boolean
-	port: number
+  mode: BuildMode
+  paths: BuildPaths
+  isDev: boolean
+  port: number
 }
 
 export interface BuildEnv {
-	mode: BuildMode
-	port: number
+  mode: BuildMode
+  port: number
 }

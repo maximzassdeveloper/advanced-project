@@ -8,11 +8,14 @@
 		"esModuleInterop": true,
 		"jsx": "react-jsx",
 		"allowJs": true,
+		"strict": true,
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"],
+			"@/*": [
+				"src/*"
+			]
 		}
 	},
 	"ts-node": {

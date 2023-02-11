@@ -2,10 +2,11 @@
   "semi": false,
   "printWidth": 100,
   "tabWidth": 2,
-  "trailingComma": "all",
+  "trailingComma": "es5",
   "bracketSameLine": false,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "arrowParens": "avoid",
-  "quoteProps": "consistent"
+  "arrowParens": "always",
+  "quoteProps": "consistent",
+  "singleAttributePerLine": true
 }

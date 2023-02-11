@@ -1,0 +1,24 @@
+.themeSwitcher {
+  margin-left: auto;
+}
+
+.switcher {
+  min-width: 52px;
+}
+
+.checked {
+  .icon {
+    left: calc(-100% - 3px);
+    margin-top: 1.5px;
+  }
+}
+
+.icon {
+  position: absolute;
+  font-size: 18px;
+  left: calc(100% + 4px);
+  transition: 0.2s;
+  margin-top: 1px;
+  color: #fff;
+  z-index: -1;
+}

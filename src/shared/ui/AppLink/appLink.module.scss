@@ -1,0 +1,11 @@
+.appLink {
+  transition: 0.1s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.active {
+  color: var(--primary-color);
+}

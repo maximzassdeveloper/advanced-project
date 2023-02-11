@@ -1,2 +1,3 @@
-export { ThemeProvider } from './ui/ThemeProvider'
-export { useTheme } from './lib/useTheme'
+export { ThemeProvider } from './ThemeProvider'
+export { useTheme } from './useTheme'
+export { useSidebar } from '../common/useSidebar'

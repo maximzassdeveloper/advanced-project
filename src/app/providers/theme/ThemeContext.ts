@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 import { ValueOf } from '@/shared/types/global'
 
-const ThemeType = {
+export const ThemeType = {
   LIGHT: 'light',
   DARK: 'dark',
 } as const

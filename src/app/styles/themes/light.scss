@@ -1,6 +1,22 @@
-.app.light {
+body.light {
   --bg-color: #f1f1f1;
   --primary-color: #8a31d2;
+  --primary-text-color: #fff;
+  --hover-primary-color: #b161f2;
   --secondary-color: #5e5e5e;
+  --hover-secondary-color: #adadad;
   --text-color: #151515;
+  --border-color: #cccccc;
+  --bg-color-800: #e0e0e0;
+  --shadow-primary-color: rgba(138, 49, 210, 0.3);
+
+  --disabled-color: #d9d9d9;
+  --disabled-text-color: #838383;
+  --disabled-border-color: #a1a1a1;
+
+  // Header
+  --header-bg-color: #e2e2e2;
+
+  // Sidebar
+  --sidebar-bg-color: #e2e2e2;
 }

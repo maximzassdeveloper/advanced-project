@@ -1,0 +1,7 @@
+@mixin focus-visible-outline {
+  &:not(:disabled):focus-visible {
+    outline: 2px solid var(--hover-primary-color);
+    outline-offset: 2px;
+    transition: outline-offset 0s, outline 0s;
+  }
+}

@@ -8,4 +8,19 @@
   --font-size-l: 24px;
   --font-height-l: 32px;
   --font-l: var(--font-size-l) / var(--font-height-l) var(--font-family-main);
+
+  // Header
+  --header-height: 54px;
+  // --header-bg-color
+
+  //Sidebar
+  --sidebar-width: 300px;
+  --sidebar-collapsed-width: 80px;
+  // --sidebar-bg-color
+
+  // Hamburger
+  --hamburger-width: 20px;
+  --hamburger-height: 8px;
+  --hamburger-line-space: -6px;
+  --hamburger-line-height: 1.5px;
 }

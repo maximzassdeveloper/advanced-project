@@ -1,5 +1,5 @@
-type Mode = Record<string, string | boolean>
-type ArgType = string | number | string[] | Mode
+type Mode = Record<string, string | boolean | undefined | null>
+type ArgType = string | number | undefined | null | (string | undefined | null)[] | Mode
 
 export function classNames(...args: ArgType[]): string {
   let classes: string[] = []
@@ -14,13 +14,14 @@ export function classNames(...args: ArgType[]): string {
     }
 
     if (Array.isArray(arg)) {
-      classes = [...classes, ...arg]
+      const filtered = arg.filter((i) => !!i) as string[]
+      classes = [...classes, ...filtered]
       continue
     }
 
     if (argType === 'object') {
       for (const key in arg as Mode) {
-        if ((arg as Mode)[key]) {
+        if (key !== 'undefined' && (arg as Mode)[key]) {
           classes.push(key)
         }
       }

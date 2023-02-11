@@ -9,7 +9,7 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
   const { mode, paths, isDev } = options
 
   return {
-    mode: mode,
+    mode,
     entry: paths.enrty,
     output: {
       filename: '[name].[contenthash].bundle.js',
