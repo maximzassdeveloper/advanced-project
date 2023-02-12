@@ -18,6 +18,7 @@ export default (env: BuildEnv) => {
       html: path.resolve(__dirname, 'public', 'index.html'),
       src: path.resolve(__dirname, 'src'),
       styles: path.resolve(__dirname, 'src', 'app', 'styles'),
+      i18nextLocales: path.resolve(__dirname, 'public', 'locales'),
     },
     port: PORT,
   })

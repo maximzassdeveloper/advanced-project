@@ -1,0 +1,16 @@
+.langSwitcher {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: auto;
+  transition: 0.1s;
+  user-select: none;
+
+  &:hover {
+    opacity: 0.65;
+  }
+
+  i {
+    margin-right: 3px;
+  }
+}

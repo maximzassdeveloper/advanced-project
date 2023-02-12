@@ -11,6 +11,27 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     exclude: /node_modules/,
   }
 
+  const i18nextExtractOptions = {
+    locales: ['en', 'ru'],
+    outputPath: paths.i18nextLocales + '/{{locale}}/{{ns}}.json',
+    useI18nextDefaultValue: true,
+    nsSeparator: ':',
+    discardOldKeys: true,
+    compatibilityJSON: 'v4',
+  }
+
+  const babelLoader = {
+    test: /\.(jsx?|tsx?)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: [['i18next-extract', i18nextExtractOptions]],
+      },
+    },
+  }
+
   const styleLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -36,5 +57,16 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     ],
   }
 
-  return [typescriptLoader, styleLoader]
+  const svgLoader = {
+    test: /\.svg$/i,
+    issuer: /\.[jt]sx?$/,
+    use: ['@svgr/webpack'],
+  }
+
+  const assetsLoader = {
+    test: /\.(png|jpe?g|gif)$/i,
+    type: 'asset/resource',
+  }
+
+  return [babelLoader, typescriptLoader, styleLoader, svgLoader, assetsLoader]
 }

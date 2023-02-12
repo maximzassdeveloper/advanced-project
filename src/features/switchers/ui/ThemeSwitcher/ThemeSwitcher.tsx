@@ -3,6 +3,7 @@ import { useTheme } from '@/app/providers/theme'
 import { Switch } from '@/shared/ui'
 import { classNames } from '@/shared/lib/classNames'
 import s from './themeSwitcher.module.scss'
+import Alien from '@/shared/assets/icons/alien.svg'
 
 export const ThemeSwitcher: FC = () => {
   const { toggleTheme, theme } = useTheme()
@@ -11,6 +12,10 @@ export const ThemeSwitcher: FC = () => {
 
   return (
     <div className={s.themeSwitcher}>
+      {/* TODO: remove this */}
+      <div hidden={true}>
+        <Alien />
+      </div>
       <Switch
         className={classNames(s.switcher, { [s.checked]: isDark })}
         checked={isDark}
