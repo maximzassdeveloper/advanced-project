@@ -1,11 +1,15 @@
 import { FC, useEffect, useState } from 'react'
 import { THEME_lOCAL_STORAGE_KEY, ThemeContext, ThemeContextValue, ThemeType } from './ThemeContext'
 
-const themeFormStorage: ThemeType =
-  (localStorage.getItem(THEME_lOCAL_STORAGE_KEY) as ThemeType) || 'dark'
+const themeFormStorage: ThemeType = localStorage.getItem(THEME_lOCAL_STORAGE_KEY) as ThemeType
 
-export const ThemeProvider: FC = ({ children }) => {
-  const [theme, setTheme] = useState<ThemeType>(themeFormStorage)
+interface ThemeProviderProps {
+  defaultTheme?: ThemeType
+}
+
+export const ThemeProvider: FC<ThemeProviderProps> = (props) => {
+  const { children, defaultTheme } = props
+  const [theme, setTheme] = useState<ThemeType>(defaultTheme || themeFormStorage || 'dark')
 
   useEffect(() => {
     const themes = Object.values(ThemeType) as string[]

@@ -5,5 +5,12 @@
       "home": "Главная"
     }
   },
-  "language": "En"
+  "language": "En",
+  "pageError": {
+    "reloadBtn": "Перезагрузить страницу",
+    "somethingWentWrong": "Что-то пошло не так"
+  },
+  "sidebar": {
+    "title": "Sidebar"
+  }
 }

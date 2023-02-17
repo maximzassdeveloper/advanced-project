@@ -4,11 +4,13 @@ import { composeRef } from '@/shared/lib/composeRef'
 import { classNames } from '@/shared/lib/classNames'
 import s from './button.module.scss'
 
-type ButtonTheme = 'primary'
+type ButtonTheme = 'primary' | 'secondary' | 'outline'
+type ButtonSize = 'm' | 'l'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
   theme?: ButtonTheme
+  size?: ButtonSize
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

@@ -26,4 +26,15 @@
       background: var(--hover-primary-color);
     }
   }
+
+  &.secondary {
+    background: var(--secondary-color);
+    color: var(--text-color);
+  }
+
+  &.outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
 }

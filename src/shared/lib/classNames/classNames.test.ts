@@ -18,7 +18,7 @@ describe('classNames', () => {
       classNames('someClass', 2, ['hovered', 'touched'], {
         submit: true,
         enable: false,
-      }),
+      })
     ).toBe('someClass 2 hovered touched submit')
   })
 
@@ -27,7 +27,7 @@ describe('classNames', () => {
       classNames({
         undefined: true,
         enable: false,
-      }),
+      })
     ).toBe('')
   })
 
@@ -47,7 +47,7 @@ describe('classNames', () => {
         hovered: undefined,
         pressed: null,
         submitted: true,
-      }),
+      })
     ).toBe('someClass submitted')
   })
 })

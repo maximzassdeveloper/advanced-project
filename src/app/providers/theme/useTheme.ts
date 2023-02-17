@@ -3,17 +3,20 @@ import { THEME_lOCAL_STORAGE_KEY, ThemeContext, ThemeType } from './ThemeContext
 
 interface UseThemeResult {
   theme: ThemeType
-  toggleTheme: () => void
+  toggleTheme: (theme?: ThemeType) => void
 }
 
 export const useTheme = (): UseThemeResult => {
   const { theme, setTheme } = useContext(ThemeContext)
 
-  const toggleTheme = useCallback(() => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
-    localStorage.setItem(THEME_lOCAL_STORAGE_KEY, newTheme)
-  }, [theme, setTheme])
+  const toggleTheme = useCallback(
+    (themeFromUser?: ThemeType) => {
+      const newTheme = themeFromUser ? themeFromUser : theme === 'light' ? 'dark' : 'light'
+      setTheme(newTheme)
+      localStorage.setItem(THEME_lOCAL_STORAGE_KEY, newTheme)
+    },
+    [theme, setTheme]
+  )
 
   return {
     theme,

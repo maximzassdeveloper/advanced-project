@@ -4,6 +4,7 @@
 /out-tsc
 build.zip
 /build
+storybook-static
 
 # dependencies
 node_modules

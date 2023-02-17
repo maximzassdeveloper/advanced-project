@@ -12,6 +12,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "overrides": [
+
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -39,6 +40,7 @@
     "react/destructuring-assignment": "off",
     "consistent-return": "off",
     "prefer-template": "off",
+    "operator-linebreak": "off",
     "arrow-body-style": "off",
     "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": "off",
@@ -64,6 +66,13 @@
     "padded-blocks": "off",
     "comma-dangle": "off",
     "camelcase": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 100,
+        "ignoreComments": true
+      }
+    ],
     "@typescript-eslint/ban-ts-comment": "off"
   }
 }

@@ -6,6 +6,7 @@ import { BuildEnv } from './config/build/types/config'
 export default (env: BuildEnv) => {
   const mode = env.mode || 'development'
   const PORT = env.port || 3000
+  const ANALYZE = env.analyze || false
 
   const isDev = mode === 'development'
 
@@ -21,6 +22,7 @@ export default (env: BuildEnv) => {
       i18nextLocales: path.resolve(__dirname, 'public', 'locales'),
     },
     port: PORT,
+    analyze: ANALYZE,
   })
 
   return config

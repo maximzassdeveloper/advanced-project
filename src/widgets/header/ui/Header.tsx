@@ -8,7 +8,10 @@ export const Header: FC = () => {
   const { t } = useTranslation()
 
   return (
-    <div className={s.header}>
+    <div
+      className={s.header}
+      data-testid='header'
+    >
       <SidebarSwitcher />
       <div className={s.links}>
         <AppLink to={'/'}>{t('header.links.home', 'Главная')}</AppLink>

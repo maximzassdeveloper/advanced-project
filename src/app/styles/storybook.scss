@@ -1,0 +1,17 @@
+body {
+  padding: 0 !important;
+
+  .app {
+    padding: 20px;
+  }
+
+  #docs-root {
+    .app {
+      min-height: auto;
+    }
+  }
+
+  button + button {
+    margin-left: 12px;
+  }
+}

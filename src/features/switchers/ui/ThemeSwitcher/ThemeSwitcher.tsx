@@ -19,7 +19,7 @@ export const ThemeSwitcher: FC = () => {
       <Switch
         className={classNames(s.switcher, { [s.checked]: isDark })}
         checked={isDark}
-        onChange={toggleTheme}
+        onChange={() => toggleTheme}
         size='l'
         icon={
           <i

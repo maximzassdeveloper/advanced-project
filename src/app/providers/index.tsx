@@ -1,14 +1,17 @@
 import { FC } from 'react'
-import { CommonProvider } from './common/CommonProvider'
-import { ThemeProvider } from './theme'
 import { BrowserRouter } from 'react-router-dom'
+import { ErrorBoundary } from './errorBoundary'
+import { CommonProvider } from './common'
+import { ThemeProvider } from './theme'
 
 export const AllProviders: FC = ({ children }) => {
   return (
-    <BrowserRouter>
-      <CommonProvider>
-        <ThemeProvider>{children}</ThemeProvider>
-      </CommonProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <CommonProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </CommonProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   )
 }

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Input, Modal, Popover, Switch } from '@/shared/ui'
 import s from './home.module.scss'
@@ -27,7 +27,10 @@ export const HomePage: FC = () => {
         disabled
         checked={true}
       />
-      <Input value={t('common:buttons.default', 'Default')} />
+      <Input
+        value={t('common:buttons.default', 'Default')}
+        readOnly
+      />
       <Input placeholder='Placeholder' />
       <Input
         disabled
