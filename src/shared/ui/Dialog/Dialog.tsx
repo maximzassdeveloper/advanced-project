@@ -1,57 +1,72 @@
-import { FC, useEffect, useRef } from 'react'
-import { createPortal } from 'react-dom'
+import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
+import { DialogWrapper, DialogWrapperProps } from './DialogWrapper'
+import DomWrapper from './DomWrapper'
 
-interface DialogProps {
-  visible?: boolean
-  /** Delay before removing Dialog, for your animations */
-  animationTimeout?: number
-  className?: string
+interface DialogProps extends DialogWrapperProps {
+  trigger?: ReactNode
+}
+
+function findDomNode(node: React.ReactInstance | HTMLElement) {
+  if (node instanceof React.Component) {
+    // eslint-disable-next-line react/no-find-dom-node
+    return ReactDOM.findDOMNode(node)
+  }
+
+  return null
 }
 
 export const Dialog: FC<DialogProps> = (props) => {
-  const { children, visible, animationTimeout, className } = props
+  const { children, trigger, className, visible, animationTimeout } = props
 
-  const containerRef = useRef<HTMLDivElement>(document.createElement('div'))
-  const timeoutRef = useRef<NodeJS.Timeout>()
-  const animationTimeoutRef = useRef<number | undefined>(animationTimeout)
+  const [triggerVisible, setTriggerVisible] = useState(false)
 
-  useEffect(() => {
-    const container = containerRef.current
-    clearTimeout(timeoutRef.current)
+  const wrapperRef = useRef<DomWrapper>(null)
+  const absoluteRef = useRef<HTMLDivElement>(null)
 
-    if (visible) {
-      document.body.appendChild(container)
-    } else {
-      if (animationTimeoutRef.current !== undefined) {
-        timeoutRef.current = setTimeout(() => {
-          container.remove()
-        }, animationTimeoutRef.current)
-      } else {
-        containerRef.current.remove()
-      }
-    }
-  }, [visible])
-
-  // Remove div container when Dialog unmount
-  useEffect(() => {
-    const container = containerRef.current
-    return () => {
-      container.remove()
-      clearTimeout(timeoutRef.current)
-    }
+  const toggleTriggerVisible = useCallback(() => {
+    // console.log('yes')
+    setTriggerVisible((prev) => !prev)
   }, [])
 
+  const onResize = (ent: any) => {
+    // console.log(ent)
+  }
+  const resizeObserver = new ResizeObserver(onResize)
+
   useEffect(() => {
-    if (className) {
-      containerRef.current.className = className
+    if (trigger instanceof HTMLElement || !wrapperRef.current || !absoluteRef.current) return
+
+    const node = findDomNode(wrapperRef.current) as HTMLElement
+    const { x, y, height } = node.getBoundingClientRect()
+
+    resizeObserver.observe(node)
+
+    // console.log({ node: node.ownerDocument })
+
+    // console.log({ node })
+    node.addEventListener('click', toggleTriggerVisible)
+
+    absoluteRef.current.style.position = 'absolute'
+    absoluteRef.current.style.left = `${x}px`
+    absoluteRef.current.style.top = `${y + height + 10}px`
+
+    return () => {
+      node.removeEventListener('click', toggleTriggerVisible)
     }
-  }, [className])
+  }, [trigger, toggleTriggerVisible])
 
-  // We keep `animationTimeout` in ref that when it is changed,
-  // the div container was not recreated and actual value of `animationTimeout` was remained
-  useEffect(() => {
-    animationTimeoutRef.current = animationTimeout
-  }, [animationTimeout])
+  return (
+    <>
+      {trigger && <DomWrapper ref={wrapperRef}>{trigger}</DomWrapper>}
 
-  return createPortal(children, containerRef.current)
+      <DialogWrapper
+        className={className}
+        visible={visible !== undefined ? visible : triggerVisible}
+        animationTimeout={animationTimeout}
+      >
+        <div ref={absoluteRef}>{children}</div>
+      </DialogWrapper>
+    </>
+  )
 }
