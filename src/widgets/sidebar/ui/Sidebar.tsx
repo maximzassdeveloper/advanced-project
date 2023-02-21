@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSidebar } from '@/app/providers/common'
 import { classNames } from '@/shared/lib/classNames'
-import { useTranslation } from 'react-i18next'
 import s from './sidebar.module.scss'
 import Alien from '@/shared/assets/icons/alien.svg'
 

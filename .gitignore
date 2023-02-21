@@ -5,6 +5,7 @@
 build.zip
 /build
 storybook-static
+/extractedTranslations
 
 # dependencies
 node_modules

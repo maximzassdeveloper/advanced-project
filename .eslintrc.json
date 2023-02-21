@@ -21,6 +21,9 @@
     "react-hooks",
     "@typescript-eslint"
   ],
+  "ignorePatterns": [
+    ".loki"
+  ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
@@ -47,12 +50,15 @@
     "jsx-a11y/no-static-element-interactions": "off",
     "semi": "off",
     "no-lonely-if": "off",
+    "linebreak-style": [
+      "warn",
+      "windows"
+    ],
     "no-trailing-spaces": "off",
     "implicit-arrow-linebreak": "off",
     "arrow-parens": "warn",
     "no-continue": "off",
     "no-shadow": "off",
-    "linebreak-style": "warn",
     "spaced-comment": "off",
     "eol-last": "off",
     "jsx-quotes": "off",

@@ -15,6 +15,7 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
   const i18nextExtractOptions = {
     locales: ['en', 'ru'],
     outputPath: paths.i18nextLocales + '/{{locale}}/{{ns}}.json',
+    exclude: ['^(../)*node_modules/', '**/*.stories.@(js|jsx|ts|tsx)'],
     useI18nextDefaultValue: true,
     nsSeparator: ':',
     discardOldKeys: true,
