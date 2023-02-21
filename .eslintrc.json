@@ -60,6 +60,8 @@
     "no-continue": "off",
     "no-shadow": "off",
     "spaced-comment": "off",
+    "no-param-reassign": "off",
+    "react/jsx-no-useless-fragment": "off",
     "eol-last": "off",
     "jsx-quotes": "off",
     "object-curly-newline": "off",
