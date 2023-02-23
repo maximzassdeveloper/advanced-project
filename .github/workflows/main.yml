@@ -93,23 +93,23 @@ jobs:
       - name: screenshot testing
         run: npm run test:ui:ci
 
-    build:
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          node-version: [ 19.x ]
-      steps:
-        - name: Cache deps
-          uses: actions/cache@v3
-          with:
-            path: ~/.npm
-            key: node-modules-${{ hashFiles('**/package-lock.json') }}
-        - uses: actions/checkout@v2
-        - name: Starting Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v1
-          with:
-            node-version: ${{ matrix.node-version }}
-        - name: install modules
-          run: npm ci
-        - name: build production project
-          run: npm run build:prod
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 19.x ]
+    steps:
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/checkout@v2
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm ci
+      - name: build production project
+        run: npm run build:prod
