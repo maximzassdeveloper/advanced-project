@@ -1,5 +1,6 @@
 name: linting, testing, building
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
@@ -25,7 +26,7 @@ jobs:
           path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: linting typescript
-        run: npm run lint:ts
+        run: npm run lint
 
   scss-lint:
     runs-on: ubuntu-latest
@@ -87,9 +88,28 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install modules
         run: npm ci
-      - name: build production project
-        run: npm run build:prod
       - name: build storybook
         run: npm run storybook:build
       - name: screenshot testing
         run: npm run test:ui:ci
+
+    build:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [ 19.x ]
+      steps:
+        - name: Cache deps
+          uses: actions/cache@v3
+          with:
+            path: ~/.npm
+            key: node-modules-${{ hashFiles('**/package-lock.json') }}
+        - uses: actions/checkout@v2
+        - name: Starting Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node-version }}
+        - name: install modules
+          run: npm ci
+        - name: build production project
+          run: npm run build:prod
