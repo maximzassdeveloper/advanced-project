@@ -1,0 +1,10 @@
+{
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-recess-order"],
+  "plugins": ["stylelint-order"],
+  "defaultSeverity": "warning",
+  "rules": {
+    "shorthand-property-no-redundant-values": null,
+    "color-hex-length": null,
+    "custom-property-empty-line-before": null
+  }
+}

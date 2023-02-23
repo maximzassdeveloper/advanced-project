@@ -1,128 +1,95 @@
-name: Linting, testing, building
+name: linting, testing, building
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
-
+    branches: [main]
 jobs:
-  install-cache:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        node-version: [ 19.x ]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Cache npm dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            node-modules-
-      - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: npm ci
-
   lint:
-    runs-on: windows-latest
-    needs: install-cache
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 19.x ]
+        node-version: [19.x]
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout commit
+        uses: actions/checkout@v2
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Restore npm dependencies
+      - name: install modules
+        run: npm ci
+      - name: Cache deps
         uses: actions/cache@v3
-        id: cache-dependencies
         with:
-          path: node_modules
+          path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            node-modules-
-      - name: linting
-        run: npm run lint
+      - name: linting typescript
+        run: npm run lint:ts
+
+  scss-lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [19.x]
+    steps:
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/checkout@v2
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm ci
+      - name: linting css
+        run: npm run lint:scss
 
   unit-tests:
-    runs-on: windows-latest
-    needs: install-cache
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 19.x ]
+        node-version: [19.x]
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/checkout@v2
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Restore npm dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            node-modules-
+      - name: install modules
+        run: npm ci
       - name: unit testing
         run: npm run test:unit
 
   screenshot-tests:
     runs-on: windows-latest
-    needs: install-cache
     strategy:
       matrix:
-        node-version: [ 19.x ]
+        node-version: [19.x]
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/checkout@v2
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Restore npm dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            node-modules-
+      - name: install modules
+        run: npm ci
+      - name: build production project
+        run: npm run build:prod
       - name: build storybook
         run: npm run storybook:build
       - name: screenshot testing
         run: npm run test:ui:ci
-
-  build:
-    runs-on: windows-latest
-    needs: [ install-cache, lint, unit-tests, screenshot-tests ]
-    strategy:
-      matrix:
-        node-version: [ 19.x ]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Restore npm dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            node-modules-
-      - name: building
-        run: npm run build:prod

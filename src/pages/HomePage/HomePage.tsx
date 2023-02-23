@@ -54,6 +54,8 @@ export const HomePage: FC = () => {
           />
         </Modal>
       )}
+
+      <div style={{ height: '140vh', display: 'block' }}>block for scroll</div>
     </div>
   )
 }

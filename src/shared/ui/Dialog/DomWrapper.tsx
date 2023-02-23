@@ -5,7 +5,7 @@ export interface DomWrapperProps {
 }
 
 /**
- * Fallback to findDOMNode if origin ref do not provide any dom element
+ * Fallback to findDomNode if origin ref do not provide any dom element
  */
 export default class DomWrapper extends Component<DomWrapperProps> {
   render() {

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap';
 @import 'reset';
 @import 'variables/global';
 @import 'themes/light';
@@ -7,11 +6,15 @@
 @import 'animations';
 
 .app {
-  font: var(--font-m);
+  min-height: 100vh;
   background: var(--bg-color);
   color: var(--text-color);
-  min-height: 100vh;
+  font: var(--font-m);
   transition: background 0.2s, color 0.2s;
+}
+
+body {
+  background: var(--bg-color);
 }
 
 * {
