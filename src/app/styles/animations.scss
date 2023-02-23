@@ -26,8 +26,8 @@
 
   &-enter-active {
     opacity: 1;
+    transition: opacity 200ms, transform 300ms;
     transform: translateY(0);
-    transition: opacity 300ms, transform 300ms;
   }
 
   &-exit {
@@ -36,7 +36,7 @@
 
   &-exit-active {
     opacity: 0;
+    transition: opacity 200ms, transform 300ms;
     transform: translateY(10px);
-    transition: opacity 300ms, transform 300ms;
   }
 }

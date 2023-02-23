@@ -1,71 +1,65 @@
-import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useRef, useState, useCallback, useEffect, HTMLAttributes, useMemo } from 'react'
 import { DialogWrapper, DialogWrapperProps } from './DialogWrapper'
 import DomWrapper from './DomWrapper'
+import { findDomNode } from './findDomNode'
+import { mergeProps } from '@/shared/lib/mergeProps'
 
 interface DialogProps extends DialogWrapperProps {
-  trigger?: ReactNode
+  trigger?: React.ReactElement
+  triggerProps?: HTMLAttributes<HTMLElement>
 }
 
-function findDomNode(node: React.ReactInstance | HTMLElement) {
-  if (node instanceof React.Component) {
-    // eslint-disable-next-line react/no-find-dom-node
-    return ReactDOM.findDOMNode(node)
-  }
-
-  return null
-}
-
-export const Dialog: FC<DialogProps> = (props) => {
-  const { children, trigger, className, visible, animationTimeout } = props
-
-  const [triggerVisible, setTriggerVisible] = useState(false)
+export const Dialog: React.FC<DialogProps> = (props) => {
+  const { children, trigger, triggerProps, className, visible, ...rest } = props
 
   const wrapperRef = useRef<DomWrapper>(null)
-  const absoluteRef = useRef<HTMLDivElement>(null)
+  const popupRef = useRef<HTMLDivElement>(null)
+  const [triggerEl, setTriggerEl] = useState<HTMLElement | null>(null)
 
-  const toggleTriggerVisible = useCallback(() => {
-    // console.log('yes')
-    setTriggerVisible((prev) => !prev)
-  }, [])
+  // Creating triggerNode to use triggerProps
+  const triggerNode = useMemo(() => {
+    if (!trigger) return null
 
-  const onResize = (ent: any) => {
-    // console.log(ent)
-  }
-  const resizeObserver = new ResizeObserver(onResize)
+    const triggerChild = React.Children.only(trigger) as React.ReactElement
+    return React.cloneElement(triggerChild, mergeProps(triggerProps, triggerChild?.props))
+  }, [trigger, triggerProps])
+
+  const calcPopupPosition = useCallback(() => {
+    if (!popupRef.current || !triggerEl) return
+
+    const { x, y, height } = triggerEl.getBoundingClientRect()
+
+    popupRef.current.style.position = 'absolute'
+    popupRef.current.style.left = `${x}px`
+    popupRef.current.style.top = `${y + height + 10}px`
+  }, [triggerEl])
 
   useEffect(() => {
-    if (trigger instanceof HTMLElement || !wrapperRef.current || !absoluteRef.current) return
+    if (trigger instanceof HTMLElement || !wrapperRef.current) return
 
-    const node = findDomNode(wrapperRef.current) as HTMLElement
-    const { x, y, height } = node.getBoundingClientRect()
+    const node = findDomNode<HTMLElement>(wrapperRef.current)
+    if (!node) return
 
-    resizeObserver.observe(node)
+    setTriggerEl(node)
+    calcPopupPosition()
 
-    // console.log({ node: node.ownerDocument })
-
-    // console.log({ node })
-    node.addEventListener('click', toggleTriggerVisible)
-
-    absoluteRef.current.style.position = 'absolute'
-    absoluteRef.current.style.left = `${x}px`
-    absoluteRef.current.style.top = `${y + height + 10}px`
+    window.addEventListener('resize', calcPopupPosition)
 
     return () => {
-      node.removeEventListener('click', toggleTriggerVisible)
+      window.removeEventListener('resize', calcPopupPosition)
     }
-  }, [trigger, toggleTriggerVisible])
+  }, [trigger, calcPopupPosition])
 
   return (
     <>
-      {trigger && <DomWrapper ref={wrapperRef}>{trigger}</DomWrapper>}
+      {triggerNode && <DomWrapper ref={wrapperRef}>{triggerNode}</DomWrapper>}
 
       <DialogWrapper
         className={className}
-        visible={visible !== undefined ? visible : triggerVisible}
-        animationTimeout={animationTimeout}
+        visible={visible}
+        {...rest}
       >
-        <div ref={absoluteRef}>{children}</div>
+        <div ref={popupRef}>{children}</div>
       </DialogWrapper>
     </>
   )

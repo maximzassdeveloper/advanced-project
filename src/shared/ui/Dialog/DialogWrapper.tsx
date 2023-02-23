@@ -1,45 +1,59 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import { getScrollbarWidth } from '@/shared/lib/getScrollbarWidth'
 
 export interface DialogWrapperProps {
   visible?: boolean
   /** Delay before removing Dialog, for your animations */
   animationTimeout?: number
+  /** Lock page scroll on visible */
+  lockScroll?: boolean
   className?: string
 }
 
 export const DialogWrapper: FC<DialogWrapperProps> = (props) => {
-  const { children, visible, animationTimeout, className } = props
+  const { children, visible, className } = props
 
   const containerRef = useRef<HTMLDivElement>(document.createElement('div'))
   const timeoutRef = useRef<NodeJS.Timeout>()
-  const animationTimeoutRef = useRef<number | undefined>(animationTimeout)
+  const propsRef = useRef<DialogWrapperProps>(props)
+
+  // We keep props in ref that when it is changed,
+  // the div container was not recreated and actual props was remained
+  useEffect(() => {
+    propsRef.current = props
+  }, [props])
+
+  const removeContainer = useCallback(() => {
+    if (propsRef.current.lockScroll) {
+      document.body.style.overflow = 'auto'
+      document.body.style.width = ''
+    }
+    containerRef.current.remove()
+  }, [])
 
   useEffect(() => {
+    const { animationTimeout, lockScroll } = propsRef.current
     const container = containerRef.current
     clearTimeout(timeoutRef.current)
 
     if (visible) {
       document.body.appendChild(container)
+      if (lockScroll) {
+        const scrollBarWidth = getScrollbarWidth()
+        document.body.style.overflow = 'hidden'
+        document.body.style.width = `calc(100% - ${scrollBarWidth}px)`
+      }
     } else {
-      if (animationTimeoutRef.current !== undefined) {
+      if (animationTimeout !== undefined) {
         timeoutRef.current = setTimeout(() => {
-          container.remove()
-        }, animationTimeoutRef.current)
+          removeContainer()
+        }, animationTimeout)
       } else {
-        container.remove()
+        removeContainer()
       }
     }
-  }, [visible])
-
-  // Remove div container when Dialog unmount
-  useEffect(() => {
-    const container = containerRef.current
-    return () => {
-      container.remove()
-      clearTimeout(timeoutRef.current)
-    }
-  }, [])
+  }, [visible, removeContainer])
 
   useEffect(() => {
     if (className) {
@@ -47,11 +61,13 @@ export const DialogWrapper: FC<DialogWrapperProps> = (props) => {
     }
   }, [className])
 
-  // We keep `animationTimeout` in ref that when it is changed,
-  // the div container was not recreated and actual value of `animationTimeout` was remained
+  // Remove div container when Dialog unmount
   useEffect(() => {
-    animationTimeoutRef.current = animationTimeout
-  }, [animationTimeout])
+    return () => {
+      removeContainer()
+      clearTimeout(timeoutRef.current)
+    }
+  }, [removeContainer])
 
   return createPortal(children, containerRef.current)
 }

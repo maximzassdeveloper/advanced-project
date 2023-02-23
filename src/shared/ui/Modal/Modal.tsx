@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { FC } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { Dialog } from '@/shared/ui/Dialog'
 import { classNames } from '@/shared/lib/classNames'
@@ -18,6 +18,7 @@ export const Modal: FC<ModalProps> = (props) => {
       className={className}
       visible={visible}
       animationTimeout={300}
+      lockScroll
     >
       <div className={classNames(s.modal, className)}>
         <CSSTransition
@@ -30,7 +31,7 @@ export const Modal: FC<ModalProps> = (props) => {
             onClick={onClose}
           />
         </CSSTransition>
-        
+
         <CSSTransition
           in={visible}
           timeout={300}
