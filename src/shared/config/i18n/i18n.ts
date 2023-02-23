@@ -11,7 +11,7 @@ i18n
   .init<HttpBackendOptions>({
     fallbackLng: 'ru',
     supportedLngs: ['ru', 'en'],
-    debug: __IS_DEV__,
+    debug: false,
 
     returnNull: false,
 
