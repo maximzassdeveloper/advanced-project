@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Input, Modal, Popover, Switch } from '@/shared/ui'
+import { Button, Input, Modal, Popover, Select, Switch } from '@/shared/ui'
 import s from './home.module.scss'
 
 export const HomePage: FC = () => {
@@ -22,6 +22,13 @@ export const HomePage: FC = () => {
       <Switch
         disabled
         checked={false}
+      />
+      <Select
+        options={[
+          { label: 'option 1', value: 'option1' },
+          { label: 'option 2', value: 'option2' },
+          { label: 'option 3', value: 'option3', disabled: true },
+        ]}
       />
       <Switch
         disabled

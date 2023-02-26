@@ -7,7 +7,7 @@ export const ThemeToggler: FC<{ theme: ThemeType }> = ({ theme }) => {
 
   useEffect(() => {
     toggleTheme(theme)
-  }, [theme])
+  }, [toggleTheme, theme])
 
   return <></>
 }

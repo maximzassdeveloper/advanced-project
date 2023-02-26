@@ -6,33 +6,64 @@ import { mergeProps } from '@/shared/lib/mergeProps'
 
 interface DialogProps extends DialogWrapperProps {
   trigger?: React.ReactElement
+  autoWidth?: boolean
+  onClose?: () => void
   triggerProps?: HTMLAttributes<HTMLElement>
 }
 
 export const Dialog: React.FC<DialogProps> = (props) => {
-  const { children, trigger, triggerProps, className, visible, ...rest } = props
+  const {
+    children,
+    trigger,
+    triggerProps,
+    className,
+    visible,
+    autoWidth,
+    lockScroll,
+    animationTimeout,
+    onClose,
+  } = props
 
   const wrapperRef = useRef<DomWrapper>(null)
   const popupRef = useRef<HTMLDivElement>(null)
+  const propsRef = useRef<DialogProps>()
   const [triggerEl, setTriggerEl] = useState<HTMLElement | null>(null)
 
-  // Creating triggerNode to use triggerProps
-  const triggerNode = useMemo(() => {
-    if (!trigger) return null
-
-    const triggerChild = React.Children.only(trigger) as React.ReactElement
-    return React.cloneElement(triggerChild, mergeProps(triggerProps, triggerChild?.props))
-  }, [trigger, triggerProps])
+  useEffect(() => {
+    propsRef.current = props
+  }, [autoWidth, onClose, props])
 
   const calcPopupPosition = useCallback(() => {
-    if (!popupRef.current || !triggerEl) return
+    if (!popupRef.current || !triggerEl || !propsRef.current) return
 
-    const { x, y, height } = triggerEl.getBoundingClientRect()
+    const { autoWidth } = propsRef.current
+    const { x, y, width, height } = triggerEl.getBoundingClientRect()
 
-    popupRef.current.style.position = 'absolute'
-    popupRef.current.style.left = `${x}px`
-    popupRef.current.style.top = `${y + height + 10}px`
+    const popupStyle = popupRef.current.style
+    popupStyle.position = 'absolute'
+    popupStyle.left = `${x}px`
+    popupStyle.top = `${y + height + 5}px`
+
+    if (autoWidth) {
+      popupStyle.width = `${width}px`
+    }
   }, [triggerEl])
+
+  const clickOutside = useCallback(
+    (e: MouseEvent) => {
+      if (!popupRef.current || !triggerEl || !propsRef.current) return
+      const { onClose } = propsRef.current
+
+      if (
+        e.target &&
+        !popupRef.current.contains(e.target as Node) &&
+        !triggerEl.contains(e.target as Node)
+      ) {
+        onClose?.()
+      }
+    },
+    [triggerEl]
+  )
 
   useEffect(() => {
     if (trigger instanceof HTMLElement || !wrapperRef.current) return
@@ -50,6 +81,23 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     }
   }, [trigger, calcPopupPosition])
 
+  useEffect(() => {
+    if (visible) {
+      window.addEventListener('click', clickOutside)
+    }
+    return () => {
+      window.removeEventListener('click', clickOutside)
+    }
+  }, [visible, clickOutside])
+
+  // Creating triggerNode to use triggerProps
+  const triggerNode = useMemo(() => {
+    if (!trigger) return null
+
+    const triggerChild = React.Children.only(trigger) as React.ReactElement
+    return React.cloneElement(triggerChild, mergeProps(triggerProps, triggerChild?.props))
+  }, [trigger, triggerProps])
+
   return (
     <>
       {triggerNode && <DomWrapper ref={wrapperRef}>{triggerNode}</DomWrapper>}
@@ -57,7 +105,8 @@ export const Dialog: React.FC<DialogProps> = (props) => {
       <DialogWrapper
         className={className}
         visible={visible}
-        {...rest}
+        animationTimeout={animationTimeout}
+        lockScroll={lockScroll}
       >
         <div ref={popupRef}>{children}</div>
       </DialogWrapper>

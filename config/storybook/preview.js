@@ -1,6 +1,7 @@
 import { addDecorator } from '@storybook/react'
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator'
 import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator'
+import { I18nextDecorator } from '../../src/shared/config/storybook/I18nextDecorator'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -30,5 +31,6 @@ export const globalTypes = {
   },
 }
 
+addDecorator(I18nextDecorator)
 addDecorator(StyleDecorator)
 addDecorator(ThemeDecorator)

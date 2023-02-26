@@ -1,4 +1,4 @@
-import { FC, ReactElement, ReactNode, useCallback, useMemo, useState } from 'react'
+import { FC, ReactElement, ReactNode, useMemo, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { Dialog } from '@/shared/ui/Dialog'
 import { classNames } from '@/shared/lib/classNames'
@@ -7,24 +7,50 @@ import s from './popover.module.scss'
 interface PopoverProps {
   content?: ReactNode
   className?: string
+  visible?: boolean
+  // Pick width of target element
+  autoWidth?: boolean
+  onVisibleChange?: (visible: boolean) => void
   children: ReactElement
 }
 
 export const Popover: FC<PopoverProps> = (props) => {
-  const { children, content, className } = props
+  const { children, content, visible: userVisible, onVisibleChange, className, autoWidth } = props
 
-  const [visible, setVisible] = useState(false)
+  const [customVisible, setCustomVisible] = useState(false)
 
-  const onClick = useCallback(() => {
+  // Custom `visible` state, to combine `userVisible` and `customVisible`
+  const [visible, setVisible] = useMemo(() => {
+    const visible = userVisible !== undefined ? userVisible : customVisible
+
+    const setVisible = (outVisible: ((prev: boolean) => boolean) | boolean) => {
+      let newVisible: boolean
+      if (typeof outVisible === 'function') {
+        newVisible = outVisible(visible)
+      } else {
+        newVisible = outVisible
+      }
+
+      if (userVisible !== undefined) {
+        setCustomVisible(newVisible)
+      }
+      onVisibleChange?.(newVisible)
+    }
+
+    return [visible, setVisible]
+  }, [userVisible, customVisible, onVisibleChange])
+
+  const onClick = () => {
     setVisible((prev) => !prev)
-  }, [])
+  }
 
-  const triggerProps = useMemo(
-    () => ({
-      onClick,
-    }),
-    [onClick]
-  )
+  const closeHandler = () => {
+    setVisible(false)
+  }
+
+  const triggerProps = {
+    onClick: userVisible === undefined ? onClick : () => null,
+  }
 
   return (
     <Dialog
@@ -32,6 +58,8 @@ export const Popover: FC<PopoverProps> = (props) => {
       visible={visible}
       triggerProps={triggerProps}
       animationTimeout={200}
+      autoWidth={autoWidth}
+      onClose={closeHandler}
     >
       <CSSTransition
         in={visible}

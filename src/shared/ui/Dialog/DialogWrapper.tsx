@@ -18,8 +18,7 @@ export const DialogWrapper: FC<DialogWrapperProps> = (props) => {
   const timeoutRef = useRef<NodeJS.Timeout>()
   const propsRef = useRef<DialogWrapperProps>(props)
 
-  // We keep props in ref that when it is changed,
-  // the div container was not recreated and actual props was remained
+  // wrapping `props` with ref to prevent unnecessary effect calls
   useEffect(() => {
     propsRef.current = props
   }, [props])

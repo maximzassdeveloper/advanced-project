@@ -1,0 +1,42 @@
+.input {
+  //pointer-events: none;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  background: var(--bg-color-800);
+  border-radius: 5px;
+}
+
+.option {
+  width: 100%;
+  padding: 6px 7px;
+  color: var(--text-color);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.2s;
+
+  &.selected {
+    background: var(--primary-color-light);
+
+    &:hover {
+      background: var(--primary-color-light);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    background: transparent;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &:hover {
+    background: var(--bg-color);
+  }
+}
