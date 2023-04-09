@@ -4,7 +4,7 @@ import { useUserActions } from '@/entities/User'
 import { LoginModal } from '@/features/Auth'
 import { useAppSelector } from '@/shared/hooks'
 import { getUserAuth } from '@/entities/User/model/selectors/getUserAuth'
-import { LangSwitcher, SidebarSwitcher, ThemeSwitcher } from '@/features/Switchers'
+import { LangSwitcher, SidebarSwitcher, ThemeSwitcher } from '@/features/switchers'
 import { AppLink, Button } from '@/shared/ui'
 import s from './header.module.scss'
 

@@ -16,4 +16,8 @@ export default {
     '@/(.*)': '<rootDir>src/$1',
   },
   setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+  globals: {
+    __IS_DEV__: true,
+    __API_URL__: '',
+  },
 }

@@ -36,6 +36,7 @@
     "prefer-template": "off",
     "operator-linebreak": "off",
     "arrow-body-style": "off",
+    "function-paren-newline": "off",
     "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",

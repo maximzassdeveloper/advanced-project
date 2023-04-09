@@ -20,4 +20,3 @@ export function renderComponent(component: ReactNode, options: RenderOptions = {
     </StoreProvider>
   )
 }
-
