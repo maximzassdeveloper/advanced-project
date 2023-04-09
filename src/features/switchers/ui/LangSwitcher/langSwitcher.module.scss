@@ -2,9 +2,8 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-left: auto;
-  transition: 0.1s;
   user-select: none;
+  transition: 0.1s;
 
   &:hover {
     opacity: 0.65;

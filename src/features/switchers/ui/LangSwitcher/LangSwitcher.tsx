@@ -1,8 +1,14 @@
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { classNames } from '@/shared/lib/classNames'
 import s from './langSwitcher.module.scss'
 
-export const LangSwitcher: FC = () => {
+interface LangSwitcherProps {
+  className?: string
+}
+
+export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
+  const { className } = props
   const {
     t,
     i18n: { language, changeLanguage },
@@ -16,7 +22,7 @@ export const LangSwitcher: FC = () => {
 
   return (
     <div
-      className={s.langSwitcher}
+      className={classNames(s.langSwitcher, className)}
       onClick={toggleLanguage}
     >
       <i className='ph-translate' />

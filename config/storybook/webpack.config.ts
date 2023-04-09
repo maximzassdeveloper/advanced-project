@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack'
+import { Configuration, DefinePlugin } from 'webpack'
 import path from 'path'
 import { buildStyleLoader } from '../build/loaders/buildStyleLoader'
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader'
@@ -32,6 +32,15 @@ export default ({ config }: { config: Configuration }) => {
         isDev: true,
         paths,
       } as BuildOptions)
+    )
+  }
+
+  if (config.plugins) {
+    config.plugins?.push(
+      new DefinePlugin({
+        __IS_DEV__: JSON.stringify(true),
+        __API_URL__: JSON.stringify(''),
+      })
     )
   }
 

@@ -7,6 +7,7 @@ export default (env: BuildEnv) => {
   const mode = env.mode || 'development'
   const PORT = env.port || 3000
   const ANALYZE = env.analyze || false
+  const API_URL = env.apiUrl || 'http://localhost:8000'
 
   const isDev = mode === 'development'
 
@@ -23,6 +24,7 @@ export default (env: BuildEnv) => {
     },
     port: PORT,
     analyze: ANALYZE,
+    apiUrl: API_URL,
   })
 
   return config

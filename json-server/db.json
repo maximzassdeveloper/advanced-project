@@ -8,7 +8,7 @@
   "profile": { "name": "typicode" },
   "users": [{
     "id": 1,
-    "username": "Alex",
+    "username": "alex",
     "password": "12345"
   }]
 }

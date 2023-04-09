@@ -4,13 +4,18 @@ import { Switch } from '@/shared/ui'
 import { classNames } from '@/shared/lib/classNames'
 import s from './themeSwitcher.module.scss'
 
-export const ThemeSwitcher: FC = () => {
+interface ThemeSwitcherProps {
+  className?: string
+}
+
+export const ThemeSwitcher: FC<ThemeSwitcherProps> = (props) => {
+  const { className } = props
   const { toggleTheme, theme } = useTheme()
 
   const isDark = useMemo(() => theme === 'dark', [theme])
 
   return (
-    <div className={s.themeSwitcher}>
+    <div className={className}>
       <Switch
         className={classNames(s.switcher, { [s.checked]: isDark })}
         checked={isDark}

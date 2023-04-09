@@ -1,40 +1,42 @@
-import { FC, useCallback, useEffect, useRef } from 'react'
+import { FC, useCallback, useEffect, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { getScrollbarWidth } from '@/shared/lib/getScrollbarWidth'
+import { useCashProps } from '@/shared/hooks/useCashedProps'
 
-export interface DialogWrapperProps {
+export interface PortalProps {
   visible?: boolean
   /** Delay before removing Dialog, for your animations */
   animationTimeout?: number
   /** Lock page scroll on visible */
   lockScroll?: boolean
+  destroyOnClose?: boolean
   className?: string
 }
 
-export const DialogWrapper: FC<DialogWrapperProps> = (props) => {
+export const Portal: FC<PortalProps> = (props) => {
   const { children, visible, className } = props
 
   const containerRef = useRef<HTMLDivElement>(document.createElement('div'))
-  const timeoutRef = useRef<NodeJS.Timeout>()
-  const propsRef = useRef<DialogWrapperProps>(props)
-
-  // wrapping `props` with ref to prevent unnecessary effect calls
-  useEffect(() => {
-    propsRef.current = props
-  }, [props])
+  const delayRef = useRef<NodeJS.Timeout>()
+  const propsRef = useCashProps(props)
 
   const removeContainer = useCallback(() => {
     if (propsRef.current.lockScroll) {
       document.body.style.overflow = 'auto'
       document.body.style.width = ''
     }
-    containerRef.current.remove()
-  }, [])
+
+    if (propsRef.current.destroyOnClose) {
+      containerRef.current.remove()
+    } else {
+      containerRef.current.style.display = 'none'
+    }
+  }, [propsRef])
 
   useEffect(() => {
-    const { animationTimeout, lockScroll } = propsRef.current
+    const { animationTimeout, lockScroll, destroyOnClose } = propsRef.current
     const container = containerRef.current
-    clearTimeout(timeoutRef.current)
+    clearTimeout(delayRef.current)
 
     if (visible) {
       document.body.appendChild(container)
@@ -43,16 +45,20 @@ export const DialogWrapper: FC<DialogWrapperProps> = (props) => {
         document.body.style.overflow = 'hidden'
         document.body.style.width = `calc(100% - ${scrollBarWidth}px)`
       }
+
+      if (!destroyOnClose) {
+        containerRef.current.style.display = 'block'
+      }
     } else {
       if (animationTimeout !== undefined) {
-        timeoutRef.current = setTimeout(() => {
+        delayRef.current = setTimeout(() => {
           removeContainer()
         }, animationTimeout)
       } else {
         removeContainer()
       }
     }
-  }, [visible, removeContainer])
+  }, [propsRef, visible, removeContainer])
 
   useEffect(() => {
     if (className) {
@@ -64,9 +70,12 @@ export const DialogWrapper: FC<DialogWrapperProps> = (props) => {
   useEffect(() => {
     return () => {
       removeContainer()
-      clearTimeout(timeoutRef.current)
+      clearTimeout(delayRef.current)
     }
-  }, [removeContainer])
+    // eslint-disable-next-line
+  }, [])
+
+  const childrenRef = useRef(children)
 
   return createPortal(children, containerRef.current)
 }

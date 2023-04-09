@@ -3,6 +3,10 @@
     "links": {
       "about": "О нас",
       "home": "Главная"
+    },
+    "user": {
+      "login": "Войти",
+      "logout": "Выйти"
     }
   },
   "language": "En",

@@ -1,20 +1,31 @@
 import { forwardRef, InputHTMLAttributes } from 'react'
+import { Text } from '@/shared/ui'
 import { classNames } from '@/shared/lib/classNames'
 import s from './input.module.scss'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
+  error?: boolean | string
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { className, autoComplete = 'off', ...rest } = props
+  const { className, autoComplete = 'off', error, ...rest } = props
 
   return (
-    <input
-      ref={ref}
-      className={classNames(s.input, className)}
-      autoComplete={autoComplete}
-      {...rest}
-    />
+    <div className={classNames(s.input, className, { [s.errored]: !!error })}>
+      <input
+        ref={ref}
+        autoComplete={autoComplete}
+        {...rest}
+      />
+      {typeof error === 'string' && (
+        <Text
+          className={s.error}
+          theme='error'
+        >
+          {error}
+        </Text>
+      )}
+    </div>
   )
 })

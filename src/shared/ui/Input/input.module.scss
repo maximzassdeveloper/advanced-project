@@ -1,26 +1,37 @@
 .input {
   position: relative;
-  padding: 8px 12px;
-  border-radius: 3px;
-  border: 1px solid var(--bg-color-800);
-  background: var(--bg-color-800);
-  color: var(--text-color);
+  max-width: 100%;
   transition: all 0.2s;
 
-  &:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
+  input {
+    width: 100%;
+    padding: 8px 12px;
+    color: var(--text-color);
+    background: var(--bg-color-800);
+    border: 1px solid var(--bg-color-800);
+    border-radius: 3px;
+    transition: all 0.2s;
 
-  @include focus-visible-outline;
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
 
-  &:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px var(--shadow-primary-color);
-    outline: none !important;
-  }
+    @include focus-visible-outline;
 
-  &:not(:disabled):hover {
-    border-color: var(--hover-primary-color);
+    &:focus {
+      border-color: var(--primary-color);
+      outline: none !important;
+      box-shadow: 0 0 0 2px var(--shadow-primary-color);
+    }
+
+    &:not(:disabled):hover {
+      border-color: var(--hover-primary-color);
+    }
   }
+}
+
+.error {
+  margin-top: 3px;
+  font-size: 14px;
 }

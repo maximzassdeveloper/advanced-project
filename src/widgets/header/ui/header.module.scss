@@ -1,12 +1,12 @@
 .header {
-  padding: 8px 40px;
-  height: var(--header-height);
-  background: var(--header-bg-color);
-  box-shadow: 0 4px 8px rgba(#111, 0.5);
-  display: flex;
-  align-items: center;
   position: relative;
   z-index: 20;
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+  padding: 8px 40px;
+  background: var(--header-bg-color);
+  box-shadow: 0 4px 8px rgba(#111, 0.5);
   transition: background 0.2s;
 }
 
@@ -20,5 +20,29 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+.sidebarSwitcher {
+  margin-right: 20px;
+}
+
+.themeSwitcher {
+  margin-left: 15px;
+}
+
+.langSwitcher {
+  margin-left: auto;
+}
+
+.user {
+  margin-left: 20px;
+
+  span {
+    cursor: pointer;
+  }
+
+  span + button {
+    margin-left: 10px;
   }
 }

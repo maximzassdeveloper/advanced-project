@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useUserActions } from '@/entities/User'
 import { Button, Input, Modal, Popover, Select, Switch } from '@/shared/ui'
 import s from './home.module.scss'
 
@@ -13,7 +14,6 @@ export const HomePage: FC = () => {
   return (
     <div className={s.home}>
       <Button onClick={() => setVisible((v) => !v)}>Modal</Button>
-      <Button disabled>{t('common:buttons.open', 'Открыть')}</Button>
       <Button disabled>{t('common:buttons.update', 'Обновить')}</Button>
       <Switch
         checked={checked}
@@ -24,6 +24,14 @@ export const HomePage: FC = () => {
         checked={false}
       />
       <Select
+        options={[
+          { label: 'option 1', value: 'option1' },
+          { label: 'option 2', value: 'option2' },
+          { label: 'option 3', value: 'option3', disabled: true },
+        ]}
+      />
+      <Select
+        search
         options={[
           { label: 'option 1', value: 'option1' },
           { label: 'option 2', value: 'option2' },

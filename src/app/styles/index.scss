@@ -8,8 +8,6 @@
 .app {
   min-height: 100vh;
   background: var(--bg-color);
-  color: var(--text-color);
-  font: var(--font-m);
   transition: background 0.2s, color 0.2s;
 }
 
@@ -19,6 +17,7 @@ body {
 
 * {
   font: var(--font-m);
+  color: var(--text-color);
 }
 
 .main {

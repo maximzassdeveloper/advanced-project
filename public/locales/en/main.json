@@ -1,0 +1,13 @@
+{
+  "loginForm": {
+    "errors": {
+      "incorrect": "Некорректные данные",
+      "server": "Ошибка сервера",
+      "unknown": "Непредвиденная ошибка"
+    },
+    "loginBtn": "Войти",
+    "password": "Пароль",
+    "title": "Вход",
+    "username": "Имя"
+  }
+}

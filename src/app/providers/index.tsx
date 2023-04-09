@@ -7,14 +7,14 @@ import { StoreProvider } from './store'
 
 export const AllProviders: FC = ({ children }) => {
   return (
-    <StoreProvider>
-      <ErrorBoundary>
-        <BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <StoreProvider>
           <CommonProvider>
             <ThemeProvider>{children}</ThemeProvider>
           </CommonProvider>
-        </BrowserRouter>
-      </ErrorBoundary>
-    </StoreProvider>
+        </StoreProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   )
 }

@@ -6,7 +6,7 @@ import s from './select.module.scss'
 interface SelectListProps {
   options: SelectOption[]
   selected: string
-  onSelect: (val: string) => void
+  onSelect: (option: SelectOption) => void
 }
 
 export const SelectList: FC<SelectListProps> = (props) => {

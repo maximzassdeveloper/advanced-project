@@ -1,0 +1,1 @@
+export { useCashProps } from './useCashedProps'

@@ -3,6 +3,9 @@ body.light {
   --primary-color: #8a31d2;
   --primary-text-color: #fff;
   --hover-primary-color: #b161f2;
+  --primary-color-light: #4d2a6a;
+  --hover-primary-color-light: #613485;
+
   --secondary-color: #5e5e5e;
   --hover-secondary-color: #adadad;
   --text-color: #151515;
@@ -13,6 +16,8 @@ body.light {
   --disabled-color: #d9d9d9;
   --disabled-text-color: #838383;
   --disabled-border-color: #a1a1a1;
+
+  --error-color: #e13030;
 
   // Header
   --header-bg-color: #e2e2e2;

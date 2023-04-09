@@ -1,14 +1,15 @@
-import React, { useRef, useState, useCallback, useEffect, HTMLAttributes, useMemo } from 'react'
-import { DialogWrapper, DialogWrapperProps } from './DialogWrapper'
+import React, { useRef, useState, useCallback, useEffect, useMemo } from 'react'
+import { Portal, PortalProps } from './Portal'
 import DomWrapper from './DomWrapper'
-import { findDomNode } from './findDomNode'
 import { mergeProps } from '@/shared/lib/mergeProps'
+import { useClickOutside, useCashProps } from '@/shared/hooks'
+import { findDomNode } from './findDomNode'
 
-interface DialogProps extends DialogWrapperProps {
+interface DialogProps extends PortalProps {
   trigger?: React.ReactElement
   autoWidth?: boolean
   onClose?: () => void
-  triggerProps?: HTMLAttributes<HTMLElement>
+  triggerProps?: React.HTMLAttributes<HTMLElement>
 }
 
 export const Dialog: React.FC<DialogProps> = (props) => {
@@ -18,20 +19,23 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     triggerProps,
     className,
     visible,
-    autoWidth,
     lockScroll,
     animationTimeout,
+    destroyOnClose = true,
     onClose,
   } = props
 
   const wrapperRef = useRef<DomWrapper>(null)
   const popupRef = useRef<HTMLDivElement>(null)
-  const propsRef = useRef<DialogProps>()
+  const propsRef = useCashProps(props)
+  const triggerPropsRef = useRef<React.HTMLAttributes<HTMLElement>>()
   const [triggerEl, setTriggerEl] = useState<HTMLElement | null>(null)
 
-  useEffect(() => {
-    propsRef.current = props
-  }, [autoWidth, onClose, props])
+  useClickOutside({
+    targets: [popupRef.current, triggerEl],
+    outsideCallback: onClose,
+    visible,
+  })
 
   const calcPopupPosition = useCallback(() => {
     if (!popupRef.current || !triggerEl || !propsRef.current) return
@@ -47,23 +51,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     if (autoWidth) {
       popupStyle.width = `${width}px`
     }
-  }, [triggerEl])
-
-  const clickOutside = useCallback(
-    (e: MouseEvent) => {
-      if (!popupRef.current || !triggerEl || !propsRef.current) return
-      const { onClose } = propsRef.current
-
-      if (
-        e.target &&
-        !popupRef.current.contains(e.target as Node) &&
-        !triggerEl.contains(e.target as Node)
-      ) {
-        onClose?.()
-      }
-    },
-    [triggerEl]
-  )
+  }, [propsRef, triggerEl])
 
   useEffect(() => {
     if (trigger instanceof HTMLElement || !wrapperRef.current) return
@@ -74,42 +62,40 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     setTriggerEl(node)
     calcPopupPosition()
 
-    window.addEventListener('resize', calcPopupPosition)
+    triggerPropsRef.current = {
+      onClick: calcPopupPosition,
+      onMouseEnter: calcPopupPosition,
+    }
 
+    window.addEventListener('resize', calcPopupPosition)
     return () => {
       window.removeEventListener('resize', calcPopupPosition)
     }
   }, [trigger, calcPopupPosition])
 
-  useEffect(() => {
-    if (visible) {
-      window.addEventListener('click', clickOutside)
-    }
-    return () => {
-      window.removeEventListener('click', clickOutside)
-    }
-  }, [visible, clickOutside])
-
   // Creating triggerNode to use triggerProps
   const triggerNode = useMemo(() => {
     if (!trigger) return null
 
-    const triggerChild = React.Children.only(trigger) as React.ReactElement
-    return React.cloneElement(triggerChild, mergeProps(triggerProps, triggerChild?.props))
+    const triggerChild = React.Children.only(trigger)
+    const newTriggerProps = mergeProps(triggerProps, triggerPropsRef.current, triggerChild?.props)
+
+    return React.cloneElement(triggerChild, newTriggerProps)
   }, [trigger, triggerProps])
 
   return (
     <>
       {triggerNode && <DomWrapper ref={wrapperRef}>{triggerNode}</DomWrapper>}
 
-      <DialogWrapper
+      <Portal
         className={className}
         visible={visible}
         animationTimeout={animationTimeout}
         lockScroll={lockScroll}
+        destroyOnClose={destroyOnClose}
       >
         <div ref={popupRef}>{children}</div>
-      </DialogWrapper>
+      </Portal>
     </>
   )
 }

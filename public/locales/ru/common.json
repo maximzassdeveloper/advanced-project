@@ -1,7 +1,9 @@
 {
   "buttons": {
     "default": "Default",
-    "open": "Открыть",
     "update": "Обновить"
+  },
+  "validation": {
+    "required": "Это поле обязательно"
   }
 }
