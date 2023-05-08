@@ -1,0 +1,44 @@
+.text,
+.title {
+  margin-bottom: 10px;
+
+  &.error {
+    color: var(--error-color);
+  }
+
+  &.success {
+    color: var(--success-color);
+  }
+}
+
+.text {
+  &.l {
+    font: var(--font-l);
+  }
+
+  &.m {
+    font: var(--font-m);
+  }
+
+  &.s {
+    font: var(--font-s);
+  }
+}
+
+.title {
+  &.xl {
+    font: var(--font-title-xl);
+  }
+
+  &.l {
+    font: var(--font-title-l);
+  }
+
+  &.m {
+    font: var(--font-title-m);
+  }
+
+  &.s {
+    font: var(--font-title-s);
+  }
+}

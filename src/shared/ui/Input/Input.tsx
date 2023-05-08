@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes } from 'react'
-import { Text } from '@/shared/ui'
+import { Typography } from '@/shared/ui'
 import { classNames } from '@/shared/lib/classNames'
 import s from './input.module.scss'
 
@@ -19,12 +19,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         {...rest}
       />
       {typeof error === 'string' && (
-        <Text
+        <Typography.Text
           className={s.error}
           theme='error'
         >
           {error}
-        </Text>
+        </Typography.Text>
       )}
     </div>
   )

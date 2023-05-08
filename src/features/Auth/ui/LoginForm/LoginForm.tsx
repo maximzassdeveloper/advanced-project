@@ -7,7 +7,7 @@ import {
   useValidationMessages,
   useAsyncReducerLoader,
 } from '@/shared/hooks'
-import { Button, Input, Text } from '@/shared/ui'
+import { Button, Input, Typography } from '@/shared/ui'
 import { login } from '../../model/services/login'
 import { getLogin } from '../../model/selectors/getLogin'
 import { LoginError } from '../../model/types/loginSchema'
@@ -62,8 +62,10 @@ const LoginForm: FC<LoginFormProps> = (props) => {
       onSubmit={handleSubmit(submitHandler)}
       className={s.loginForm}
     >
-      <Text tag='h2'>{t('main:loginForm.title', 'Вход')}</Text>
-      {error && <Text theme='error'>{getErrorMessage()}</Text>}
+      <Typography.Title level='h3'>{t('main:loginForm.title', 'Вход')}</Typography.Title>
+
+      {error && <Typography.Text theme='error'>{getErrorMessage()}</Typography.Text>}
+
       <Input
         {...register('username', { required: validationMessages.required })}
         className={s.input}

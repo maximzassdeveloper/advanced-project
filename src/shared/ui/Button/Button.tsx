@@ -8,7 +8,7 @@ import { mergeProps } from '@/shared/lib/mergeProps'
 import s from './button.module.scss'
 
 type ButtonTheme = 'primary' | 'secondary' | 'outline' | 'clear'
-type ButtonSize = 'm' | 'l'
+type ButtonSize = 'l' | 'm' | 's'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
@@ -18,7 +18,15 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { children, type = 'button', className, theme = 'primary', loading, ...rest } = props
+  const {
+    children,
+    type = 'button',
+    className,
+    size = 'm',
+    theme = 'primary',
+    loading,
+    ...rest
+  } = props
 
   const buttonRef = useRef<HTMLButtonElement>(null)
   const waveProps = useAddWave<HTMLButtonElement>(buttonRef, props)
@@ -45,11 +53,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     <button
       ref={composeRef(buttonRef, ref)}
       type={type}
-      className={classNames(s.button, className, s[theme], { [s.loading]: loading })}
+      className={classNames(s.button, className, s[size], s[theme], { [s.loading]: loading })}
       disabled={disabled}
       {...mergeProps(rest, waveProps)}
     >
-      {children}
+      <span className={s.text}>{children}</span>
       <CSSTransition
         timeout={200}
         in={loading}

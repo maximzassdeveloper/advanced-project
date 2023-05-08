@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, useEffect, useRef } from 'react'
+import { KeyboardEvent, ReactNode, useEffect, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { Dialog } from '@/shared/ui/Dialog'
 import { findFirstFocusableElement } from '@/shared/lib/focus'
@@ -6,15 +6,16 @@ import { classNames } from '@/shared/lib/classNames'
 import { useCashProps } from '@/shared/hooks/useCashedProps'
 import s from './modal.module.scss'
 
-interface ModalProps {
+export interface ModalProps {
   visible?: boolean
   onClose?: () => void
   focusFirst?: boolean
   destroyOnClose?: boolean
   className?: string
+  children?: ReactNode
 }
 
-export const Modal: FC<ModalProps> = (props) => {
+export const Modal = (props: ModalProps) => {
   const { children, visible, onClose, className, destroyOnClose } = props
 
   const contentRef = useRef<HTMLDivElement>(null)
@@ -24,7 +25,7 @@ export const Modal: FC<ModalProps> = (props) => {
 
   useEffect(() => {
     if (!contentRef.current || !sentinelStartRef.current || !sentinelEndRef.current) return
-    const { focusFirst } = propsRef.current
+    const { focusFirst = true } = propsRef.current
 
     if (visible) {
       sentinelStartRef.current.focus()
@@ -62,6 +63,7 @@ export const Modal: FC<ModalProps> = (props) => {
       destroyOnClose={destroyOnClose}
     >
       <div
+        data-testid='modal'
         className={classNames(s.modal, className)}
         onKeyDown={keyDownHandler}
       >
@@ -71,6 +73,7 @@ export const Modal: FC<ModalProps> = (props) => {
           classNames='fade'
         >
           <div
+            data-testid='modal-mask'
             className={s.mask}
             onClick={onClose}
           />

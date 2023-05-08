@@ -69,6 +69,12 @@
     "react/no-unused-prop-types": "off",
     "comma-dangle": "off",
     "camelcase": "off",
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 2
+      }
+    ],
     "max-len": [
       "error",
       {
@@ -77,5 +83,13 @@
       }
     ],
     "@typescript-eslint/ban-ts-comment": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    }
+  ]
 }

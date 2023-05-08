@@ -2,7 +2,7 @@ import axios from 'axios'
 import { login } from './login'
 import { userActions } from '@/entities/User'
 import { TestAsyncThunk } from '@/shared/lib/test/TestAsyncThunk'
-import { createAxiosError } from '@/shared/api/errorApi'
+import { createAxiosError } from '@/shared/api/apiError'
 import { LoginError } from '../types/loginSchema'
 
 jest.mock('axios')

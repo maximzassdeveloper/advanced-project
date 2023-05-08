@@ -4,7 +4,7 @@ import { composeRef } from '@/shared/lib/composeRef'
 import { classNames } from '@/shared/lib/classNames'
 import s from './switch.module.scss'
 
-interface SwitchProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
+export interface SwitchProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
   checked: boolean
   disabled?: boolean
   className?: string
@@ -42,3 +42,4 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>((props, ref) =>
     </button>
   )
 })
+

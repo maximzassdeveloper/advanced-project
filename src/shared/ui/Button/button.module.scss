@@ -1,7 +1,6 @@
 .button {
   position: relative;
   display: inline-block;
-  padding: 6px 20px;
   white-space: nowrap;
   touch-action: manipulation;
   cursor: pointer;
@@ -30,11 +29,15 @@
   &.loading {
     cursor: not-allowed;
     opacity: 0.8;
+
+    & .text {
+      opacity: 0;
+    }
   }
 
   &.secondary {
     color: var(--text-color);
-    background: var(--secondary-color);
+    background: var(--secondary-bg-color);
   }
 
   &.outline {
@@ -50,6 +53,28 @@
       text-decoration: underline;
     }
   }
+
+  &.l {
+    font: var(--font-l);
+    padding: 7px 20px;
+  }
+
+  &.m {
+    font: var(--font-m);
+    padding: 5px 16px;
+  }
+
+  &.s {
+    font: var(--font-s);
+    padding: 4px 10px;
+  }
+}
+
+.text {
+  transition: 0.2s;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
 .loader {

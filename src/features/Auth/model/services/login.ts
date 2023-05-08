@@ -3,7 +3,7 @@ import { ThunkConfig } from '@/app/providers/store'
 import { User, userActions } from '@/entities/User'
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
 import { LoginError } from '../types/loginSchema'
-import { isAxiosError } from '@/shared/api/errorApi'
+import { isAxiosError } from '@/shared/api/apiError'
 
 interface LoginProps {
   username: string
