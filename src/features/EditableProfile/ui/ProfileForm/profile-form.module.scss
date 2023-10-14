@@ -1,0 +1,25 @@
+.form {
+  border: 1px solid var(--border-color);
+  display: flex;
+  padding: 10px 20px;
+}
+
+.avatarBlock {
+  margin-top: 10px;
+  margin-right: 60px;
+}
+
+.fieldsBlock {
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+
+  p {
+    width: 100%;
+    max-width: 170px;
+    margin-right: 15px;
+  }
+}

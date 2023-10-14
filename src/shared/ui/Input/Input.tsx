@@ -5,17 +5,31 @@ import s from './input.module.scss'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
+  isReadonly?: boolean
   error?: boolean | string
+  label?: string
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { className, autoComplete = 'off', error, ...rest } = props
+  const { className, id, autoComplete = 'off', error, isReadonly, label, ...rest } = props
+
+  const classes = classNames(s.input, className, { [s.errored]: !!error, [s.readonly]: isReadonly })
 
   return (
-    <div className={classNames(s.input, className, { [s.errored]: !!error })}>
+    <div className={classes}>
+      {!!label && (
+        <label
+          htmlFor={id}
+          className={s.label}
+        >
+          {label}
+        </label>
+      )}
       <input
         ref={ref}
+        id={id}
         autoComplete={autoComplete}
+        readOnly={isReadonly}
         {...rest}
       />
       {typeof error === 'string' && (

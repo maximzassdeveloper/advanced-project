@@ -12,15 +12,15 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     exclude: /node_modules/,
   }
 
-  const i18nextExtractOptions = {
-    locales: ['en', 'ru'],
-    outputPath: paths.i18nextLocales + '/{{locale}}/{{ns}}.json',
-    exclude: ['^(../)*node_modules/', '**/*.stories.@(js|jsx|ts|tsx)'],
-    useI18nextDefaultValue: true,
-    nsSeparator: ':',
-    discardOldKeys: true,
-    compatibilityJSON: 'v4',
-  }
+  // const i18nextExtractOptions = {
+  //   locales: ['en', 'ru'],
+  //   outputPath: paths.i18nextLocales + '/{{locale}}/{{ns}}.json',
+  //   exclude: ['^(../)*node_modules/', '**/*.stories.@(js|jsx|ts|tsx)'],
+  //   useI18nextDefaultValue: true,
+  //   nsSeparator: ':',
+  //   discardOldKeys: true,
+  //   compatibilityJSON: 'v4',
+  // }
 
   const babelLoader = {
     test: /\.(jsx?|tsx?)$/,
@@ -29,7 +29,7 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
       loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env'],
-        plugins: [['i18next-extract', i18nextExtractOptions]],
+        // plugins: [['i18next-extract', i18nextExtractOptions]],
       },
     },
   }

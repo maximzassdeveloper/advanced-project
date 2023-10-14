@@ -25,6 +25,7 @@ export default (env: BuildEnv) => {
     port: PORT,
     analyze: ANALYZE,
     apiUrl: API_URL,
+    project: 'frontend',
   })
 
   return config

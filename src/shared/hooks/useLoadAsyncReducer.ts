@@ -6,7 +6,7 @@ import { useAppDispatch } from './useAppDispatch'
 
 let reducerInited = false
 
-export const useAsyncReducerLoader = (
+export const useLoadAsyncReducer = (
   key: StateSchemaKey,
   reducer: Reducer,
   destroyAfterUnmount = true

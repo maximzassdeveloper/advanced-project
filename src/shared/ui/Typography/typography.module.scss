@@ -1,7 +1,5 @@
 .text,
 .title {
-  margin-bottom: 10px;
-
   &.error {
     color: var(--error-color);
   }
@@ -28,14 +26,17 @@
 .title {
   &.xl {
     font: var(--font-title-xl);
+    font-weight: 700;
   }
 
   &.l {
     font: var(--font-title-l);
+    font-weight: 600;
   }
 
   &.m {
     font: var(--font-title-m);
+    font-weight: 500;
   }
 
   &.s {

@@ -5,7 +5,7 @@ import {
   useAppSelector,
   useAppDispatch,
   useValidationMessages,
-  useAsyncReducerLoader,
+  useLoadAsyncReducer,
 } from '@/shared/hooks'
 import { Button, Input, Typography } from '@/shared/ui'
 import { login } from '../../model/services/login'
@@ -33,7 +33,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     formState: { errors },
   } = useForm<LoginFormFields>()
 
-  useAsyncReducerLoader('login', loginReducer)
+  useLoadAsyncReducer('login', loginReducer)
   const validationMessages = useValidationMessages()
   const dispatch = useAppDispatch()
   const { isLoading, error } = useAppSelector(getLogin)

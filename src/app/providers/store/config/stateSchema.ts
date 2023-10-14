@@ -7,13 +7,19 @@ import {
   ThunkDispatch,
 } from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
+import { StateSchemaKey } from './reducerManager'
+import { rtkApi } from '@/shared/api/rtkApi'
 import { UserSchema } from '@/entities/User'
 import { LoginSchema } from '@/features/Auth'
-import { StateSchemaKey } from './reducerManager'
+import { ProfileSchema } from '@/features/EditableProfile'
 
 export interface StateSchema {
   user: UserSchema
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
+
+  // async reducers
   login?: LoginSchema
+  profile?: ProfileSchema
 }
 
 export interface ReducerManager {

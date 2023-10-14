@@ -1,9 +1,5 @@
 {
   "header": {
-    "links": {
-      "about": "О нас",
-      "home": "Главная"
-    },
     "user": {
       "login": "Войти",
       "logout": "Выйти"
@@ -13,8 +9,5 @@
   "pageError": {
     "reloadBtn": "Перезагрузить страницу",
     "somethingWentWrong": "Что-то пошло не так"
-  },
-  "sidebar": {
-    "title": "Sidebar"
   }
 }

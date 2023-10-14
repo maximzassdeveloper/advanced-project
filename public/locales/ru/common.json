@@ -3,6 +3,11 @@
     "default": "Default",
     "update": "Обновить"
   },
+  "menu": {
+    "about": "О нас",
+    "home": "Главная",
+    "profile": "Профиль"
+  },
   "validation": {
     "required": "Это поле обязательно"
   }

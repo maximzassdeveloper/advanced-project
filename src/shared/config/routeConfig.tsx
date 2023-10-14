@@ -1,11 +1,17 @@
 export enum AppRoutes {
   HOME = 'home',
   ABOUT = 'about',
-  NOT_FOUND = 'notFound',
+  PROFILE = 'profile',
+  NOUT_FOUND = 'notFound',
+  // last
+  OTHER = 'other',
 }
 
 export const routePaths: Record<AppRoutes, string> = {
   [AppRoutes.HOME]: '/',
   [AppRoutes.ABOUT]: '/about',
-  [AppRoutes.NOT_FOUND]: '*',
+  [AppRoutes.PROFILE]: '/profile/', // + :id
+  [AppRoutes.NOUT_FOUND]: '/not-found',
+  [AppRoutes.OTHER]: '*',
 }
+

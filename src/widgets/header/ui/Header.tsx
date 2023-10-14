@@ -4,8 +4,8 @@ import { useUserActions } from '@/entities/User'
 import { LoginModal } from '@/features/Auth'
 import { useAppSelector } from '@/shared/hooks'
 import { getUserAuth } from '@/entities/User/model/selectors/getUserAuth'
-import { LangSwitcher, SidebarSwitcher, ThemeSwitcher } from '@/features/switchers'
-import { AppLink, Button } from '@/shared/ui'
+import { LangSwitcher, SidebarSwitcher, ThemeSwitcher } from '@/features/Switchers'
+import { Button } from '@/shared/ui'
 import s from './header.module.scss'
 
 export const Header: FC = () => {
@@ -24,15 +24,8 @@ export const Header: FC = () => {
   }, [])
 
   return (
-    <div
-      className={s.header}
-      data-testid='header'
-    >
+    <div className={s.header} data-testid='header'>
       <SidebarSwitcher className={s.sidebarSwitcher} />
-      <div className={s.links}>
-        <AppLink to={'/'}>{t('header.links.home', 'Главная')}</AppLink>
-        <AppLink to={'/about'}>{t('header.links.about', 'О нас')}</AppLink>
-      </div>
 
       <LangSwitcher className={s.langSwitcher} />
       <ThemeSwitcher className={s.themeSwitcher} />
@@ -41,25 +34,16 @@ export const Header: FC = () => {
         {auth ? (
           <>
             <span style={{ marginLeft: 'auto' }}>{auth?.username}</span>
-            <Button
-              theme='clear'
-              onClick={() => logout()}
-            >
+            <Button theme='clear' onClick={() => logout()}>
               {t('header.user.logout', 'Выйти')}
             </Button>
           </>
         ) : (
           <>
-            <Button
-              theme='clear'
-              onClick={openLoginModal}
-            >
+            <Button theme='clear' onClick={openLoginModal}>
               {t('header.user.login', 'Войти')}
             </Button>
-            <LoginModal
-              isOpen={isLoginOpen}
-              onClose={closeLoginModal}
-            />
+            <LoginModal isOpen={isLoginOpen} onClose={closeLoginModal} />
           </>
         )}
       </div>

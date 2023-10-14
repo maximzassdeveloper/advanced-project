@@ -1,14 +1,39 @@
 {
   "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
   ],
   "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
   ],
-  "profile": { "name": "typicode" },
-  "users": [{
-    "id": 1,
-    "username": "alex",
-    "password": "12345"
-  }]
+  "users": [
+    {
+      "id": 1,
+      "username": "alex",
+      "password": "12345"
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "username": "alexmac",
+      "firstname": "Alex",
+      "lastname": "Mac",
+      "age": "23",
+      "city": "Moscow",
+      "country": "Australia",
+      "currency": "USD",
+      "avatar": "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1008"
+    },
+    {
+      "id": 2
+    }
+  ]
 }
