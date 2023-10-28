@@ -2,6 +2,7 @@ import webpack, { WebpackPluginInstance } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import { BuildOptions } from './types/config'
 
 export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
@@ -20,6 +21,15 @@ export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
       __IS_DEV__: JSON.stringify(isDev),
       __API_URL__: JSON.stringify(apiUrl),
       __PROJECT__: JSON.stringify(project),
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+        mode: 'write-references',
+      },
     }),
   ]
 

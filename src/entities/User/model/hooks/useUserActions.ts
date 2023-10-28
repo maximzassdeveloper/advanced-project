@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import { userActions } from '@/entities/User'
 

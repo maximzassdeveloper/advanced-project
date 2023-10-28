@@ -7,7 +7,7 @@ import s from './home.module.scss'
 export const HomePage: FC = () => {
   const { t } = useTranslation(['common'])
 
-  const [checked, setChecked] = useState(true)
+  const [checked, setChecked] = useState(undefined)
   const [visible, setVisible] = useState(false)
   const [className, setClassName] = useState(1000)
 

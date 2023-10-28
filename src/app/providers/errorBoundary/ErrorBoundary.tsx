@@ -1,5 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from 'react'
-import { PageError } from '@/widgets/pageError'
+import { PageError } from '@/widgets/PageError'
 
 interface ErrorBoundaryProps {
   children: ReactNode
@@ -36,3 +36,4 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 }
 
 export default ErrorBoundary
+

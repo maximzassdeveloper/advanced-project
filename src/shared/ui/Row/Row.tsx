@@ -44,6 +44,7 @@ export const Row = (props: RowProps) => {
 
   const classes = classNames(
     className,
+    s.flex,
     directionClasses[direction ?? 'row'],
     gapClasses[gap ?? 0],
     alignClasses[align ?? 'center'],

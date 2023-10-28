@@ -1,7 +1,16 @@
 {
   "buttons": {
-    "default": "Default",
-    "update": "Обновить"
+    "add": "Добавить"
+  },
+  "common": {
+    "menu": {
+      "articles": "Статьи"
+    },
+    "ui": {
+      "code": {
+        "copied": "Скопировано!"
+      }
+    }
   },
   "menu": {
     "about": "О нас",
@@ -9,6 +18,10 @@
     "profile": "Профиль"
   },
   "validation": {
+    "max": "Максимальное число: {{ num }}",
+    "maxLength": "Максимальная длина: {{ num }}",
+    "min": "Минимальное число: {{ num }}",
+    "minLength": "Минимальная длина: {{ num }}",
     "required": "Это поле обязательно"
   }
 }

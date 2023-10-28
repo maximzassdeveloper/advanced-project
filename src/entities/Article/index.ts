@@ -1,4 +1,4 @@
-export { Article } from './model/types'
+export type { Article } from './model/types'
 export * from './api/articlesApi'
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails'
 export { ArticlesList } from './ui/ArticlesList/ArticlesList'

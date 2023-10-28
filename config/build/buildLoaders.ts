@@ -2,40 +2,14 @@ import { RuleSetRule } from 'webpack'
 import { buildStyleLoader } from './loaders/buildStyleLoader'
 import { buildSvgLoader } from './loaders/buildSvgLoader'
 import { BuildOptions } from './types/config'
+import { buildBabelLoader } from './loaders/buildBabelLoader'
 
 export function buildLoaders(options: BuildOptions): RuleSetRule[] {
   const { paths } = options
 
-  const typescriptLoader = {
-    test: /\.tsx?$/,
-    use: 'ts-loader',
-    exclude: /node_modules/,
-  }
-
-  // const i18nextExtractOptions = {
-  //   locales: ['en', 'ru'],
-  //   outputPath: paths.i18nextLocales + '/{{locale}}/{{ns}}.json',
-  //   exclude: ['^(../)*node_modules/', '**/*.stories.@(js|jsx|ts|tsx)'],
-  //   useI18nextDefaultValue: true,
-  //   nsSeparator: ':',
-  //   discardOldKeys: true,
-  //   compatibilityJSON: 'v4',
-  // }
-
-  const babelLoader = {
-    test: /\.(jsx?|tsx?)$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-        // plugins: [['i18next-extract', i18nextExtractOptions]],
-      },
-    },
-  }
-
+  const babelLoader = buildBabelLoader({ ...options, isTsx: false })
+  const tsxBabelLoader = buildBabelLoader({ ...options, isTsx: true })
   const styleLoader = buildStyleLoader(options)
-
   const svgLoader = buildSvgLoader()
 
   const assetsLoader = {
@@ -43,5 +17,5 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     type: 'asset/resource',
   }
 
-  return [babelLoader, typescriptLoader, styleLoader, svgLoader, assetsLoader]
+  return [babelLoader, tsxBabelLoader, styleLoader, svgLoader, assetsLoader]
 }

@@ -1,0 +1,33 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-typescript",
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "i18next-extract",
+      {
+        "locales": ["en", "ru"],
+        "outputPath": "public/locales/{{locale}}/{{ns}}.json",
+        "exclude": ["^(../)*node_modules/", "**/*.stories.@(js|jsx|ts|tsx)"],
+        "useI18nextDefaultValue": true,
+        "nsSeparator": ":",
+        "discardOldKeys": true,
+        "compatibilityJSON": "v4"
+      }
+    ]
+  ]
+}
