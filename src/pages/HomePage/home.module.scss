@@ -1,7 +1,10 @@
 .home {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 800px;
+  min-width: 800px;
+  // flex-wrap: wrap;
 
   & > * {
     margin: 10px;

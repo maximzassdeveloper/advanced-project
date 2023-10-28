@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 import { Title, Text } from '@/shared/ui'
 import { classNames } from '@/shared/lib/classNames'
 import s from './result.module.scss'
@@ -11,7 +11,7 @@ interface ResultProps {
   extra?: ReactNode
 }
 
-export const Result = (props: ResultProps) => {
+export const Result = memo((props: ResultProps) => {
   const { className, status = 'default', title, desc, extra } = props
 
   return (
@@ -22,7 +22,10 @@ export const Result = (props: ResultProps) => {
         {status === 'warning' && <i className='ph ph-smiley-meh' />}
       </div>
 
-      <Title className={s.title} level='h2'>
+      <Title
+        className={s.title}
+        level='h2'
+      >
         {title}
       </Title>
 
@@ -31,4 +34,4 @@ export const Result = (props: ResultProps) => {
       {extra}
     </div>
   )
-}
+})

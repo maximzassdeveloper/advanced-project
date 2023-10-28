@@ -34,6 +34,8 @@
     "react/destructuring-assignment": "off",
     "consistent-return": "off",
     "prefer-template": "off",
+    "no-nested-ternary": "off",
+    "react/no-array-index-key": "warn",
     "operator-linebreak": "off",
     "arrow-body-style": "off",
     "function-paren-newline": "off",
@@ -96,6 +98,12 @@
       "files": ["*.test.ts", "*.test.tsx"],
       "rules": {
         "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    },
+    {
+      "files": ["*.stories.ts", "*.stories.tsx"],
+      "rules": {
+        "max-len": "warn"
       }
     }
   ]

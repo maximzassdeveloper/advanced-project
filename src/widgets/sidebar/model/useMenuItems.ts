@@ -15,27 +15,36 @@ export const useMenuItems = () => {
   const { t } = useTranslation(['common'])
   const user = useAppSelector(getUserAuth)
 
-  const menuItems: MenuItem[] = useMemo(
-    () => [
+  const menuItems = useMemo(() => {
+    const items: MenuItem[] = [
       {
         name: t('common:menu.home', 'Главная'),
-        link: routePaths.home,
+        link: routePaths.home(),
         icon: 'ph ph-align-center-vertical',
       },
       {
         name: t('common:menu.about', 'О нас'),
-        link: routePaths.about,
+        link: routePaths.about(),
         icon: 'ph ph-align-center-vertical',
       },
       {
+        name: t('common.menu.articles', 'Статьи'),
+        link: routePaths.articles(),
+        icon: 'ph ph-align-center-vertical',
+      },
+    ]
+
+    if (user) {
+      items.push({
         name: t('common:menu.profile', 'Профиль'),
-        link: routePaths.profile + (user?.id ?? 0),
+        link: routePaths.profile(user?.id ?? '0'),
         icon: 'ph ph-align-center-vertical',
         authOnly: true,
-      },
-    ],
-    [t, user?.id]
-  )
+      })
+    }
+
+    return items
+  }, [t, user])
 
   return menuItems
 }

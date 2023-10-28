@@ -1,0 +1,14 @@
+.article {
+  width: 250px;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(#000, 0.7);
+}
+
+.image {
+  width: 220px;
+  height: 240px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}

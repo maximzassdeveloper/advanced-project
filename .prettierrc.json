@@ -8,6 +8,6 @@
   "jsxSingleQuote": true,
   "arrowParens": "always",
   "quoteProps": "consistent",
-  "singleAttributePerLine": false,
+  "singleAttributePerLine": true,
   "endOfLine": "crlf"
 }

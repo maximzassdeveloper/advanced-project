@@ -12,6 +12,7 @@ import { rtkApi } from '@/shared/api/rtkApi'
 import { UserSchema } from '@/entities/User'
 import { LoginSchema } from '@/features/Auth'
 import { ProfileSchema } from '@/features/EditableProfile'
+import { CommentsSchema } from '@/features/ArticleComments'
 
 export interface StateSchema {
   user: UserSchema
@@ -20,6 +21,7 @@ export interface StateSchema {
   // async reducers
   login?: LoginSchema
   profile?: ProfileSchema
+  comments?: CommentsSchema
 }
 
 export interface ReducerManager {
@@ -43,4 +45,5 @@ export interface ThunkConfig<T> {
   rejectValue: T
   extra: ThunkExtraArg
   dispatch: AppDispatch
+  state: StateSchema
 }

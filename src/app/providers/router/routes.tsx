@@ -1,30 +1,45 @@
 import { RouteProps } from 'react-router-dom'
+import { AppRoutes, routePaths } from '@/shared/config/routeConfig'
 import { AboutPage } from '@/pages/AboutPage'
 import { HomePage } from '@/pages/HomePage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
-import { routePaths } from '@/shared/config/routeConfig'
 import { ProfilePage } from '@/pages/ProfilePage'
+import { ArticlesPage } from '@/pages/ArticlesPage'
+import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage'
 
-export const routes: RouteProps[] = [
-  {
-    path: routePaths.home,
+const routesObject: Record<AppRoutes, RouteProps> = {
+  [AppRoutes.HOME]: {
+    path: routePaths.home(),
     element: <HomePage />,
   },
-  {
-    path: routePaths.about,
+  [AppRoutes.ABOUT]: {
+    path: routePaths.about(),
     element: <AboutPage />,
   },
-  {
-    path: `${routePaths.profile}:id`,
+  [AppRoutes.PROFILE]: {
+    path: routePaths.profile(':id'),
     element: <ProfilePage />,
   },
-  {
-    path: routePaths.notFound,
+  [AppRoutes.ARTICLES]: {
+    path: routePaths.articles(),
+    element: <ArticlesPage />,
+  },
+  [AppRoutes.ARTICLE_DETAILS]: {
+    path: routePaths.articleDetails(':id'),
+    element: <ArticleDetailsPage />,
+  },
+  [AppRoutes.NOT_FOUND]: {
+    path: routePaths.notFound(),
     element: <NotFoundPage />,
   },
-  {
-    path: routePaths.other,
+  [AppRoutes.OTHER]: {
+    path: routePaths.other(),
     element: <NotFoundPage />,
   },
-]
+}
+
+export const routes: RouteProps[] = Object.entries(routesObject).map(([key, val]) => ({
+  id: key,
+  ...val,
+}))
 

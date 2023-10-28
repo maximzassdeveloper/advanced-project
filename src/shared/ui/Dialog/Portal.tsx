@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from 'react'
+import { FC, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { getScrollbarWidth } from '@/shared/lib/getScrollbarWidth'
 import { useCashProps } from '@/shared/hooks/useCashedProps'
@@ -74,8 +74,6 @@ export const Portal: FC<PortalProps> = (props) => {
     }
     // eslint-disable-next-line
   }, [])
-
-  const childrenRef = useRef(children)
 
   return createPortal(children, containerRef.current)
 }

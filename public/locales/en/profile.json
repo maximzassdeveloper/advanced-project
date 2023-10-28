@@ -18,10 +18,11 @@
   },
   "header": {
     "buttons": {
-      "cancel": "Редактировать",
-      "edit": "Редактировать",
-      "save": "Сохранить"
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "save": "Save"
     },
-    "title": "Редактировать"
+    "title": "Profile"
   }
 }
+

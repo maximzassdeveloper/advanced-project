@@ -1,0 +1,69 @@
+.skeleton {
+  display: block;
+  background: var(--skeleton-base-color);
+  background-position: -500px 0;
+  animation: animateSkeleton 1.5s linear 0s infinite normal forwards;
+  background-image: linear-gradient(
+    135deg,
+    var(--skeleton-base-color) 0%,
+    var(--skeleton-shine-color) 20%,
+    var(--skeleton-base-color) 40%,
+    var(--skeleton-base-color) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 1000px 100%;
+  border-radius: 3px;
+}
+
+@keyframes animateSkeleton {
+  to {
+    background-position: 500px 0;
+  }
+}
+
+.button-l {
+  height: 42px;
+  width: 120px;
+}
+
+.button-m {
+  height: 36px;
+  width: 100px;
+}
+
+.button-s {
+  height: 30px;
+  width: 80px;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.avatar-large {
+  height: 100px;
+  width: 100px;
+}
+
+.avatar-default {
+  height: 64px;
+  width: 64px;
+}
+
+.avatar-small {
+  height: 40px;
+  width: 40px;
+}
+
+.typography {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+
+  span {
+    width: 100%;
+    max-width: 100%;
+    height: 18px;
+  }
+}

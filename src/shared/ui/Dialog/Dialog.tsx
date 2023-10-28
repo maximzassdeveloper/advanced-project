@@ -4,12 +4,26 @@ import DomWrapper from './DomWrapper'
 import { mergeProps } from '@/shared/lib/mergeProps'
 import { useClickOutside, useCashProps } from '@/shared/hooks'
 import { findDomNode } from './findDomNode'
+import { calcPosition } from './calcPosition'
+
+export type Placement = 'bottom' | 'top' | 'right' | 'left'
+export type Align = 'center' | 'end' | 'start'
+export type ClientRegion = {
+  clientWidth: number
+  clientHeight: number
+  scrollTop: number
+  scrollLeft: number
+}
 
 interface DialogProps extends PortalProps {
   trigger?: React.ReactElement
   autoWidth?: boolean
   onClose?: () => void
   triggerProps?: React.HTMLAttributes<HTMLElement>
+  offset?: number
+  boundary?: number
+  placement?: Placement | Placement[]
+  align?: Align
 }
 
 export const Dialog: React.FC<DialogProps> = (props) => {
@@ -40,18 +54,39 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   const calcPopupPosition = useCallback(() => {
     if (!popupRef.current || !triggerEl || !propsRef.current) return
 
-    const { autoWidth } = propsRef.current
-    const { x, y, width, height } = triggerEl.getBoundingClientRect()
+    const {
+      visible,
+      autoWidth,
+      align = 'center',
+      boundary = 20,
+      offset = 10,
+      placement = ['bottom', 'top', 'left', 'right'],
+    } = propsRef.current
 
-    const popupStyle = popupRef.current.style
-    popupStyle.position = 'absolute'
-    popupStyle.left = `${x}px`
-    popupStyle.top = `${y + height + 5}px`
+    if (visible) {
+      const { offsetX, offsetY } = calcPosition(
+        popupRef.current,
+        triggerEl,
+        offset,
+        Array.isArray(placement) ? placement : [placement],
+        align,
+        boundary
+      )
 
-    if (autoWidth) {
-      popupStyle.width = `${width}px`
+      const popupStyle = popupRef.current.style
+      popupStyle.left = `${offsetX}px`
+      popupStyle.top = `${offsetY}px`
+
+      if (autoWidth) {
+        const triggerRect = triggerEl.getBoundingClientRect()
+        popupStyle.width = `${triggerRect.width}px`
+      }
     }
   }, [propsRef, triggerEl])
+
+  const onChangePosition = useCallback(() => {
+    requestAnimationFrame(calcPopupPosition)
+  }, [calcPopupPosition])
 
   useEffect(() => {
     if (trigger instanceof HTMLElement || !wrapperRef.current) return
@@ -60,18 +95,18 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     if (!node) return
 
     setTriggerEl(node)
-    calcPopupPosition()
 
-    triggerPropsRef.current = {
-      onClick: calcPopupPosition,
-      onMouseEnter: calcPopupPosition,
-    }
-
-    window.addEventListener('resize', calcPopupPosition)
+    window.addEventListener('resize', onChangePosition)
+    window.addEventListener('scroll', onChangePosition)
     return () => {
-      window.removeEventListener('resize', calcPopupPosition)
+      window.removeEventListener('resize', onChangePosition)
+      window.removeEventListener('scroll', onChangePosition)
     }
-  }, [trigger, calcPopupPosition])
+  }, [trigger, onChangePosition])
+
+  useEffect(() => {
+    onChangePosition()
+  }, [visible, onChangePosition])
 
   // Creating triggerNode to use triggerProps
   const triggerNode = useMemo(() => {
@@ -94,7 +129,12 @@ export const Dialog: React.FC<DialogProps> = (props) => {
         lockScroll={lockScroll}
         destroyOnClose={destroyOnClose}
       >
-        <div ref={popupRef}>{children}</div>
+        <div
+          style={{ position: 'absolute', zIndex: 1000 }}
+          ref={popupRef}
+        >
+          {children}
+        </div>
       </Portal>
     </>
   )

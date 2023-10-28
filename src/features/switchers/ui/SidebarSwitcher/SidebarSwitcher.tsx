@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { useSidebar } from '@/app/providers/common'
 import { Hamburger } from '@/shared/ui'
 
@@ -6,7 +6,7 @@ interface SidebarSwitcherProps {
   className?: string
 }
 
-export const SidebarSwitcher: FC<SidebarSwitcherProps> = (props) => {
+export const SidebarSwitcher: FC<SidebarSwitcherProps> = memo((props) => {
   const { className } = props
   const { collapsed, toggleSidebar } = useSidebar()
 
@@ -18,4 +18,4 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = (props) => {
       />
     </div>
   )
-}
+})

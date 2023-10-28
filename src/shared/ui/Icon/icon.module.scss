@@ -1,0 +1,21 @@
+.icon {
+  &.hovered {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.l {
+    font: var(--font-l);
+  }
+
+  &.m {
+    font: var(--font-m);
+  }
+
+  &.s {
+    font: var(--font-s);
+  }
+}

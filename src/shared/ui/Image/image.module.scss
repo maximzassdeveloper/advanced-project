@@ -1,0 +1,17 @@
+.image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+
+  img {
+    width: inherit;
+    height: inherit;
+    object-fit: inherit;
+  }
+}
+
+.placeholder {
+  position: absolute;
+}

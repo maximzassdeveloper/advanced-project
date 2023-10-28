@@ -14,4 +14,17 @@ body {
   button + button {
     margin-left: 12px;
   }
+
+  .flex {
+    display: flex;
+    gap: 20px;
+  }
+
+  .align-center {
+    align-items: center;
+  }
+
+  .column {
+    flex-direction: column;
+  }
 }

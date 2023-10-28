@@ -1,56 +1,74 @@
-import { FC, ReactElement, ReactNode, useMemo, useState } from 'react'
+import { FC, HTMLAttributes, ReactElement, ReactNode, useCallback, useMemo } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { Dialog } from '@/shared/ui/Dialog'
+import { Align, Dialog, Placement } from '@/shared/ui/Dialog'
 import { classNames } from '@/shared/lib/classNames'
+import { useActualState } from '@/shared/hooks'
 import s from './popover.module.scss'
+
+type VisibleTrigger = 'click' | 'hover' | 'focus'
 
 interface PopoverProps {
   content?: ReactNode
   className?: string
   visible?: boolean
+  trigger?: VisibleTrigger | VisibleTrigger[]
   // Pick width of target element
   autoWidth?: boolean
   onVisibleChange?: (visible: boolean) => void
   children: ReactElement
+  placement?: Placement[] | Placement
+  align?: Align
+  offset?: number
+  boundary?: number
 }
 
 export const Popover: FC<PopoverProps> = (props) => {
-  const { children, content, visible: userVisible, onVisibleChange, className, autoWidth } = props
+  const {
+    children,
+    content,
+    trigger = ['click'],
+    visible: outVisible,
+    onVisibleChange,
+    className,
+    autoWidth,
+    placement,
+    align,
+    offset,
+    boundary,
+  } = props
 
-  const [customVisible, setCustomVisible] = useState(false)
+  const [visible, setVisible] = useActualState(outVisible, false, onVisibleChange)
 
-  // Custom `visible` state, to combine `userVisible` and `customVisible`
-  const [visible, setVisible] = useMemo(() => {
-    const visible = userVisible !== undefined ? userVisible : customVisible
-
-    const setVisible = (outVisible: ((prev: boolean) => boolean) | boolean) => {
-      let newVisible: boolean
-      if (typeof outVisible === 'function') {
-        newVisible = outVisible(visible)
-      } else {
-        newVisible = outVisible
-      }
-
-      if (userVisible !== undefined) {
-        setCustomVisible(newVisible)
-      }
-      onVisibleChange?.(newVisible)
-    }
-
-    return [visible, setVisible]
-  }, [userVisible, customVisible, onVisibleChange])
-
-  const onClick = () => {
+  const togglePopover = useCallback(() => {
     setVisible((prev) => !prev)
-  }
+  }, [setVisible])
 
-  const closeHandler = () => {
+  const openPopover = useCallback(() => {
+    setVisible(true)
+  }, [setVisible])
+
+  const closePopover = useCallback(() => {
     setVisible(false)
-  }
+  }, [setVisible])
 
-  const triggerProps = {
-    onClick: userVisible === undefined ? onClick : () => null,
-  }
+  const triggerProps = useMemo(() => {
+    const triggerList = Array.isArray(trigger) ? trigger : [trigger]
+    const result: HTMLAttributes<HTMLElement> = {}
+
+    triggerList.forEach((triggerItem) => {
+      if (triggerItem === 'click') {
+        result.onClick = togglePopover
+      } else if (triggerItem === 'hover') {
+        result.onMouseEnter = openPopover
+        result.onMouseLeave = closePopover
+      } else if (triggerItem === 'focus') {
+        result.onFocus = openPopover
+        result.onBlur = closePopover
+      }
+    })
+
+    return result
+  }, [trigger, togglePopover, openPopover, closePopover])
 
   return (
     <Dialog
@@ -59,7 +77,11 @@ export const Popover: FC<PopoverProps> = (props) => {
       triggerProps={triggerProps}
       animationTimeout={200}
       autoWidth={autoWidth}
-      onClose={closeHandler}
+      onClose={closePopover}
+      placement={placement}
+      align={align}
+      offset={offset}
+      boundary={boundary}
     >
       <CSSTransition
         in={visible}

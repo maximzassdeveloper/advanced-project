@@ -8,13 +8,10 @@ export const AppRoutes: FC = () => {
     <Suspense fallback={<Spinner fullPage />}>
       <Routes>
         {routes.map((route) => (
-          <Route
-            key={route.path}
-            path={route.path}
-            element={route.element}
-          />
+          <Route key={route.id} path={route.path} element={route.element} />
         ))}
       </Routes>
     </Suspense>
   )
 }
+

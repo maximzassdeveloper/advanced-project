@@ -62,19 +62,31 @@ const LoginForm: FC<LoginFormProps> = (props) => {
       onSubmit={handleSubmit(submitHandler)}
       className={s.loginForm}
     >
-      <Typography.Title level='h3'>{t('main:loginForm.title', 'Вход')}</Typography.Title>
+      <Typography.Title
+        level='h3'
+        className='mb-3'
+      >
+        {t('main:loginForm.title', 'Вход')}
+      </Typography.Title>
 
-      {error && <Typography.Text theme='error'>{getErrorMessage()}</Typography.Text>}
+      {error && (
+        <Typography.Text
+          theme='error'
+          className='mb-2'
+        >
+          {getErrorMessage()}
+        </Typography.Text>
+      )}
 
       <Input
         {...register('username', { required: validationMessages.required })}
-        className={s.input}
+        className='mb-2'
         error={errors.username?.message}
         placeholder={t('main:loginForm.username', 'Имя')}
       />
       <Input
         {...register('password', { required: validationMessages.required })}
-        className={s.input}
+        className='mb-2'
         type='password'
         error={errors.password?.message}
         placeholder={t('main:loginForm.password', 'Пароль')}

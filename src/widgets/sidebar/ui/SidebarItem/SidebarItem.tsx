@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { AppLink } from '@/shared/ui'
-import { MenuItem } from '../../model/menuItems'
+import { MenuItem } from '../../model/useMenuItems'
 import s from './sidebar-item.module.scss'
 
 interface SidebarItemProps {

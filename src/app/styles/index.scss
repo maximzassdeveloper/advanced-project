@@ -11,6 +11,10 @@
   transition: background 0.2s, color 0.2s;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   background: var(--bg-color);
 }
@@ -28,4 +32,47 @@ body {
 .page {
   flex-grow: 1;
   padding: 20px;
+}
+
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+) !default;
+
+@each $spacerName, $spacerValue in $spacers {
+  .mt-#{$spacerName} {
+    margin-top: $spacerValue;
+  }
+  .mb-#{$spacerName} {
+    margin-bottom: $spacerValue;
+  }
+  .mr-#{$spacerName} {
+    margin-right: $spacerValue;
+  }
+  .ml-#{$spacerName} {
+    margin-left: $spacerValue;
+  }
+  .m-#{$spacerName} {
+    margin: $spacerValue;
+  }
+  .pt-#{$spacerName} {
+    padding-top: $spacerValue;
+  }
+  .pb-#{$spacerName} {
+    padding-bottom: $spacerValue;
+  }
+  .pr-#{$spacerName} {
+    padding-right: $spacerValue;
+  }
+  .pl-#{$spacerName} {
+    padding-left: $spacerValue;
+  }
+  .p-#{$spacerName} {
+    padding: $spacerValue;
+  }
 }

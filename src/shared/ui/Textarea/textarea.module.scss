@@ -1,0 +1,66 @@
+.textarea {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  max-height: 300px;
+  min-height: 46px;
+  min-width: 400px;
+  transition: all 0.2s;
+
+  &.readonly {
+    textarea {
+      cursor: default;
+      background: var(--bg-color-600);
+      border-color: var(--bg-color-600);
+    }
+
+    textarea:focus {
+      outline: none !important;
+    }
+  }
+
+  &:not(.readonly) {
+    // textarea hover
+    textarea:not(:disabled):hover {
+      border-color: var(--hover-primary-color);
+    }
+
+    // textarea focus
+    textarea:focus {
+      border-color: var(--primary-color);
+      outline: none !important;
+      box-shadow: 0 0 0 2px var(--shadow-primary-color);
+    }
+  }
+
+  textarea {
+    width: 100%;
+    padding: 8px 12px;
+    color: var(--text-color);
+    background: var(--bg-color-800);
+    border: 1px solid var(--bg-color-800);
+    border-radius: 3px;
+    max-height: inherit;
+    max-width: inherit;
+    min-height: inherit;
+    min-width: inherit;
+    transition: opacity 0.2s, border-color 0.2s, box-shadow 0.2s, outline 0.2s;
+
+    @include focus-visible-outline;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.error {
+  margin-top: 3px;
+  font-size: 14px;
+}
