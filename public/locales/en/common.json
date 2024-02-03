@@ -1,10 +1,10 @@
 {
   "buttons": {
-    "add": "Добавить"
+    "add": "Add"
   },
   "common": {
     "menu": {
-      "articles": "Статьи"
+      "articles": "Articles"
     },
     "ui": {
       "code": {
@@ -12,10 +12,11 @@
       }
     }
   },
+  "language": "",
   "menu": {
-    "about": "О нас",
-    "home": "Главная",
-    "profile": "Профиль"
+    "about": "About us",
+    "home": "Home",
+    "profile": "Profile"
   },
   "validation": {
     "max": "Максимальное число: {{ num }}",
@@ -25,3 +26,4 @@
     "required": "Это поле обязательно"
   }
 }
+

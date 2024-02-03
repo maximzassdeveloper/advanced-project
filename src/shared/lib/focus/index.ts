@@ -1,1 +1,2 @@
-export { isFocusable, findFirstFocusableElement } from './focusable'
+export { isFocusable } from './isFocusable'
+export { findFirstFocusableElement } from './findFirstFocusableElement'

@@ -43,14 +43,13 @@
     {
       "id": "1",
       "title": "Javascript news",
+      "userId": "1",
       "slug": "javascript-news",
       "subtitle": "Что нового в JS за 2022 год?",
       "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": [
-        "IT"
-      ],
+      "category": "Physics",
       "blocks": [
         {
           "id": "1",
@@ -111,6 +110,314 @@
           ]
         }
       ]
+    },
+    {
+      "id": "2",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Javascript news",
+      "userId": "1",
+      "slug": "javascript-news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS7Z7WrqDQY_ysh-_yLmgLBAvfKGD2s8JwMbGhDnpWCLviIQibQgrY5U8z3em4xBeGlIc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "26.02.2022",
+      "category": "Physics",
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
     }
   ],
   "comments": [
@@ -158,3 +465,4 @@
     }
   ]
 }
+

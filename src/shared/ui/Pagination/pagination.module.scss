@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  margin: 30px;
+  justify-content: center;
+  gap: 10px;
+}
+
+.item {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  font: var(--font-s);
+  background: var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover:not(.placeholder):not(.active) {
+    background: var(--secondary-bg-color);
+  }
+
+  &.placeholder {
+    cursor: default;
+    border: none;
+  }
+
+  &.active {
+    background: var(--primary-color);
+  }
+}

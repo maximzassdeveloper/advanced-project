@@ -1,8 +1,5 @@
-export enum ArticleBlockType {
-  CODE = 'CODE',
-  TEXT = 'TEXT',
-  IMAGE = 'IMAGE',
-}
+import { User } from '@/entities/User'
+import { ArticleBlockType } from './const'
 
 interface IArticleBaseBlock {
   id: string
@@ -29,6 +26,8 @@ export interface IArticleBlockImage extends IArticleBaseBlock {
 
 export type IArticleBlock = IArticleBlockText | IArticleBlockCode | IArticleBlockImage
 
+export type ArticleCategory = string
+
 export interface Article {
   id: string
   slug: string
@@ -37,5 +36,7 @@ export interface Article {
   preview: string
   views: number
   createdAt: string
+  categories: ArticleCategory[]
   blocks: IArticleBlock[]
+  user?: User
 }

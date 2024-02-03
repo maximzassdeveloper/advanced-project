@@ -1,8 +1,5 @@
 import { AxiosError, AxiosResponse } from 'axios'
-
-export function isObject(value: unknown): value is object {
-  return typeof value === 'object' && value !== null
-}
+import { isObject } from '../lib/object'
 
 export enum STANDART_API_ERRORS {
   'SERVER' = 'SERVER',

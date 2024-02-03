@@ -13,17 +13,10 @@ function ModalWrapper(props: Partial<ModalProps>) {
 
   return (
     <div>
-      <button
-        data-testid='button'
-        onClick={() => setVisible(true)}
-      >
+      <button data-testid='button' onClick={() => setVisible(true)}>
         Modal
       </button>
-      <Modal
-        visible={visible}
-        onClose={closeHandler}
-        {...props}
-      >
+      <Modal visible={visible} onClose={closeHandler} {...props}>
         <input data-testid='firstInput' />
         <input data-testid='secondInput' />
       </Modal>
@@ -39,15 +32,10 @@ const customEventTab = (el: HTMLElement, shift = false) => {
 describe('Modal', () => {
   test('should correctly open and close', async () => {
     const mockedOnClose = jest.fn()
-    const { getByTestId } = render(
-      <ModalWrapper
-        visible={false}
-        onClose={mockedOnClose}
-      />
-    )
+    const { getByTestId } = render(<ModalWrapper visible={false} onClose={mockedOnClose} />)
     const button = getByTestId('button')
     fireEvent.click(button)
-
+    // replace to find
     setTimeout(() => {
       const modalMask = getByTestId('modal-mask')
       expect(modalMask).toBeInTheDocument()
@@ -59,12 +47,7 @@ describe('Modal', () => {
   })
 
   test('should focus first element', () => {
-    const { getByTestId } = render(
-      <ModalWrapper
-        visible={false}
-        focusFirst
-      />
-    )
+    const { getByTestId } = render(<ModalWrapper visible={false} focusFirst />)
     const button = getByTestId('button')
     fireEvent.click(button)
 
@@ -77,12 +60,7 @@ describe('Modal', () => {
   })
 
   test('should focus elements only in modal by Tab', () => {
-    const { getByTestId } = render(
-      <ModalWrapper
-        visible={true}
-        focusFirst
-      />
-    )
+    const { getByTestId } = render(<ModalWrapper visible={true} focusFirst />)
     const modal = getByTestId('modal')
     const firstInput = getByTestId('firstInput')
     const secondInput = getByTestId('secondInput')
@@ -98,12 +76,7 @@ describe('Modal', () => {
   })
 
   test('should focus elements only in modal by Shift+Tab', () => {
-    const { getByTestId } = render(
-      <ModalWrapper
-        visible={true}
-        focusFirst
-      />
-    )
+    const { getByTestId } = render(<ModalWrapper visible={true} focusFirst />)
     const modal = getByTestId('modal')
     const firstInput = getByTestId('firstInput')
     const secondInput = getByTestId('secondInput')

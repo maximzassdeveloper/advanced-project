@@ -12,8 +12,6 @@ interface SelectListProps {
 export const SelectList: FC<SelectListProps> = (props) => {
   const { options, selected, onSelect } = props
 
-  console.log(selected)
-
   return (
     <div className={s.list}>
       {options.map((option) => (

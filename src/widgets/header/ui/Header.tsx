@@ -7,6 +7,7 @@ import { getUserAuth } from '@/entities/User/model/selectors/getUserAuth'
 import { LangSwitcher, SidebarSwitcher, ThemeSwitcher } from '@/features/Switchers'
 import { Button } from '@/shared/ui'
 import s from './header.module.scss'
+import { useSidebar } from '@/app/providers/common'
 
 export const Header: FC = () => {
   const { t } = useTranslation()

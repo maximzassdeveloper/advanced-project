@@ -10,10 +10,10 @@ export const Sidebar: FC = memo(() => {
   const menuItems = useMenuItems()
 
   return (
-    <div className={classNames(s.sidebar, { [s.collapsed]: collapsed })} data-testid='sidebar'>
+    <ul className={classNames(s.sidebar, { [s.collapsed]: collapsed })} data-testid='sidebar'>
       {menuItems.map((item) => (
-        <SidebarItem key={item.link} item={item} />
+        <SidebarItem key={item.link} item={item} collapsed={collapsed} />
       ))}
-    </div>
+    </ul>
   )
 })

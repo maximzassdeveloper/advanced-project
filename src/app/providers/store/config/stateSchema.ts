@@ -13,6 +13,7 @@ import { UserSchema } from '@/entities/User'
 import { LoginSchema } from '@/features/Auth'
 import { ProfileSchema } from '@/features/EditableProfile'
 import { CommentsSchema } from '@/features/ArticleComments'
+import { ArticlesSchema } from '@/pages/ArticlesPage/model/types/articlesSchema'
 
 export interface StateSchema {
   user: UserSchema
@@ -22,6 +23,7 @@ export interface StateSchema {
   login?: LoginSchema
   profile?: ProfileSchema
   comments?: CommentsSchema
+  articles?: ArticlesSchema
 }
 
 export interface ReducerManager {

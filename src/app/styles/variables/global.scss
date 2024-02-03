@@ -2,17 +2,21 @@
   --font-family-main: 'Inter', sans-serif;
 
   // Text
-  --font-size-l: 20px;
-  --font-height-l: 26px;
+  --font-size-l: 22px;
+  --font-height-l: 28px;
   --font-l: var(--font-size-l) / var(--font-height-l) var(--font-family-main);
 
-  --font-size-m: 16px;
-  --font-height-m: 24px;
+  --font-size-m: 18px;
+  --font-height-m: 26px;
   --font-m: var(--font-size-m) / var(--font-height-m) var(--font-family-main);
 
-  --font-size-s: 14px;
-  --font-height-s: 20px;
+  --font-size-s: 16px;
+  --font-height-s: 22px;
   --font-s: var(--font-size-s) / var(--font-height-s) var(--font-family-main);
+
+  --font-size-xs: 14px;
+  --font-height-xs: 20px;
+  --font-xs: var(--font-size-xs) / var(--font-height-xs) var(--font-family-main);
 
   // Title
   --font-size-title-xl: 34px;
@@ -31,13 +35,16 @@
   --font-height-title-s: 26px;
   --font-title-s: var(--font-size-title-s) / var(--font-height-title-s) var(--font-family-main);
 
+  // Margins/Padding
+  --window-padding-x: 20px;
+
   // Header
   --header-height: 54px;
   // --header-bg-color
 
   // Sidebar
   --sidebar-width: 300px;
-  --sidebar-collapsed-width: 80px;
+  --sidebar-collapsed-width: 62px;
   // --sidebar-bg-color
 
   // Hamburger

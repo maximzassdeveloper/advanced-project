@@ -5,7 +5,6 @@
       "logout": "Выйти"
     }
   },
-  "language": "",
   "pageError": {
     "reloadBtn": "Перезагрузить страницу",
     "somethingWentWrong": "Что-то пошло не так"

@@ -1,16 +1,16 @@
 .sidebar {
   position: relative;
   z-index: 15;
-
+  width: var(--sidebar-width);
   min-width: var(--sidebar-width);
   height: 100%;
-  padding: 40px 40px;
-
+  padding: 20px var(--window-padding-x);
   background: var(--sidebar-bg-color);
-
-  transition: background 0.2s, width 0.2s;
+  transition: background 0.2s, width 0.2s, min-width 0.2s;
+  list-style: none;
 }
 
 .collapsed {
   width: var(--sidebar-collapsed-width);
+  min-width: var(--sidebar-collapsed-width);
 }

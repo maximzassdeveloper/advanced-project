@@ -1,0 +1,10 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px 10px;
+}
+
+.card {
+  max-width: 25%;
+}

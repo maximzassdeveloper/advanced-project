@@ -40,6 +40,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
     if (isReadonly) return
     setIsSearching(true)
     setInputValue('')
+    setListVisible(true)
   }
 
   useEffect(() => {
@@ -84,6 +85,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
         autoWidth
         visible={listVisible}
         onVisibleChange={(v) => setListVisible(v)}
+        offset={0}
         content={
           <SelectList options={options} onSelect={selectHandler} selected={current?.value ?? ''} />
         }

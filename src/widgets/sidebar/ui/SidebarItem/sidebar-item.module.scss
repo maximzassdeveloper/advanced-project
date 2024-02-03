@@ -1,0 +1,18 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: var(--font-m);
+  margin-bottom: 10px;
+
+  span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  &.collapsed {
+    span {
+      display: none;
+    }
+  }
+}

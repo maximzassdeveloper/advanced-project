@@ -9,7 +9,7 @@ import { useLoadAsyncReducer } from '@/shared/hooks/useLoadAsyncReducer'
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader'
 import { ProfileForm } from '../ProfileForm/ProfileForm'
 
-import { profileReducer } from '../../model/slice/profileSlice'
+import { profileActions, profileReducer } from '../../model/slice/profileSlice'
 import { fetchProfile } from '../../model/services/fetchProfile'
 import { Profile, ProfileError } from '../../model/types/profile'
 import { getProfileIsLoading } from '../../model/selectors/getPorfileIsLoading'
@@ -32,6 +32,7 @@ export const EditableProfile: FC<EditableProfileProps> = memo((props) => {
 
   useEffect(() => {
     dispatch(fetchProfile(Number(profileId)))
+    profileActions.setIsReadonly(true)
   }, [dispatch, profileId])
 
   if (error && error !== ProfileError.ON_SAVE) {

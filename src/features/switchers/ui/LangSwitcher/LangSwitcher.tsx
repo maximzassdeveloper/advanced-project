@@ -10,11 +10,10 @@ interface LangSwitcherProps {
 export const LangSwitcher: FC<LangSwitcherProps> = memo((props) => {
   const { className } = props
   const {
-    t,
     i18n: { language, changeLanguage },
   } = useTranslation()
 
-  const defaultText = useMemo(() => (language === 'ru' ? 'Рус' : 'En'), [language])
+  const languageText = useMemo(() => (language === 'ru' ? 'Ru' : 'En'), [language])
 
   const toggleLanguage = () => {
     changeLanguage(language === 'en' ? 'ru' : 'en')
@@ -26,7 +25,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = memo((props) => {
       onClick={toggleLanguage}
     >
       <i className='ph-translate' />
-      <span>{t('language', defaultText)}</span>
+      <span>{languageText}</span>
     </div>
   )
 })

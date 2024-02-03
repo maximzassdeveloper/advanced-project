@@ -9,7 +9,7 @@ interface RowProps {
   gap?: RowGap
   align?: RowAlign
   justify?: RowJustify
-  children: ReactNode
+  children?: ReactNode
 }
 
 const directionClasses: Record<RowDirection, string> = {
@@ -47,7 +47,7 @@ export const Row = (props: RowProps) => {
     s.flex,
     directionClasses[direction ?? 'row'],
     gapClasses[gap ?? 0],
-    alignClasses[align ?? 'center'],
+    alignClasses[align ?? 'start'],
     jusitfyClasses[justify ?? 'start']
   )
 

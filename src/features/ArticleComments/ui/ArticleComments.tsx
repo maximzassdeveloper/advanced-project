@@ -1,7 +1,5 @@
 import { FC, memo, useCallback, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector, useLoadAsyncReducer } from '@/shared/hooks'
-import { Title } from '@/shared/ui'
 import { commentsReducer, commentsSelectors } from '../model/slices/commentsSlice'
 import { fetchComments } from '../model/services/fetchComments'
 import { AddCommentForm, AddCommentFormFields, CommentList } from '@/entities/Comment'
@@ -33,14 +31,8 @@ export const ArticleComments: FC<ArticleCommentsProps> = memo((props) => {
 
   return (
     <div>
-      <AddCommentForm
-        onCreate={onAddComment}
-        isLoading={isLoadingAddComment}
-      />
-      <CommentList
-        comments={comments}
-        isLoading={isLoading}
-      />
+      <AddCommentForm onCreate={onAddComment} isLoading={isLoadingAddComment} />
+      <CommentList comments={comments} isLoading={isLoading} />
     </div>
   )
 })

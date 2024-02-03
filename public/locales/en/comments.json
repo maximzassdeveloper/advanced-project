@@ -1,6 +1,7 @@
 {
   "add": {
-    "title": "Добавить комментарий"
+    "title": "Add comment"
   },
-  "notFound": "Комментариев нет"
+  "notFound": "No comments"
 }
+

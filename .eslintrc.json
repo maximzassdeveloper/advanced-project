@@ -19,7 +19,7 @@
   "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "ignorePatterns": [".loki", "json-server"],
   "rules": {
-    "react/react-in-jsx-scope": "error",
+    "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
     "react/require-default-props": "off",
     "react/button-has-type": "off",
@@ -91,13 +91,14 @@
         "ignoreComments": true
       }
     ],
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "warn"
   },
   "overrides": [
     {
       "files": ["*.test.ts", "*.test.tsx"],
       "rules": {
-        "@typescript-eslint/no-non-null-assertion": "off"
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "jsx-a11y/anchor-is-valid": "off"
       }
     },
     {

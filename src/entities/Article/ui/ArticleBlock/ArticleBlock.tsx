@@ -1,5 +1,6 @@
 import { FC, memo, useMemo } from 'react'
-import { ArticleBlockType, IArticleBlock } from '../../model/types'
+import { IArticleBlock } from '../../model/types'
+import { ArticleBlockType } from '../../model/const'
 import { ArticleBlockText } from './ArticleBlockText'
 import { ArticleBlockCode } from './ArticleBlockCode'
 import { ArticleBlockImage } from './ArticleBlockImage'

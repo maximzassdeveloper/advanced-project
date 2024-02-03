@@ -1,30 +1,28 @@
 import { FC, memo } from 'react'
-import { Link } from 'react-router-dom'
-import { Image, Title } from '@/shared/ui'
-import { routePaths } from '@/shared/config/routeConfig'
 import { Article } from '../../model/types'
-import s from './article-card.module.scss'
+import { ArticleView } from '../../model/const'
+import { ArticleCardGrid } from './ArticleCardGrid'
+import { ArticleCardList } from './ArticleCardList'
 
 interface ArticleCardProps {
   article: Article
+  view?: ArticleView
+  className?: string
 }
 
 export const ArticleCard: FC<ArticleCardProps> = memo((props) => {
-  const { preview, title, id } = props.article
+  const { article, view = ArticleView.GRID, className } = props
 
-  return (
-    <article className={s.article}>
-      <Link to={routePaths.articleDetails(id)}>
-        <Image
-          className={s.image}
-          src={preview}
-          alt={`${title} Preview`}
-        />
-      </Link>
+  const renderContent = () => {
+    switch (view) {
+      case ArticleView.GRID:
+        return <ArticleCardGrid article={article} className={className} />
+      case ArticleView.LIST:
+        return <ArticleCardList article={article} className={className} />
+      default:
+        return null
+    }
+  }
 
-      <Link to={routePaths.articleDetails(id)}>
-        <Title level='h3'>{title}</Title>
-      </Link>
-    </article>
-  )
+  return renderContent()
 })

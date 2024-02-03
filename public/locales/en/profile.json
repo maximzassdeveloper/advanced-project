@@ -10,14 +10,14 @@
     "unknown": "Непредвиденная ошибка"
   },
   "form": {
-    "age": "Возраст:",
-    "avatar": "Изображение:",
-    "city": "Город:",
-    "country": "Страна:",
-    "currency": "Валюта:",
-    "firstname": "Имя:",
-    "lastname": "Фамилия:",
-    "username": "Имя пользователя:"
+    "age": "Age:",
+    "avatar": "Avatar:",
+    "city": "City:",
+    "country": "Country:",
+    "currency": "Currency:",
+    "firstname": "Name:",
+    "lastname": "Surname:",
+    "username": "Username:"
   },
   "header": {
     "buttons": {
@@ -25,6 +25,7 @@
       "edit": "Редактировать",
       "save": "Сохранить"
     },
-    "title": "Профиль"
+    "title": "Profile"
   }
 }
+

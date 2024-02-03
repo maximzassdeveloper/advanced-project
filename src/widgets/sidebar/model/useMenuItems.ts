@@ -20,17 +20,17 @@ export const useMenuItems = () => {
       {
         name: t('common:menu.home', 'Главная'),
         link: routePaths.home(),
-        icon: 'ph ph-align-center-vertical',
+        icon: 'ph ph-house',
       },
       {
         name: t('common:menu.about', 'О нас'),
         link: routePaths.about(),
-        icon: 'ph ph-align-center-vertical',
+        icon: 'ph ph-globe-simple',
       },
       {
         name: t('common.menu.articles', 'Статьи'),
         link: routePaths.articles(),
-        icon: 'ph ph-align-center-vertical',
+        icon: 'ph ph-article',
       },
     ]
 
@@ -38,7 +38,7 @@ export const useMenuItems = () => {
       items.push({
         name: t('common:menu.profile', 'Профиль'),
         link: routePaths.profile(user?.id ?? '0'),
-        icon: 'ph ph-align-center-vertical',
+        icon: 'ph ph-user',
         authOnly: true,
       })
     }

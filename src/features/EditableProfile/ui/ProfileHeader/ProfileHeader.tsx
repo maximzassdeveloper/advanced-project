@@ -10,13 +10,15 @@ import { profileActions } from '../../model/slice/profileSlice'
 import { saveProfile } from '../../model/services/saveProfile'
 import { Profile, ProfileError } from '../../model/types/profile'
 import s from './profile-header.module.scss'
+import { getUserAuth } from '@/entities/User'
 
 export const ProfileHeader: FC = memo(() => {
   const { t } = useTranslation(['profile'])
   const { handleSubmit, reset } = useFormContext<Profile>()
 
   const dispatch = useAppDispatch()
-  const { error, isLoading, isReadonly, data } = useAppSelector(getProfile)
+  const { error, isLoading, isReadonly, data: profile } = useAppSelector(getProfile)
+  const user = useAppSelector(getUserAuth)
 
   const onStartEdit = () => {
     dispatch(profileActions.setIsReadonly(false))
@@ -24,7 +26,7 @@ export const ProfileHeader: FC = memo(() => {
 
   const onCancel = () => {
     dispatch(profileActions.setIsReadonly(true))
-    reset(data)
+    reset(profile)
   }
 
   const onSave = handleSubmit((values: Profile) => {
@@ -45,29 +47,33 @@ export const ProfileHeader: FC = memo(() => {
     }
   }
 
+  const isOwner = profile?.id === user?.id
+
   return (
     <div className={s.header}>
       <Row justify='between'>
         <Title level='h1'>{t('profile:header.title', 'Профиль')}</Title>
 
-        <Row gap={8} justify='end'>
-          {isReadonly ? (
-            <>
-              <Button disabled={isLoading} onClick={onStartEdit}>
-                {t('profile:header.buttons.edit', 'Редактировать')}
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button disabled={isLoading} onClick={onSave}>
-                {t('profile:header.buttons.save', 'Сохранить')}
-              </Button>
-              <Button disabled={isLoading} theme='outline' onClick={onCancel}>
-                {t('profile:header.buttons.cancel', 'Отмена')}
-              </Button>
-            </>
-          )}
-        </Row>
+        {isOwner && (
+          <Row gap={8} justify='end'>
+            {isReadonly ? (
+              <>
+                <Button disabled={isLoading} onClick={onStartEdit}>
+                  {t('profile:header.buttons.edit', 'Редактировать')}
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button disabled={isLoading} onClick={onSave}>
+                  {t('profile:header.buttons.save', 'Сохранить')}
+                </Button>
+                <Button disabled={isLoading} theme='outline' onClick={onCancel}>
+                  {t('profile:header.buttons.cancel', 'Отмена')}
+                </Button>
+              </>
+            )}
+          </Row>
+        )}
       </Row>
 
       {!!error && (
