@@ -1,11 +1,13 @@
 import { FC, useMemo } from 'react'
+import { classNames } from '@/shared/lib/classNames'
 import { PaginationItem } from './PaginationItem'
 import s from './pagination.module.scss'
 
 interface PaginationProps {
   current: number
   last: number
-  first: number
+  first?: number
+  className?: string
   onClick: (content: number) => void
 }
 
@@ -15,7 +17,7 @@ const PLACEHOLDER_NUM = -0.345
 const SIDE_COUNT = 3
 
 export const Pagination: FC<PaginationProps> = (props) => {
-  const { current, first, last, onClick } = props
+  const { current, first = 1, last, className, onClick } = props
 
   const numbers = useMemo(() => {
     const left_count = current - first
@@ -61,7 +63,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
   }, [current, first, last])
 
   return (
-    <ul className={s.pagination}>
+    <ul className={classNames(s.pagination, className)}>
       {numbers.map((i, index) => (
         <PaginationItem
           key={i + index}

@@ -4,6 +4,7 @@ import { Article } from '@/entities/Article'
 import { ArticleSortBy } from '@/entities/Article/model/const'
 import { STANDART_API_ERRORS } from '@/shared/api/apiError'
 import { allArticlesSelectors, articlesActions } from '../slices/articlesSlice'
+import { getPaginationFirstLast } from '../utils/getPaginationData'
 
 export const getArticles = createAsyncThunk<Article[], void, ThunkConfig<string>>(
   'articles/getArticles',
@@ -31,23 +32,9 @@ export const getArticles = createAsyncThunk<Article[], void, ThunkConfig<string>
         return thunkAPI.rejectWithValue(STANDART_API_ERRORS.SERVER)
       }
 
-      const paginationData = response.headers.link as string | undefined
-      if (paginationData) {
-        const matches = paginationData.split(',')
-        matches.forEach((i) => {
-          const matchResult = i.match(/((?<=rel=").+(?="))|((?<=_page=)\d+)/gi)
-          if (matchResult?.length !== 2) return
-          const [pageNum, name] = matchResult
-
-          console.log(name, pageNum)
-
-          if (name === 'first') {
-            thunkAPI.dispatch(articlesActions.setFirst(+pageNum))
-          } else if (name === 'last') {
-            thunkAPI.dispatch(articlesActions.setLast(+pageNum))
-          }
-        })
-      }
+      const { first, last } = getPaginationFirstLast(response.headers.link)
+      thunkAPI.dispatch(articlesActions.setFirst(first))
+      thunkAPI.dispatch(articlesActions.setLast(last))
 
       return response.data
     } catch {

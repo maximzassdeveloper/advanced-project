@@ -34,9 +34,13 @@ export interface Article {
   title: string
   subtitle: string
   preview: string
+
   views: number
+  rating?: number
+  readTime?: number
   createdAt: string
   categories: ArticleCategory[]
-  blocks: IArticleBlock[]
+
+  blocks?: IArticleBlock[]
   user?: User
 }

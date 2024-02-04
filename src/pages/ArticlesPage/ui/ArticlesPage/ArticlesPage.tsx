@@ -19,11 +19,12 @@ const ArticlesPage: FC = () => {
   const articles = useAppSelector(articlesSelectors.selectAll)
   const isLoading = useAppSelector(allArticlesSelectors.getIsLoadingSelector)
   const view = useAppSelector(allArticlesSelectors.getViewSelector)
-  const { getArticles } = useArticlesActions()
+  const { getArticles, initParams } = useArticlesActions()
 
   useEffect(() => {
     getArticles()
-  }, [getArticles])
+    initParams()
+  }, [getArticles, initParams])
 
   return (
     <div>

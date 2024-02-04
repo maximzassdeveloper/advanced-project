@@ -8,7 +8,21 @@ export const ArticlesPagination: FC = memo(() => {
   const page = useAppSelector(allArticlesSelectors.getPageSelector)
   const first = useAppSelector(allArticlesSelectors.getFirstSelector)
   const last = useAppSelector(allArticlesSelectors.getLastSelector)
-  const { setPage } = useArticlesActions()
+  const { setPage, getArticles, updateQueryParams } = useArticlesActions()
 
-  return <Pagination onClick={setPage} current={page} first={first} last={last} />
+  const pageChangeHandler = (p: number) => {
+    setPage(p)
+    getArticles()
+    updateQueryParams()
+  }
+
+  return (
+    <Pagination
+      className='mb-4'
+      onClick={pageChangeHandler}
+      current={page}
+      first={first}
+      last={last}
+    />
+  )
 })

@@ -18,7 +18,7 @@ export const ArticleCardList: FC<ArticleCardListProps> = (props) => {
   const { id, blocks, preview, user, title, views, createdAt, subtitle } = article
 
   const firstTextBlock = useMemo(() => {
-    return blocks.find((i) => i.type === ArticleBlockType.TEXT)
+    return blocks?.find((i) => i.type === ArticleBlockType.TEXT)
   }, [blocks])
 
   return (

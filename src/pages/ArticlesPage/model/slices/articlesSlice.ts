@@ -5,6 +5,7 @@ import { Article, ArticleCategory, ArticleView } from '@/entities/Article'
 import { getArticles } from '../services/getArticles'
 import { ArticleSortBy } from '@/entities/Article/model/const'
 import { generateSelectors } from '@/shared/lib/generateSelectors'
+import { parseQueryParams, setQueryParams } from '@/shared/lib/url'
 
 const articlesAdapter = createEntityAdapter<Article>({
   selectId: (article) => article.id,
@@ -18,7 +19,7 @@ const initialState = articlesAdapter.getInitialState<ArticlesSchema>({
   sortBy: ArticleSortBy.POPULAR,
   search: undefined,
   category: undefined,
-  limit: 1,
+  limit: 6,
   page: 1,
   first: 1,
   last: 1,
@@ -48,12 +49,28 @@ const articlesSlice = createSlice({
     },
     setSortBy: (state, action: PayloadAction<ArticleSortBy>) => {
       state.sortBy = action.payload
+      state.page = state.first
     },
     setCategory: (state, action: PayloadAction<ArticleCategory>) => {
       state.category = action.payload
+      state.page = state.first
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload
+      state.page = state.first
+    },
+    updateQueryParams: (state) => {
+      const { category, page, sortBy, search, view } = state
+      const params = { category, page, sortBy, search, view }
+      setQueryParams(params)
+    },
+    initParams: (state) => {
+      const { category, page, sortBy, search, view } = parseQueryParams()
+      state.category = category
+      state.page = +page
+      state.sortBy = sortBy as ArticleSortBy
+      state.search = search
+      state.view = view as ArticleView
     },
   },
   extraReducers: (builder) =>

@@ -4,7 +4,7 @@
     "noImplicitAny": true,
     "module": "ESNext",
     "sourceMap": true,
-    "target": "ES5",
+    "target": "ES2015",
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
