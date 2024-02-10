@@ -13,12 +13,14 @@ export const HomePage: FC = () => {
 
   return (
     <div className={s.home}>
-      {/* <Button onClick={() => setVisible((v) => !v)}>Modal</Button>
-      <Button disabled>{t('common:buttons.update', 'Обновить')}</Button>
-      <Switch
-        checked={checked}
-        onChange={setChecked}
-      /> */}
+      {/* <Button onClick={() => setVisible((v) => !v)}>Toggle modal</Button> */}
+      {/* <Button disabled>{t('common:buttons.update', 'Обновить')}</Button> */}
+      {/* <Switch checked={checked} onChange={setChecked} /> */}
+      {/* <Modal visible={visible} onClose={() => setVisible(false)}>
+        <div>
+          <Button>Отправить</Button>
+        </div>
+      </Modal> */}
       <Popover
         content={
           <div style={{ width: 300 }}>

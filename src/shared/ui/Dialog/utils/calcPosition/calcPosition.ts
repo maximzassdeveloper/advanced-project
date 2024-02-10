@@ -1,12 +1,44 @@
-import { Align, ClientRegion, Placement } from './Dialog'
+import { Align, ClientRegion, Placement } from '../../types/dialog'
 
-function getPopupPlacementRect(
-  popupRect: DOMRect,
-  triggerRect: DOMRect,
-  offset: number,
-  placement: Placement,
+interface GetAvailablePlacementProps {
+  popupRect: DOMRect
+  triggerRect: DOMRect
+  clientRegion: ClientRegion
+  placementOrder: Placement[]
+  boundary: number
+  offset: number
+}
+
+export function getAvailablePlacement(props: GetAvailablePlacementProps) {
+  const { popupRect, triggerRect, clientRegion, placementOrder, offset, boundary } = props
+  const { clientWidth, clientHeight } = clientRegion
+
+  for (const place of placementOrder) {
+    if (
+      (place === 'top' && triggerRect.top - offset - boundary > popupRect.height) ||
+      (place === 'bottom' &&
+        clientHeight - triggerRect.bottom - offset - boundary > popupRect.height) ||
+      (place === 'left' && triggerRect.left - offset - boundary > popupRect.width) ||
+      (place === 'right' && clientWidth - triggerRect.right - offset - boundary > popupRect.width)
+    ) {
+      return place
+    }
+  }
+
+  return placementOrder[0] ?? 'bottom'
+}
+
+interface GetPopupPlacementRectProps {
+  popupRect: DOMRect
+  triggerRect: DOMRect
+  offset: number
+  placement: Placement
   align: Align
-) {
+}
+
+export function getPopupPlacementRect(props: GetPopupPlacementRectProps) {
+  const { popupRect, triggerRect, offset, placement, align } = props
+
   let offsetX = 0
   let offsetY = 0
 
@@ -60,33 +92,17 @@ function getPopupPlacementRect(
   return new DOMRect(offsetX, offsetY, popupRect.width, popupRect.height)
 }
 
-function getAvailablePlacement(
-  popupRect: DOMRect,
-  triggerRect: DOMRect,
-  { clientWidth, clientHeight }: ClientRegion,
-  placementOrder: Placement[],
+interface GetShiftRectProps {
+  popupRect: DOMRect
+  triggerRect: DOMRect
+  clientRegion: ClientRegion
   boundary: number
-) {
-  for (const place of placementOrder) {
-    if (
-      (place === 'top' && triggerRect.top - boundary > popupRect.height) ||
-      (place === 'bottom' && clientHeight - triggerRect.bottom - boundary > popupRect.height) ||
-      (place === 'left' && triggerRect.left - boundary > popupRect.width) ||
-      (place === 'right' && clientWidth - triggerRect.right - boundary > popupRect.width)
-    ) {
-      return place
-    }
-  }
-
-  return placementOrder[0]
 }
 
-function getShiftRect(
-  popupRect: DOMRect,
-  triggerRect: DOMRect,
-  { clientHeight, clientWidth }: ClientRegion,
-  boundary: number
-) {
+export function getShiftRect(props: GetShiftRectProps) {
+  const { popupRect, triggerRect, clientRegion, boundary } = props
+  const { clientWidth, clientHeight } = clientRegion
+
   let offsetX = popupRect.left
   let offsetY = popupRect.top
 
@@ -123,14 +139,18 @@ function getShiftRect(
   return { offsetX, offsetY }
 }
 
-export function calcPosition(
-  popupEl: HTMLElement,
-  triggerEl: HTMLElement,
-  offset: number,
-  placementOrder: Placement[],
-  align: Align,
+interface CalcPositionProps {
+  popupEl: HTMLElement
+  triggerEl: HTMLElement
+  offset: number
+  placementOrder: Placement[]
+  align: Align
   boundary: number
-) {
+}
+
+export function calcPosition(props: CalcPositionProps) {
+  const { popupEl, triggerEl, offset, placementOrder, align, boundary } = props
+
   const triggerRect = triggerEl.getBoundingClientRect()
   const initialPopupRect = popupEl.getBoundingClientRect()
 
@@ -144,17 +164,24 @@ export function calcPosition(
     scrollLeft,
   }
 
-  const placement = getAvailablePlacement(
-    initialPopupRect,
+  const placement = getAvailablePlacement({
+    popupRect: initialPopupRect,
     triggerRect,
     clientRegion,
     placementOrder,
-    boundary
-  )
+    boundary,
+    offset,
+  })
 
-  const popupRect = getPopupPlacementRect(initialPopupRect, triggerRect, offset, placement, align)
+  const popupRect = getPopupPlacementRect({
+    popupRect: initialPopupRect,
+    triggerRect,
+    offset,
+    placement,
+    align,
+  })
 
-  const { offsetX, offsetY } = getShiftRect(popupRect, triggerRect, clientRegion, boundary)
+  const { offsetX, offsetY } = getShiftRect({ popupRect, triggerRect, clientRegion, boundary })
 
   return {
     offsetX: offsetX + clientRegion.scrollLeft,

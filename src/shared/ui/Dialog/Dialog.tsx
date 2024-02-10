@@ -1,19 +1,11 @@
 import React, { useRef, useState, useCallback, useEffect, useMemo } from 'react'
-import { Portal, PortalProps } from './Portal'
+import { Portal, PortalProps } from '../Portal/Portal'
 import DomWrapper from './DomWrapper'
 import { mergeProps } from '@/shared/lib/mergeProps'
 import { useClickOutside, useCashProps } from '@/shared/hooks'
-import { findDomNode } from './findDomNode'
-import { calcPosition } from './calcPosition'
-
-export type Placement = 'bottom' | 'top' | 'right' | 'left'
-export type Align = 'center' | 'end' | 'start'
-export type ClientRegion = {
-  clientWidth: number
-  clientHeight: number
-  scrollTop: number
-  scrollLeft: number
-}
+import { findDomNode } from './utils/findDomNode'
+import { calcPosition } from './utils/calcPosition/calcPosition'
+import { Align, Placement } from './types/dialog'
 
 interface DialogProps extends PortalProps {
   trigger?: React.ReactElement
@@ -64,14 +56,14 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     } = propsRef.current
 
     if (visible) {
-      const { offsetX, offsetY } = calcPosition(
-        popupRef.current,
+      const { offsetX, offsetY } = calcPosition({
+        popupEl: popupRef.current,
         triggerEl,
         offset,
-        Array.isArray(placement) ? placement : [placement],
+        placementOrder: Array.isArray(placement) ? placement : [placement],
         align,
-        boundary
-      )
+        boundary,
+      })
 
       const popupStyle = popupRef.current.style
       popupStyle.left = `${offsetX}px`
@@ -97,10 +89,9 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     setTriggerEl(node)
 
     window.addEventListener('resize', onChangePosition)
-    window.addEventListener('scroll', onChangePosition)
+
     return () => {
       window.removeEventListener('resize', onChangePosition)
-      window.removeEventListener('scroll', onChangePosition)
     }
   }, [trigger, onChangePosition])
 
@@ -129,12 +120,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
         lockScroll={lockScroll}
         destroyOnClose={destroyOnClose}
       >
-        <div
-          style={{ position: 'absolute', zIndex: 1000 }}
-          ref={popupRef}
-        >
-          {children}
-        </div>
+        <div ref={popupRef}>{children}</div>
       </Portal>
     </>
   )

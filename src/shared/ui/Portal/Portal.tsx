@@ -5,12 +5,13 @@ import { useCashProps } from '@/shared/hooks/useCashedProps'
 
 export interface PortalProps {
   visible?: boolean
-  /** Delay before removing Dialog, for your animations */
+  /** Delay before removing Portal, for your animations */
   animationTimeout?: number
   /** Lock page scroll on visible */
   lockScroll?: boolean
   destroyOnClose?: boolean
   className?: string
+  dataTestId?: string
 }
 
 export const Portal: FC<PortalProps> = (props) => {
@@ -20,25 +21,32 @@ export const Portal: FC<PortalProps> = (props) => {
   const delayRef = useRef<NodeJS.Timeout>()
   const propsRef = useCashProps(props)
 
-  const removeContainer = useCallback(() => {
-    if (propsRef.current.lockScroll) {
-      document.body.style.overflow = 'auto'
-      document.body.style.width = ''
-    }
+  const removeContainer = useCallback(
+    (force?: boolean) => {
+      if (propsRef.current.lockScroll) {
+        document.body.style.overflow = 'auto'
+        document.body.style.width = ''
+      }
 
-    if (propsRef.current.destroyOnClose) {
-      containerRef.current.remove()
-    } else {
-      containerRef.current.style.display = 'none'
-    }
-  }, [propsRef])
+      if (propsRef.current.destroyOnClose || force) {
+        containerRef.current.remove()
+      } else {
+        containerRef.current.style.display = 'none'
+      }
+    },
+    [propsRef]
+  )
 
   useEffect(() => {
-    const { animationTimeout, lockScroll, destroyOnClose } = propsRef.current
+    const { animationTimeout, lockScroll, destroyOnClose, dataTestId } = propsRef.current
     const container = containerRef.current
     clearTimeout(delayRef.current)
 
     if (visible) {
+      if (dataTestId) {
+        container.setAttribute('data-testid', dataTestId)
+      }
+
       document.body.appendChild(container)
       if (lockScroll) {
         const scrollBarWidth = getScrollbarWidth()
@@ -66,10 +74,10 @@ export const Portal: FC<PortalProps> = (props) => {
     }
   }, [className])
 
-  // Remove div container when Dialog unmount
+  // Remove div container when Portal unmount
   useEffect(() => {
     return () => {
-      removeContainer()
+      removeContainer(true)
       clearTimeout(delayRef.current)
     }
     // eslint-disable-next-line

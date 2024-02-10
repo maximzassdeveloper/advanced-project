@@ -1,22 +1,23 @@
 import { useState } from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Modal, ModalProps } from './Modal'
 
 function ModalWrapper(props: Partial<ModalProps>) {
-  const [visible, setVisible] = useState(props.visible ?? false)
+  const { visible, onClose, animationTime = 0, ...rest } = props
+  const [_visible, _setVisible] = useState(visible ?? false)
 
   const closeHandler = () => {
-    setVisible(false)
-    props.onClose?.()
+    _setVisible(false)
+    onClose?.()
   }
 
   return (
     <div>
-      <button data-testid='button' onClick={() => setVisible(true)}>
+      <button data-testid='button' onClick={() => _setVisible(true)}>
         Modal
       </button>
-      <Modal visible={visible} onClose={closeHandler} {...props}>
+      <Modal visible={_visible} onClose={closeHandler} animationTime={animationTime} {...rest}>
         <input data-testid='firstInput' />
         <input data-testid='secondInput' />
       </Modal>
@@ -24,71 +25,83 @@ function ModalWrapper(props: Partial<ModalProps>) {
   )
 }
 
-const customEventTab = (el: HTMLElement, shift = false) => {
-  userEvent.tab({ shift })
+const customEventTab = async (el: Element | Node | Document | Window, shift = false) => {
   fireEvent.keyDown(el, { code: 'Tab', shiftKey: shift })
+  await userEvent.tab({ shift })
 }
 
 describe('Modal', () => {
   test('should correctly open and close', async () => {
     const mockedOnClose = jest.fn()
-    const { getByTestId } = render(<ModalWrapper visible={false} onClose={mockedOnClose} />)
-    const button = getByTestId('button')
-    fireEvent.click(button)
-    // replace to find
-    setTimeout(() => {
-      const modalMask = getByTestId('modal-mask')
-      expect(modalMask).toBeInTheDocument()
+    jest.useFakeTimers()
 
-      fireEvent.click(modalMask)
-      expect(mockedOnClose).toHaveBeenCalled()
-      expect(modalMask).not.toBeInTheDocument()
-    }, 300)
+    render(<ModalWrapper visible={false} onClose={mockedOnClose} destroyOnClose />)
+    const button = screen.getByTestId('button')
+
+    fireEvent.click(button)
+
+    const modalMask = screen.getByTestId('modal-mask')
+    expect(screen.getByTestId('modal-mask')).toBeInTheDocument()
+
+    fireEvent.click(modalMask)
+    jest.runAllTimers()
+
+    expect(mockedOnClose).toHaveBeenCalled()
+    expect(screen.queryByTestId('modal-mask')).toBeNull()
+
+    jest.useRealTimers()
   })
 
   test('should focus first element', () => {
-    const { getByTestId } = render(<ModalWrapper visible={false} focusFirst />)
-    const button = getByTestId('button')
+    render(<ModalWrapper visible={false} focusFirst />)
+
+    const button = screen.getByTestId('button')
     fireEvent.click(button)
 
-    setTimeout(() => {
-      const firstInput = getByTestId('firstInput')
-      const secondInput = getByTestId('secondInput')
-      expect(firstInput).toEqual(document.activeElement)
-      expect(secondInput).not.toEqual(document.activeElement)
-    }, 300)
+    const firstInput = screen.getByTestId('firstInput')
+    const secondInput = screen.getByTestId('secondInput')
+    expect(firstInput).toEqual(document.activeElement)
+    expect(secondInput).not.toEqual(document.activeElement)
   })
 
-  test('should focus elements only in modal by Tab', () => {
-    const { getByTestId } = render(<ModalWrapper visible={true} focusFirst />)
-    const modal = getByTestId('modal')
-    const firstInput = getByTestId('firstInput')
-    const secondInput = getByTestId('secondInput')
+  test('should focus elements only in modal by Tab', async () => {
+    render(<ModalWrapper visible focusFirst />)
+    const modal = screen.getByTestId('modal')
+    const firstInput = screen.getByTestId('firstInput')
+    const secondInput = screen.getByTestId('secondInput')
+    const sentialEnd = screen.getByTestId('sentialEnd')
 
-    expect(firstInput).toEqual(document.activeElement)
+    expect(firstInput).toHaveFocus()
 
-    customEventTab(modal)
-    expect(secondInput).toEqual(document.activeElement)
+    await customEventTab(modal)
+    expect(secondInput).toHaveFocus()
 
-    customEventTab(modal)
-    customEventTab(modal)
-    expect(firstInput).toEqual(document.activeElement)
+    await customEventTab(modal)
+    expect(sentialEnd).toHaveFocus()
+
+    await customEventTab(modal)
+    expect(firstInput).toHaveFocus()
+
+    await customEventTab(modal)
+    expect(secondInput).toHaveFocus()
   })
 
-  test('should focus elements only in modal by Shift+Tab', () => {
-    const { getByTestId } = render(<ModalWrapper visible={true} focusFirst />)
-    const modal = getByTestId('modal')
-    const firstInput = getByTestId('firstInput')
-    const secondInput = getByTestId('secondInput')
+  test('should focus elements only in modal by Shift+Tab', async () => {
+    render(<ModalWrapper visible focusFirst />)
+    const modal = screen.getByTestId('modal')
+    const firstInput = screen.getByTestId('firstInput')
+    const secondInput = screen.getByTestId('secondInput')
+    const sentialStart = screen.getByTestId('sentialStart')
 
-    expect(firstInput).toEqual(document.activeElement)
+    expect(firstInput).toHaveFocus()
 
-    customEventTab(modal, true)
-    customEventTab(modal, true)
+    await customEventTab(modal, true)
+    await waitFor(() => expect(sentialStart).toHaveFocus())
 
-    expect(secondInput).toEqual(document.activeElement)
+    await customEventTab(modal, true)
+    await waitFor(() => expect(secondInput).toHaveFocus())
 
-    customEventTab(modal, true)
-    expect(firstInput).toEqual(document.activeElement)
+    await customEventTab(modal, true)
+    await waitFor(() => expect(firstInput).toHaveFocus())
   })
 })

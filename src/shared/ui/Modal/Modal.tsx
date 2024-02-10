@@ -13,10 +13,11 @@ export interface ModalProps {
   destroyOnClose?: boolean
   className?: string
   children?: ReactNode
+  animationTime?: number
 }
 
 export const Modal = (props: ModalProps) => {
-  const { children, visible, onClose, className, destroyOnClose } = props
+  const { children, visible, onClose, className, animationTime = 300, destroyOnClose } = props
 
   const contentRef = useRef<HTMLDivElement>(null)
   const sentinelStartRef = useRef<HTMLDivElement>(null)
@@ -28,18 +29,23 @@ export const Modal = (props: ModalProps) => {
     const { focusFirst = true } = propsRef.current
 
     if (visible) {
-      sentinelStartRef.current.focus()
       if (focusFirst) {
         const el = findFirstFocusableElement(contentRef.current, [
           sentinelStartRef.current,
           sentinelEndRef.current,
         ])
-        el?.focus()
+        if (!el) {
+          sentinelStartRef.current.focus()
+        } else {
+          el.focus()
+        }
+      } else {
+        sentinelStartRef.current.focus()
       }
     }
   }, [propsRef, visible])
 
-  const keyDownHandler = (e: KeyboardEvent) => {
+  const keyDownHandler = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.code === 'Escape') {
       onClose?.()
     }
@@ -58,7 +64,7 @@ export const Modal = (props: ModalProps) => {
     <Dialog
       className={className}
       visible={visible}
-      animationTimeout={300}
+      animationTimeout={animationTime}
       lockScroll
       destroyOnClose={destroyOnClose}
     >
@@ -67,38 +73,22 @@ export const Modal = (props: ModalProps) => {
         className={classNames(s.modal, className)}
         onKeyDown={keyDownHandler}
       >
-        <CSSTransition
-          in={visible}
-          timeout={300}
-          classNames='fade'
-        >
-          <div
-            data-testid='modal-mask'
-            className={s.mask}
-            onClick={onClose}
-          />
+        <CSSTransition in={visible} timeout={animationTime} classNames='fade'>
+          <div data-testid='modal-mask' className={s.mask} onClick={onClose} />
         </CSSTransition>
 
-        <CSSTransition
-          in={visible}
-          timeout={300}
-          classNames='fade-down'
-          mountOnEnter
-        >
-          <div
-            ref={contentRef}
-            role='dialog'
-            aria-modal='true'
-            className={s.content}
-          >
-            <div
+        <CSSTransition in={visible} timeout={300} classNames='fade-down' mountOnEnter>
+          <div ref={contentRef} role='dialog' aria-modal='true' className={s.content}>
+            <span
+              data-testid='sentialStart'
               className={s.sentinel}
               ref={sentinelStartRef}
               tabIndex={0}
               aria-hidden={true}
             />
             {children}
-            <div
+            <span
+              data-testid='sentialEnd'
               className={s.sentinel}
               ref={sentinelEndRef}
               tabIndex={0}
