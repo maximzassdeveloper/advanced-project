@@ -33,7 +33,6 @@ const customEventTab = async (el: Element | Node | Document | Window, shift = fa
 describe('Modal', () => {
   test('should correctly open and close', async () => {
     const mockedOnClose = jest.fn()
-    jest.useFakeTimers()
 
     render(<ModalWrapper visible={false} onClose={mockedOnClose} destroyOnClose />)
     const button = screen.getByTestId('button')
@@ -41,15 +40,12 @@ describe('Modal', () => {
     fireEvent.click(button)
 
     const modalMask = screen.getByTestId('modal-mask')
-    expect(screen.getByTestId('modal-mask')).toBeInTheDocument()
+    waitFor(() => expect(modalMask).toBeInTheDocument())
 
     fireEvent.click(modalMask)
-    jest.runAllTimers()
 
+    await waitFor(() => expect(screen.queryByTestId('modal-mask')).toBeNull())
     expect(mockedOnClose).toHaveBeenCalled()
-    expect(screen.queryByTestId('modal-mask')).toBeNull()
-
-    jest.useRealTimers()
   })
 
   test('should focus first element', () => {

@@ -1,9 +1,9 @@
-import { FC, useMemo, useState } from 'react'
+import { ReactNode, useMemo, useState } from 'react'
 import { CommonContext, CommonContextValue, SIDEBAR_lOCAL_STORAGE_KEY } from './CommonContext'
 
 const sidebarFromStorage = localStorage.getItem(SIDEBAR_lOCAL_STORAGE_KEY) === 'true'
 
-export const CommonProvider: FC = ({ children }) => {
+export const CommonProvider = ({ children }: { children: ReactNode }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(sidebarFromStorage)
 
   const defaultValue: CommonContextValue = useMemo(
@@ -16,3 +16,4 @@ export const CommonProvider: FC = ({ children }) => {
 
   return <CommonContext.Provider value={defaultValue}>{children}</CommonContext.Provider>
 }
+

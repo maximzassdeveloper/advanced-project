@@ -1,19 +1,20 @@
+import { Decorator } from '@storybook/react'
 import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit'
-import { Story } from '@storybook/react'
 import { StateSchema, StoreProvider } from '@/app/providers/store'
 
-/* eslint-disable */
-export const StoreDecorator =
-  (
-    state: DeepPartial<StateSchema>,
-    asyncReducers?: DeepPartial<ReducersMapObject<Required<StateSchema>>>
-  ) =>
-  (StoryComponent: Story) =>
-    (
-      <StoreProvider
-        initialState={state}
-        asyncReducers={asyncReducers}
-      >
-        <StoryComponent />
+type Dec = (
+  ...args: Parameters<Decorator>
+) => (
+  state: DeepPartial<StateSchema>,
+  asyncReducers: DeepPartial<ReducersMapObject<Required<StateSchema>>>
+) => ReturnType<Decorator>
+
+export const StoreDecorator: Dec = (Story) => {
+  return (state, asyncReducers) => {
+    return (
+      <StoreProvider initialState={state} asyncReducers={asyncReducers}>
+        <Story />
       </StoreProvider>
     )
+  }
+}

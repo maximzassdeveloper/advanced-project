@@ -31,8 +31,10 @@ export const EditableProfile: FC<EditableProfileProps> = memo((props) => {
   const error = useAppSelector(getProfileError)
 
   useEffect(() => {
-    dispatch(fetchProfile(Number(profileId)))
-    profileActions.setIsReadonly(true)
+    if (__PROJECT__ === 'frontend') {
+      dispatch(fetchProfile(Number(profileId)))
+      profileActions.setIsReadonly(true)
+    }
   }, [dispatch, profileId])
 
   if (error && error !== ProfileError.ON_SAVE) {

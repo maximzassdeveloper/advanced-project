@@ -1,5 +1,11 @@
 {
   "listNotFound": "Articles not found",
+  "search": {
+    "placeholder": "Поиск..."
+  },
+  "sortBy": {
+    "created_at": "По новизне",
+    "popular": "По популярности"
+  },
   "title": "Articles"
 }
-

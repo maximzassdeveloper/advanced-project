@@ -9,7 +9,7 @@ interface UsePressResult<T> {
 }
 
 export const usePress = <T extends HTMLElement>(
-  props: HTMLAttributes<T> = {},
+  props: HTMLAttributes<T> = {}
 ): UsePressResult<T> => {
   const { onMouseDown: outOnMouseDown, onMouseUp: outOnMouseUp } = props
 
@@ -20,7 +20,7 @@ export const usePress = <T extends HTMLElement>(
       setIsPressed(true)
       outOnMouseDown?.(e)
     },
-    [outOnMouseDown],
+    [outOnMouseDown]
   )
 
   const onMouseUp = useCallback(
@@ -28,7 +28,7 @@ export const usePress = <T extends HTMLElement>(
       setIsPressed(false)
       outOnMouseUp?.(e)
     },
-    [outOnMouseUp],
+    [outOnMouseUp]
   )
 
   return {
@@ -39,3 +39,4 @@ export const usePress = <T extends HTMLElement>(
     },
   }
 }
+

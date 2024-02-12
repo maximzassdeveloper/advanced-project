@@ -1,10 +1,10 @@
-import { ComponentMeta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import { Avatar } from './Avatar'
 
 export default {
   title: 'shared/Avatar',
   component: Avatar,
-} as ComponentMeta<typeof Avatar>
+} as Meta<typeof Avatar>
 
 const avatarUrl =
   /* eslint-disable-next-line */
@@ -12,17 +12,8 @@ const avatarUrl =
 
 export const Sizes = () => (
   <div className='flex'>
-    <Avatar
-      src={avatarUrl}
-      size='small'
-    />
-    <Avatar
-      src={avatarUrl}
-      size='default'
-    />
-    <Avatar
-      src={avatarUrl}
-      size='large'
-    />
+    <Avatar src={avatarUrl} size='small' />
+    <Avatar src={avatarUrl} size='default' />
+    <Avatar src={avatarUrl} size='large' />
   </div>
 )

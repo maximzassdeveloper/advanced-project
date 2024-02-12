@@ -1,4 +1,4 @@
-import { ComponentMeta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { CommentCard } from './CommentCard'
 import { Comment } from '../../model/types/comment'
 import { CommentCardSkeleton } from './CommentCardSkeleton'
@@ -6,7 +6,7 @@ import { CommentCardSkeleton } from './CommentCardSkeleton'
 export default {
   title: 'entities/Comment/CommentCard',
   component: CommentCard,
-} as ComponentMeta<typeof CommentCard>
+} as Meta<typeof CommentCard>
 
 const exampleComment: Comment = {
   id: '1',

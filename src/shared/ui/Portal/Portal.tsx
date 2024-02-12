@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from 'react'
+import { FC, ReactNode, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { getScrollbarWidth } from '@/shared/lib/getScrollbarWidth'
 import { useCashProps } from '@/shared/hooks/useCashedProps'
@@ -12,6 +12,7 @@ export interface PortalProps {
   destroyOnClose?: boolean
   className?: string
   dataTestId?: string
+  children: ReactNode
 }
 
 export const Portal: FC<PortalProps> = (props) => {

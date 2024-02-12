@@ -1,4 +1,11 @@
 {
   "listNotFound": "Статей не найдено",
+  "search": {
+    "placeholder": "Поиск..."
+  },
+  "sortBy": {
+    "created_at": "По новизне",
+    "popular": "По популярности"
+  },
   "title": "Список статей"
 }

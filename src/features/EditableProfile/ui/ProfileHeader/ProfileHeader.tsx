@@ -47,7 +47,8 @@ export const ProfileHeader: FC = memo(() => {
     }
   }
 
-  const isOwner = profile?.id === user?.id
+  // eslint-disable-next-line
+  const isOwner = profile?.id == user?.id
 
   return (
     <div className={s.header}>

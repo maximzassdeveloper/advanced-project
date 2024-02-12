@@ -1,10 +1,11 @@
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, ReactNode, useEffect, useMemo, useState } from 'react'
 import { THEME_lOCAL_STORAGE_KEY, ThemeContext, ThemeContextValue, ThemeType } from './ThemeContext'
 
 const themeFormStorage: ThemeType = localStorage.getItem(THEME_lOCAL_STORAGE_KEY) as ThemeType
 
 interface ThemeProviderProps {
   defaultTheme?: ThemeType
+  children: ReactNode
 }
 
 export const ThemeProvider: FC<ThemeProviderProps> = (props) => {

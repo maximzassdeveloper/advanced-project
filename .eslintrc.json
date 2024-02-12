@@ -9,15 +9,23 @@
     "airbnb",
     "plugin:react-hooks/recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint"],
-  "ignorePatterns": [".loki", "json-server"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "ignorePatterns": [
+    ".loki",
+    "json-server"
+  ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
@@ -53,6 +61,9 @@
         "assert": "either"
       }
     ],
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
     "react/prop-types": "off",
     "lines-between-class-members": "off",
     "semi": "off",
@@ -96,14 +107,20 @@
   },
   "overrides": [
     {
-      "files": ["*.test.ts", "*.test.tsx"],
+      "files": [
+        "*.test.ts",
+        "*.test.tsx"
+      ],
       "rules": {
         "@typescript-eslint/no-non-null-assertion": "off",
         "jsx-a11y/anchor-is-valid": "off"
       }
     },
     {
-      "files": ["*.stories.ts", "*.stories.tsx"],
+      "files": [
+        "*.stories.ts",
+        "*.stories.tsx"
+      ],
       "rules": {
         "max-len": "warn"
       }

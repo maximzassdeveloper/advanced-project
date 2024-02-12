@@ -1,11 +1,11 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentStory, Meta } from '@storybook/react'
 import { Result } from './Result'
 import { Button } from '@/shared/ui'
 
 export default {
   title: 'shared/Result',
   component: Result,
-} as ComponentMeta<typeof Result>
+} as Meta<typeof Result>
 
 const Template: ComponentStory<typeof Result> = (args) => <Result {...args} />
 

@@ -27,21 +27,14 @@ export const AddCommentForm: FC<AddCommentFormProps> = memo((props) => {
   })
 
   return (
-    <form
-      className={className}
-      onSubmit={onSubmit}
-    >
+    <form className={className} onSubmit={onSubmit}>
       <Title level='h2'>{t('comments:add.title', 'Добавить комментарий')}</Title>
       <Textarea
         {...register('text', { required: validationMessages.required })}
         error={errors.text?.message}
         disabled={isLoading}
       />
-      <Button
-        className='mt-2'
-        type='submit'
-        loading={isLoading}
-      >
+      <Button className='mt-2' type='submit' loading={isLoading}>
         {t('common:buttons.add', 'Добавить')}
       </Button>
     </form>

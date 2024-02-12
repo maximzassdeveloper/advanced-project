@@ -6,7 +6,7 @@ import { createAxiosError } from '@/shared/api/apiError'
 import { LoginError } from '../types/loginSchema'
 
 jest.mock('axios')
-const mockedAxios = jest.mocked(axios, true)
+const mockedAxios = jest.mocked(axios)
 
 describe('login service test', () => {
   test('fulfilled status', async () => {

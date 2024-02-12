@@ -1,10 +1,11 @@
-import { ComponentMeta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import { Button } from './Button'
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'shared/Button',
   component: Button,
-} as ComponentMeta<typeof Button>
+}
+export default meta
 
 export const Themes = () => (
   <div>

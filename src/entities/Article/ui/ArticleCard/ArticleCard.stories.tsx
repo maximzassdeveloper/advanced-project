@@ -1,4 +1,4 @@
-import { ComponentMeta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { ArticleCard } from './ArticleCard'
 import { Article } from '../../model/types'
 import { ArticleCardSkeleton } from './ArticleCardSkeleton'
@@ -7,7 +7,7 @@ import { ArticleView } from '../../model/const'
 export default {
   title: 'entities/Article/ArticleCard',
   component: ArticleCard,
-} as ComponentMeta<typeof ArticleCard>
+} as Meta<typeof ArticleCard>
 
 const exampleArticle: Article = {
   id: '1',

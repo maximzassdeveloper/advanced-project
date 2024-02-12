@@ -67,7 +67,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: install modules
-        run: npm ci
+        # TODO: install pnpm and change to `pnpm install --frozen-lockfile` - analog npm ci
+        run: npm install
       - name: unit testing
         run: npm run test:unit
 

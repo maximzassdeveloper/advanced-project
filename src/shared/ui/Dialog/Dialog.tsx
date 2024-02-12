@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect, useMemo } from 'react'
+import React, { useRef, useState, useCallback, useEffect, useMemo, ReactNode } from 'react'
 import { Portal, PortalProps } from '../Portal/Portal'
 import DomWrapper from './DomWrapper'
 import { mergeProps } from '@/shared/lib/mergeProps'
@@ -16,6 +16,7 @@ interface DialogProps extends PortalProps {
   boundary?: number
   placement?: Placement | Placement[]
   align?: Align
+  children: ReactNode
 }
 
 export const Dialog: React.FC<DialogProps> = (props) => {
@@ -120,7 +121,9 @@ export const Dialog: React.FC<DialogProps> = (props) => {
         lockScroll={lockScroll}
         destroyOnClose={destroyOnClose}
       >
-        <div ref={popupRef}>{children}</div>
+        <div style={{ position: 'absolute', zIndex: 1000 }} ref={popupRef}>
+          {children}
+        </div>
       </Portal>
     </>
   )

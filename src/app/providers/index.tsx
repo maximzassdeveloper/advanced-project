@@ -1,11 +1,11 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ErrorBoundary } from './errorBoundary'
 import { CommonProvider } from './common'
 import { ThemeProvider } from './theme'
 import { StoreProvider } from './store'
 
-export const AllProviders: FC = ({ children }) => {
+export const AllProviders: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <ErrorBoundary>
       <BrowserRouter>

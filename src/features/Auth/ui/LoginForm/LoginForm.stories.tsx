@@ -1,26 +1,45 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import LoginForm from './LoginForm'
 import { loginReducer } from '../../model/slices/loginSlice'
 
-export default {
+const meta: Meta<typeof LoginForm> = {
   title: 'features/LoginForm',
   component: LoginForm,
-} as ComponentMeta<typeof LoginForm>
+}
 
-const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args} />
+export default meta
+type Story = StoryObj<typeof LoginForm>
 
-export const Default = Template.bind({})
-Default.decorators = [
-  StoreDecorator({ login: { error: undefined, isLoading: false } }, { login: loginReducer }),
-]
+export const Default: Story = {
+  render: () => <LoginForm onSuccess={() => null} />,
+  decorators: [
+    (...args) =>
+      StoreDecorator(...args)(
+        { login: { error: undefined, isLoading: false } },
+        { login: loginReducer }
+      ),
+  ],
+}
 
-export const WithError = Template.bind({})
-WithError.decorators = [
-  StoreDecorator({ login: { error: 'SERVER', isLoading: false } }, { login: loginReducer }),
-]
+export const WithError: Story = {
+  render: () => <LoginForm onSuccess={() => null} />,
+  decorators: [
+    (...args) =>
+      StoreDecorator(...args)(
+        { login: { error: 'SERVER', isLoading: false } },
+        { login: loginReducer }
+      ),
+  ],
+}
 
-export const WithLoading = Template.bind({})
-WithLoading.decorators = [
-  StoreDecorator({ login: { error: undefined, isLoading: true } }, { login: loginReducer }),
-]
+export const WithLoading: Story = {
+  render: () => <LoginForm onSuccess={() => null} />,
+  decorators: [
+    (...args) =>
+      StoreDecorator(...args)(
+        { login: { error: undefined, isLoading: true } },
+        { login: loginReducer }
+      ),
+  ],
+}

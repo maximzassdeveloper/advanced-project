@@ -1,9 +1,7 @@
-import { Story } from '@storybook/react'
+import { ReactNode } from 'react'
 import '@/app/styles/index.scss'
 import '@/app/styles/storybook.scss'
 
-export const StyleDecorator = (StoryComponent: Story) => (
-  <div className='app'>
-    <StoryComponent />
-  </div>
+export const StyleDecorator = ({ children }: { children: ReactNode }) => (
+  <div className='app'>{children}</div>
 )

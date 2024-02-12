@@ -1,35 +1,23 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentStory, Meta } from '@storybook/react'
 import { Switch } from './Switch'
 
 export default {
   title: 'shared/Switch',
   component: Switch,
-} as ComponentMeta<typeof Switch>
+} as Meta<typeof Switch>
 
 export const Default: ComponentStory<typeof Switch> = (args) => (
   <div>
-    <Switch
-      {...args}
-      checked
-    />
-    <Switch
-      {...args}
-      checked={false}
-    />
+    <Switch {...args} checked />
+    <Switch {...args} checked={false} />
   </div>
 )
 Default.args = {}
 
 export const Disabled: ComponentStory<typeof Switch> = (args) => (
   <div>
-    <Switch
-      {...args}
-      checked
-    />
-    <Switch
-      {...args}
-      checked={false}
-    />
+    <Switch {...args} checked />
+    <Switch {...args} checked={false} />
   </div>
 )
 Disabled.args = {

@@ -1,6 +1,4 @@
-import { BuildOptions } from '../types/config'
-
-interface BuildBabelLoaderOptions extends BuildOptions {
+interface BuildBabelLoaderOptions {
   isTsx: boolean
 }
 

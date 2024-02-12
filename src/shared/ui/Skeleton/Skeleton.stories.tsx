@@ -1,10 +1,10 @@
-import { ComponentMeta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import Skeleton from '.'
 
 export default {
   title: 'shared/Skeleton',
   component: Skeleton.Button,
-} as ComponentMeta<typeof Skeleton.Button>
+} as Meta<typeof Skeleton.Button>
 
 type Story = StoryObj<typeof Skeleton.Button>
 
@@ -21,14 +21,8 @@ export const SkeletonButtons: Story = {
 export const SkeletonTypography: Story = {
   render: () => (
     <div className='flex column'>
-      <Skeleton.Typography
-        rows={2}
-        width={400}
-      />
-      <Skeleton.Typography
-        rows={3}
-        width={300}
-      />
+      <Skeleton.Typography rows={2} width={400} />
+      <Skeleton.Typography rows={3} width={300} />
     </div>
   ),
 }
@@ -46,16 +40,8 @@ export const SkeletonAvatars: Story = {
 export const SkeletonBlocks: Story = {
   render: () => (
     <div className='flex'>
-      <Skeleton.Block
-        width={200}
-        height={200}
-        borderRadius={30}
-      />
-      <Skeleton.Block
-        width={100}
-        height={100}
-        borderRadius={10}
-      />
+      <Skeleton.Block width={200} height={200} borderRadius={30} />
+      <Skeleton.Block width={100} height={100} borderRadius={10} />
     </div>
   ),
 }
@@ -65,16 +51,9 @@ export const CombinedSkeleton: Story = {
     <div>
       <div className='flex mb-3 align-center'>
         <Skeleton.Avatar />
-        <Skeleton.Typography
-          rows={1}
-          width={300}
-        />
+        <Skeleton.Typography rows={1} width={300} />
       </div>
-      <Skeleton.Typography
-        className='mb-3'
-        rows={4}
-        width={500}
-      />
+      <Skeleton.Typography className='mb-3' rows={4} width={500} />
       <Skeleton.Button />
     </div>
   ),
