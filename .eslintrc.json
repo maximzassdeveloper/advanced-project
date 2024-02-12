@@ -17,15 +17,8 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
-  "ignorePatterns": [
-    ".loki",
-    "json-server"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "ignorePatterns": [".loki", "json-server"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
@@ -55,6 +48,7 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/no-noninteractive-tabindex": "warn",
+    "jsx-a11y/control-has-associated-label": "warn",
     "jsx-a11y/label-has-associated-control": [
       "error",
       {
@@ -107,23 +101,18 @@
   },
   "overrides": [
     {
-      "files": [
-        "*.test.ts",
-        "*.test.tsx"
-      ],
+      "files": ["*.test.ts", "*.test.tsx"],
       "rules": {
         "@typescript-eslint/no-non-null-assertion": "off",
         "jsx-a11y/anchor-is-valid": "off"
       }
     },
     {
-      "files": [
-        "*.stories.ts",
-        "*.stories.tsx"
-      ],
+      "files": ["*.stories.ts", "*.stories.tsx"],
       "rules": {
         "max-len": "warn"
       }
     }
   ]
 }
+
