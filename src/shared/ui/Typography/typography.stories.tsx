@@ -7,28 +7,43 @@ export default {
 
 export const TextSizes = () => (
   <div>
-    <Typography.Text size='s'>Text S</Typography.Text>
-    <Typography.Text size='m'>Text M</Typography.Text>
+    <Typography.Text size='xl'>Text XL</Typography.Text>
     <Typography.Text size='l'>Text L</Typography.Text>
+    <Typography.Text size='m'>Text M</Typography.Text>
+    <Typography.Text size='s'>Text S</Typography.Text>
+    <Typography.Text size='xs'>Text XS</Typography.Text>
+    <Typography.Text size='xxs'>Text XXS</Typography.Text>
   </div>
 )
 
-export const TitleSizes = () => (
+export const TextWeights = () => (
   <div>
-    <Typography.Title size='s'>Title S</Typography.Title>
-    <Typography.Title size='m'>Title M</Typography.Title>
-    <Typography.Title size='l'>Title L</Typography.Title>
-    <Typography.Title size='xl'>Title XL</Typography.Title>
+    <Typography.Text size='l' weight='800'>
+      Text ExtraBold (800)
+    </Typography.Text>
+    <Typography.Text size='l' weight='700'>
+      Text Bold (700)
+    </Typography.Text>
+    <Typography.Text size='l' weight='600'>
+      Text SemiBold (600)
+    </Typography.Text>
+    <Typography.Text size='l' weight='500'>
+      Text Medium (500)
+    </Typography.Text>
+    <Typography.Text size='l' weight='400'>
+      Text Regular (400)
+    </Typography.Text>
   </div>
 )
 
 export const TitleLevels = () => (
   <div>
-    <Typography.Title level='h1'>Title h1</Typography.Title>
-    <Typography.Title level='h2'>Title h2</Typography.Title>
-    <Typography.Title level='h3'>Title h3</Typography.Title>
-    <Typography.Title level='h4'>Title h4</Typography.Title>
-    <Typography.Title level='h5'>Title h5</Typography.Title>
+    <Typography.Title level='h1'>Title H1</Typography.Title>
+    <Typography.Title level='h2'>Title H2</Typography.Title>
+    <Typography.Title level='h3'>Title H3</Typography.Title>
+    <Typography.Title level='h4'>Title H4</Typography.Title>
+    <Typography.Title level='h5'>Title H5</Typography.Title>
+    <Typography.Title level='h6'>Title H6</Typography.Title>
   </div>
 )
 

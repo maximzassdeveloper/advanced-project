@@ -14,8 +14,8 @@ export const Spinner: FC<SpinnerProps> = (props) => {
   const { className, containerClassName, size = 'middle', color = 'default', fullPage } = props
 
   return (
-    <div className={classNames(containerClassName, { [s.fullPage]: fullPage })}>
-      <div className={classNames(s.loader, className, s[size], s[color])} />
-    </div>
+    <span className={classNames(containerClassName, { [s.fullPage]: fullPage })}>
+      <span className={classNames(s.loader, className, s[size], s[color])} />
+    </span>
   )
 }

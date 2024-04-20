@@ -19,7 +19,11 @@ const exampleArticle: Article = {
     'https://images.unsplash.com/photo-1682687981974-c5ef2111640c?auto=format&fit=crop&q=80&w=240&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   views: 1022,
   createdAt: '26.02.2022',
-  categories: [],
+  category: {
+    id: '1',
+    name: 'TestCat',
+    slug: 'test-cat',
+  },
   blocks: [],
 }
 

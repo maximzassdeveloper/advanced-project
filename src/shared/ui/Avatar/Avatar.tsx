@@ -6,13 +6,13 @@ type AvatarSize = number | 'small' | 'default' | 'large'
 
 interface AvatarProps {
   className?: string
-  src: string
+  src?: string
   alt?: string
   size?: AvatarSize
 }
 
 export const Avatar = (props: AvatarProps) => {
-  const { src, alt = '', size = 'default', className } = props
+  const { src = '', alt = '', size = 'default', className } = props
 
   const style = useMemo(() => {
     if (typeof size === 'number') {

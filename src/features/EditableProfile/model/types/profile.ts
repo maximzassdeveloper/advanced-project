@@ -2,15 +2,14 @@ import { Country } from '@/entities/Country'
 import { Currency } from '@/entities/Currency'
 
 export interface Profile {
-  id: number
-  firstname: string
-  lastname: string
+  id: string
   username: string
-  avatar: string
-  age: number
+  fullName?: string
+  avatar?: string
+  birthday?: string
+  gender?: 'male' | 'female' | 'unknown'
   currency: Currency
-  country: Country
-  city: string
+  country?: Country
 }
 
 export interface ProfileSchema {

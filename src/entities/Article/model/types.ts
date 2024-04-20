@@ -26,7 +26,11 @@ export interface IArticleBlockImage extends IArticleBaseBlock {
 
 export type IArticleBlock = IArticleBlockText | IArticleBlockCode | IArticleBlockImage
 
-export type ArticleCategory = string
+export type ArticleCategory = {
+  id: string
+  slug: string
+  name: string
+}
 
 export interface Article {
   id: string
@@ -36,10 +40,9 @@ export interface Article {
   preview: string
 
   views: number
-  rating?: number
   readTime?: number
   createdAt: string
-  categories: ArticleCategory[]
+  category: ArticleCategory
 
   blocks?: IArticleBlock[]
   user?: User

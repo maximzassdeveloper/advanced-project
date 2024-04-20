@@ -93,7 +93,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
         <Input
           className={s.input}
           value={inputValue}
-          isReadonly={isReadonly ?? !search}
+          readOnly={isReadonly ?? !search}
           onFocus={inputFocusHandler}
           onBlur={inputBlurHandler}
           onChange={inputChangeHandler}

@@ -15,12 +15,10 @@ export default meta
 type Story = StoryObj<typeof EditableProfile>
 
 const defaultData: Profile = {
-  id: 1,
+  id: '1',
   username: 'alexmac',
-  firstname: 'Alex',
-  lastname: 'Mac',
-  age: 23,
-  city: 'Moscow',
+  fullName: 'Alex',
+  birthday: '',
   country: Country.RUSSIA,
   currency: Currency.RUB,
   // eslint-disable-next-line

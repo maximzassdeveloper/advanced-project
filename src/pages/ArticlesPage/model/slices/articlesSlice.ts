@@ -66,7 +66,7 @@ const articlesSlice = createSlice({
     },
     initParams: (state) => {
       const { category, page, sortBy, search, view } = parseQueryParams()
-      state.category = category
+      // state.category = category
       state.page = +page
       state.sortBy = sortBy as ArticleSortBy
       state.search = search

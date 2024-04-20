@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render label 1`] = `
+<div
+  class="input"
+  data-testid="input"
+>
+  <label
+    class="label"
+    for="name"
+  >
+    input label
+  </label>
+  <input
+    autocomplete="off"
+    id="name"
+  />
+</div>
+`;
+
+exports[`Input should return correct snapshot 1`] = `
+<div
+  class="input"
+  data-testid="input"
+>
+  <label
+    class="label"
+  >
+    wow label
+  </label>
+  <input
+    autocomplete="off"
+    value="wow"
+  />
+</div>
+`;
+
+exports[`Input should show error message 1`] = `
+<div
+  class="input errored"
+  data-testid="input"
+>
+  <input
+    autocomplete="off"
+  />
+  <p
+    class="text error xs weight-500 error"
+    data-testid="error"
+  >
+    Error by test
+  </p>
+</div>
+`;

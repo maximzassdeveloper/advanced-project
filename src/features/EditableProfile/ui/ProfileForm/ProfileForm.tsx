@@ -44,7 +44,7 @@ export const ProfileForm: FC = memo(() => {
               required: validationMessages.required,
               minLength: { value: 3, message: validationMessages.minLength(3) },
             })}
-            isReadonly={isReadonly}
+            readOnly={isReadonly}
             error={errors.username?.message}
           />
         </div>
@@ -52,17 +52,17 @@ export const ProfileForm: FC = memo(() => {
         <div className={s.field}>
           <Text>{t('profile:form.firstname', 'Имя:')}</Text>
           <Input
-            {...register('firstname', { required: validationMessages.required })}
-            isReadonly={isReadonly}
-            error={errors.firstname?.message}
+            {...register('fullName', { required: validationMessages.required })}
+            readOnly={isReadonly}
+            error={errors.fullName?.message}
           />
         </div>
 
-        <div className={s.field}>
+        {/* <div className={s.field}>
           <Text>{t('profile:form.lastname', 'Фамилия:')}</Text>
           <Input
-            {...register('lastname', { required: validationMessages.required })}
-            isReadonly={isReadonly}
+            {...register('', { required: validationMessages.required })}
+            readOnly={isReadonly}
             error={errors.lastname?.message}
           />
         </div>
@@ -81,15 +81,15 @@ export const ProfileForm: FC = memo(() => {
               },
             })}
             type='number'
-            isReadonly={isReadonly}
+            readOnly={isReadonly}
             error={errors.age?.message}
           />
         </div>
 
         <div className={s.field}>
           <Text>{t('profile:form.city', 'Город:')}</Text>
-          <Input {...register('city')} isReadonly={isReadonly} />
-        </div>
+          <Input {...register('city')} readOnly={isReadonly} />
+        </div> */}
 
         <div className={s.field}>
           <Text>{t('profile:form.country', 'Страна:')}</Text>
@@ -115,7 +115,7 @@ export const ProfileForm: FC = memo(() => {
 
         <div className={s.field}>
           <Text>{t('profile:form.avatar', 'Изображение:')}</Text>
-          <Input {...register('avatar')} isReadonly={isReadonly} />
+          <Input {...register('avatar')} readOnly={isReadonly} />
         </div>
       </div>
     </div>

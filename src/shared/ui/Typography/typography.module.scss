@@ -1,45 +1,44 @@
-.text,
-.title {
-  &.error {
-    color: var(--error-color);
-  }
-
-  &.success {
-    color: var(--success-color);
-  }
+// Sizes
+.xl {
+  font: var(--font-xl);
+}
+.l {
+  font: var(--font-l);
+}
+.m {
+  font: var(--font-m);
+}
+.s {
+  font: var(--font-s);
+}
+.xs {
+  font: var(--font-xs);
+}
+.xxs {
+  font: var(--font-xxs);
 }
 
-.text {
-  &.l {
-    font: var(--font-l);
-  }
-
-  &.m {
-    font: var(--font-m);
-  }
-
-  &.s {
-    font: var(--font-s);
-  }
+// Weights
+.weight-400 {
+  font-weight: 400;
+}
+.weight-500 {
+  font-weight: 500;
+}
+.weight-600 {
+  font-weight: 600;
+}
+.weight-700 {
+  font-weight: 700;
+}
+.weight-800 {
+  font-weight: 800;
 }
 
-.title {
-  &.xl {
-    font: var(--font-title-xl);
-    font-weight: 700;
-  }
-
-  &.l {
-    font: var(--font-title-l);
-    font-weight: 600;
-  }
-
-  &.m {
-    font: var(--font-title-m);
-    font-weight: 500;
-  }
-
-  &.s {
-    font: var(--font-title-s);
-  }
+// Colors
+.error {
+  color: var(--danger);
+}
+.success {
+  color: var(--success);
 }
