@@ -64,6 +64,21 @@
       text-decoration: underline;
     }
   }
+
+  &.icon {
+    height: 45px;
+    min-width: 45px;
+    width: 45px;
+    padding: 4px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      color: var(--secondary);
+      font-size: 30px;
+    }
+  }
 }
 
 .loader {

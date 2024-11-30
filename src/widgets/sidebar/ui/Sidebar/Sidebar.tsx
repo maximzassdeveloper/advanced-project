@@ -4,6 +4,7 @@ import { classNames } from '@/shared/lib/classNames'
 import { useMenuItems } from '../../model/useMenuItems'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
 import s from './sidebar.module.scss'
+import { ArticleCategories } from '../ArticleCategories/ArticleCategories'
 
 export const Sidebar: FC = memo(() => {
   const { collapsed } = useSidebar()
@@ -11,9 +12,10 @@ export const Sidebar: FC = memo(() => {
 
   return (
     <ul className={classNames(s.sidebar, { [s.collapsed]: collapsed })} data-testid='sidebar'>
-      {menuItems.map((item) => (
+      <ArticleCategories />
+      {/* {menuItems.map((item) => (
         <SidebarItem key={item.link} item={item} collapsed={collapsed} />
-      ))}
+      ))} */}
     </ul>
   )
 })

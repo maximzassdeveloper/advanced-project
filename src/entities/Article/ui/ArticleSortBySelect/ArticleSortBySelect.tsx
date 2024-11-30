@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ArticleSortBy } from '../../model/const'
 import { Select } from '@/shared/ui'
 import { enumEntries } from '@/shared/lib/enum'
+import s from './article-sort.module.scss'
 
 interface SortBySelectProps {
   value: ArticleSortBy
@@ -25,5 +26,13 @@ export const ArticleSortBySelect: FC<SortBySelectProps> = (props) => {
     return enumEntries(ArticleSortBy).map((i) => ({ label: sortByTranslations[i[1]], value: i[1] }))
   }, [sortByTranslations])
 
-  return <Select value={value} onChange={onChange} options={sortByOptions} />
+  return (
+    <Select
+      className={s.sortSelect}
+      label='Сортировать по'
+      value={value}
+      onChange={onChange}
+      options={sortByOptions}
+    />
+  )
 }

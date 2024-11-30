@@ -11,6 +11,8 @@ import {
 } from '../../model/slices/articlesSlice'
 import { useArticlesActions } from '../../model/hooks/useArticleActions'
 import { ArticlesPagination } from '../ArticlesPagination/ArticlesPagination'
+import s from './articles-page.module.scss'
+import { ArticlesToolbar } from '../ArticlesToolbar/ArticlesToolbar'
 
 const ArticlesPage: FC = () => {
   const { t } = useTranslation(['articles'])
@@ -28,8 +30,7 @@ const ArticlesPage: FC = () => {
 
   return (
     <div>
-      <Title level='h2'>{t('articles:title', 'Список статей')}</Title>
-      <ArticlesFilters />
+      <ArticlesToolbar />
       <ArticlesList articles={articles || []} isLoading={isLoading} view={view} />
       <ArticlesPagination />
     </div>

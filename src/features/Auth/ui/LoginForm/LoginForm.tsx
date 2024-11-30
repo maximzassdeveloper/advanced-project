@@ -7,7 +7,7 @@ import {
   useValidationMessages,
   useLoadAsyncReducer,
 } from '@/shared/hooks'
-import { Button, Input, Typography } from '@/shared/ui'
+import { Button, Input, Title, Typography } from '@/shared/ui'
 import { login } from '../../model/services/login'
 import { getLogin } from '../../model/selectors/getLogin'
 import { LoginError } from '../../model/types/loginSchema'
@@ -58,44 +58,33 @@ const LoginForm: FC<LoginFormProps> = (props) => {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(submitHandler)}
-      className={s.loginForm}
-    >
-      <Typography.Title
-        level='h3'
-        className='mb-3'
-      >
-        {t('main:loginForm.title', 'Вход')}
-      </Typography.Title>
+    <form onSubmit={handleSubmit(submitHandler)} className={s.loginForm}>
+      <Title level='h2' className='mb-16'>
+        {t('main:loginForm.title', 'Авторизация')}
+      </Title>
 
       {error && (
-        <Typography.Text
-          theme='error'
-          className='mb-2'
-        >
+        <Typography.Text theme='error' className='mb-2'>
           {getErrorMessage()}
         </Typography.Text>
       )}
 
       <Input
         {...register('username', { required: validationMessages.required })}
-        className='mb-2'
+        className='mb-12'
+        label={t('main:loginForm.username', 'Имя')}
         error={errors.username?.message}
         placeholder={t('main:loginForm.username', 'Имя')}
       />
       <Input
         {...register('password', { required: validationMessages.required })}
-        className='mb-2'
+        className='mb-24'
+        label={t('main:loginForm.password', 'Пароль')}
         type='password'
         error={errors.password?.message}
         placeholder={t('main:loginForm.password', 'Пароль')}
       />
-      <Button
-        type='submit'
-        className={s.loginBtn}
-        loading={isLoading}
-      >
+      <Button type='submit' className={s.loginBtn + ' full-width'} loading={isLoading}>
         {t('main:loginForm.loginBtn', 'Войти')}
       </Button>
     </form>

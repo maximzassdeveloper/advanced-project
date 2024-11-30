@@ -12,12 +12,21 @@ export interface ModalProps {
   focusFirst?: boolean
   destroyOnClose?: boolean
   className?: string
+  contentClassName?: string
   children?: ReactNode
   animationTime?: number
 }
 
 export const Modal = (props: ModalProps) => {
-  const { children, visible, onClose, className, animationTime = 300, destroyOnClose } = props
+  const {
+    children,
+    visible,
+    onClose,
+    className,
+    contentClassName,
+    animationTime = 300,
+    destroyOnClose,
+  } = props
 
   const contentRef = useRef<HTMLDivElement>(null)
   const sentinelStartRef = useRef<HTMLDivElement>(null)
@@ -78,7 +87,12 @@ export const Modal = (props: ModalProps) => {
         </CSSTransition>
 
         <CSSTransition in={visible} timeout={300} classNames='fade-down' mountOnEnter>
-          <div ref={contentRef} role='dialog' aria-modal='true' className={s.content}>
+          <div
+            ref={contentRef}
+            role='dialog'
+            aria-modal='true'
+            className={classNames(s.content, contentClassName)}
+          >
             <span
               data-testid='sentialStart'
               className={s.sentinel}

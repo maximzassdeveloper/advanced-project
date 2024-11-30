@@ -2,6 +2,21 @@
   width: 100% !important;
 }
 
+.d-block {
+  display: block;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.hover-underline {
+  &:hover {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+  }
+}
+
 // 2, 4, 8, 12, 16, 24, 32, 40, 48, 56, 64, 72, 80, auto
 .m-2 {
   margin: 2px !important;

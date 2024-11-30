@@ -1,0 +1,40 @@
+.badge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  font: var(--font-xs);
+  font-weight: 500;
+  z-index: 1;
+
+  &:after {
+    content: '';
+    opacity: 0;
+    display: block;
+    background: var(--light-bg);
+    padding: 0 8px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    z-index: -1;
+  }
+
+  &:focus {
+    &:after {
+      background: transparent;
+      border: 1px solid var(--main);
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+}

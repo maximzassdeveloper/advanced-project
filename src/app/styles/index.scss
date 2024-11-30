@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import 'reset';
 @import 'variables/global';
 @import 'themes/light';
@@ -8,7 +8,10 @@
 
 .app {
   min-height: 100vh;
-  background: var(--bg-color);
+  width: 100%;
+  margin: auto;
+  max-width: 1400px;
+  background: var(--bg);
   transition: background 0.2s, color 0.2s;
 }
 
@@ -17,11 +20,12 @@ html {
 }
 
 body {
-  background: var(--bg-color);
+  background: var(--bg);
+  transition: background 0.2s, color 0.2s;
 }
 
 * {
-  font: var(--font-m);
+  font-family: var(--font-family-main);
   color: var(--text-color);
 }
 
@@ -32,4 +36,13 @@ body {
 .page {
   flex-grow: 1;
   padding: 20px;
+}
+
+.mainTitle {
+  font: var(--font-xl);
+  color: var(--main);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 20px var(--window-padding-x) 70px;
+  padding-left: 50px;
 }

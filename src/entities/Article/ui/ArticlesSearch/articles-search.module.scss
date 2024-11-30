@@ -1,0 +1,39 @@
+.search {
+  border-bottom: 1px solid var(--light-grey);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 350px;
+  transition: 0.2s;
+
+  &.active {
+    max-width: 585px;
+    border-color: var(--main);
+
+    .searchIcon {
+      color: var(--main);
+    }
+  }
+}
+
+.input {
+  max-width: 100%;
+
+  input {
+    padding: 0 0 2px 0;
+    font: var(--font-l);
+    font-weight: 700;
+    border: none;
+
+    &::placeholder {
+      color: var(--light-grey);
+    }
+  }
+}
+
+.searchIcon {
+  color: var(--light-grey);
+  cursor: pointer;
+  padding-left: 10px;
+}

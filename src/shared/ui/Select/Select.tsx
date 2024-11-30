@@ -1,104 +1,114 @@
-import { ChangeEvent, FC, useEffect, useMemo, useState } from 'react'
+import { HTMLAttributes, useState } from 'react'
 import { Input, Popover } from '@/shared/ui'
 import { classNames } from '@/shared/lib/classNames'
 import { SelectList } from './SelectList'
+import { useMergeState } from '@/shared/hooks'
 import s from './select.module.scss'
 
-export interface SelectOption<T = string> {
+export type Value = string | number
+
+export interface SelectOption<T extends Value = string> {
   label: string
   value: T
   disabled?: boolean
 }
 
-export interface SelectProps<T = string> {
-  className?: string
+interface SelectPropsBase<T extends Value = string> {
   value?: T
-  onChange?: (val: T) => void
+  defaultValue?: T
   options: SelectOption<T>[]
-  isReadonly?: boolean
-  search?: boolean
+  label?: string
+  readOnly?: boolean
+  disabled?: boolean
+  defaultOpen?: boolean
+  onChange?: (val: T) => void
 }
 
-export const Select = <T extends string>(props: SelectProps<T>) => {
-  const { className, value, isReadonly, onChange, options: defaultOptions, search } = props
+export type SelectProps<T extends Value = string> = SelectPropsBase<T> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'>
 
-  const [options, setOptions] = useState<SelectOption[]>(defaultOptions)
-  // const [value, setValue] = useState<SelectOption | null>(null)
-  const [inputValue, setInputValue] = useState('')
-  const [listVisible, setListVisible] = useState(false)
-  const [isSearching, setIsSearching] = useState(false)
+export const Select = <T extends Value = string>(props: SelectProps<T>) => {
+  const {
+    className,
+    value: outValue,
+    defaultOpen,
+    readOnly,
+    disabled,
+    onChange,
+    options,
+    label,
+    id,
+    defaultValue,
+  } = props
 
-  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!search) return
-    setInputValue(e.target.value)
-    setOptions((options) =>
-      options.filter(({ label }) => label.toLowerCase().includes(e.target.value.toLowerCase()))
-    )
+  /* ---- Utils ---- */
+  const getOption = (val?: T) => {
+    return options.find((option) => option.value === val)
   }
 
+  const getStartInputValue = () => {
+    if (defaultOpen) {
+      return ''
+    }
+    return getOption(outValue ?? defaultValue)?.label ?? ''
+  }
+
+  /* ---- State ---- */
+  const [value, setValue] = useMergeState(outValue, { defaultValue, onChange })
+  const current = getOption(value)
+  const [inputValue, setInputValue] = useState(getStartInputValue())
+  const [isListOpen, setIsListOpen] = useState(defaultOpen)
+
+  /* ---- Handlers ---- */
   const inputFocusHandler = () => {
-    if (isReadonly) return
-    setIsSearching(true)
+    if (readOnly || disabled) return
+    setIsListOpen(true)
     setInputValue('')
-    setListVisible(true)
   }
-
-  useEffect(() => {
-    const current = options.find((option) => option.value === value)
-    setInputValue(current?.label ?? '')
-  }, [value])
 
   const inputBlurHandler = () => {
-    const current = options.find((option) => option.value === value)
+    if (readOnly || disabled) return
+    setIsListOpen(false)
     setInputValue(current?.label ?? '')
-    setTimeout(() => {
-      setIsSearching(false)
-      setOptions(defaultOptions)
-    }, 300)
   }
 
-  const selectHandler = (option: SelectOption) => {
-    setListVisible(false)
-    onChange?.(option.value as T)
+  const selectHandler = (option: SelectOption<T>) => {
+    if (readOnly || disabled) return
+    setIsListOpen(false)
+
+    setValue(option.value)
     setInputValue(option.label)
-    // setIsSearching(false)
-    // setOptions(defaultOptions)
   }
-
-  const toggleSelectList = () => {
-    if (isReadonly) return
-    setListVisible((prev) => !prev)
-  }
-
-  // const searchedOptions = useMemo(() => {
-  //   if (isSearching && search) {
-  //     return options.filter(({ label }) => label.toLowerCase().includes(inputValue.toLowerCase()))
-  //   }
-  //   return options
-  // }, [search, isSearching, options, inputValue])
-
-  const current = options.find((option) => option.value === value)
 
   return (
-    <div className={classNames(s.select, className)}>
+    <div data-testid='select-container' className={classNames(s.select, className)}>
+      {!!label && (
+        <label htmlFor={id} className={s.label}>
+          {label}
+        </label>
+      )}
+
       <Popover
         autoWidth
-        visible={listVisible}
-        onVisibleChange={(v) => setListVisible(v)}
+        trigger={[]}
+        visible={isListOpen}
         offset={0}
+        placement={['bottom', 'top', 'left', 'right']}
         content={
-          <SelectList options={options} onSelect={selectHandler} selected={current?.value ?? ''} />
+          <SelectList options={options} onSelect={selectHandler} selected={current?.value} />
         }
       >
         <Input
+          data-testid='select-input'
+          id={id}
           className={s.input}
           value={inputValue}
-          readOnly={isReadonly ?? !search}
+          readOnly
+          disabled={disabled}
           onFocus={inputFocusHandler}
           onBlur={inputBlurHandler}
-          onChange={inputChangeHandler}
-          onClick={toggleSelectList}
-          placeholder={current?.label || isReadonly ? '' : 'Выберите элемент'}
+          /** TODO: Добавить i18n и в тестах это учесть */
+          placeholder={current?.label || 'Выберите элемент'}
         />
       </Popover>
     </div>

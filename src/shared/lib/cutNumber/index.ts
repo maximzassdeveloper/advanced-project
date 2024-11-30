@@ -1,0 +1,1 @@
+export { cutNumber } from './cutNumber'

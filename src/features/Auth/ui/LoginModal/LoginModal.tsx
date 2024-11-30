@@ -1,5 +1,6 @@
 import { Suspense, lazy, useCallback } from 'react'
 import { Modal, Spinner } from '@/shared/ui'
+import s from './login-modal.module.scss'
 
 const LoginForm = lazy(() => import('../LoginForm/LoginForm'))
 
@@ -19,6 +20,7 @@ export const LoginModal = (props: LoginModalProps) => {
     <Modal
       visible={isOpen}
       onClose={onClose}
+      contentClassName={s.content}
       focusFirst
       destroyOnClose={false}
     >

@@ -26,7 +26,8 @@ export const Header: FC = () => {
 
   return (
     <div className={s.header} data-testid='header'>
-      <SidebarSwitcher className={s.sidebarSwitcher} />
+      {/* <SidebarSwitcher className={s.sidebarSwitcher} /> */}
+      <img src={'/logo.svg'} alt='Logo' />
 
       <LangSwitcher className={s.langSwitcher} />
       <ThemeSwitcher className={s.themeSwitcher} />

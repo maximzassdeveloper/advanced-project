@@ -41,3 +41,10 @@
     background: var(--bg-color);
   }
 }
+
+.label {
+  display: inline-block;
+  font: var(--font-xxs);
+  font-weight: 500;
+  color: var(--secondary);
+}

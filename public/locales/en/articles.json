@@ -7,5 +7,14 @@
     "created_at": "По новизне",
     "popular": "По популярности"
   },
-  "title": "Articles"
+  "title": "Articles",
+  "publications_one": "publcation",
+  "publications_few": "publications",
+  "publications_many": "publications",
+  "publications_other": "publications",
+  "authors_one": "author",
+  "authors_few": "authors",
+  "authors_many": "authors",
+  "authors_other": "authors"
 }
+

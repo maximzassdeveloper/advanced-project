@@ -1,0 +1,13 @@
+.karma {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font: var(--font-xs);
+  font-weight: 500;
+}
+
+.active {
+  i {
+    color: var(--light-grey);
+  }
+}

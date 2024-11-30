@@ -18,4 +18,28 @@
   &.s {
     font: var(--font-s);
   }
+
+  &.weight400 {
+    &::before {
+      font-weight: 400;
+    }
+  }
+
+  &.weight500 {
+    &::before {
+      font-weight: 500;
+    }
+  }
+
+  &.weight600 {
+    &::before {
+      font-weight: 600;
+    }
+  }
+
+  &.weight700 {
+    &::before {
+      font-weight: 700;
+    }
+  }
 }

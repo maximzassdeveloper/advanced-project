@@ -57,6 +57,13 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     } = propsRef.current
 
     if (visible) {
+      const popupStyle = popupRef.current.style
+
+      if (autoWidth) {
+        const triggerRect = triggerEl.getBoundingClientRect()
+        popupStyle.width = `${triggerRect.width}px`
+      }
+
       const { offsetX, offsetY } = calcPosition({
         popupEl: popupRef.current,
         triggerEl,
@@ -66,14 +73,8 @@ export const Dialog: React.FC<DialogProps> = (props) => {
         boundary,
       })
 
-      const popupStyle = popupRef.current.style
       popupStyle.left = `${offsetX}px`
       popupStyle.top = `${offsetY}px`
-
-      if (autoWidth) {
-        const triggerRect = triggerEl.getBoundingClientRect()
-        popupStyle.width = `${triggerRect.width}px`
-      }
     }
   }, [propsRef, triggerEl])
 

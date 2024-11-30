@@ -97,7 +97,7 @@ export const ProfileForm: FC = memo(() => {
             control={control}
             name='country'
             render={({ field: { onChange, value } }) => (
-              <CountySelect isReadonly={isReadonly} value={value} onChange={onChange} />
+              <CountySelect readOnly={isReadonly} value={value} onChange={onChange} />
             )}
           />
         </div>
@@ -108,7 +108,7 @@ export const ProfileForm: FC = memo(() => {
             control={control}
             name='currency'
             render={({ field: { onChange, value } }) => (
-              <CurrencySelect isReadonly={isReadonly} value={value} onChange={onChange} />
+              <CurrencySelect readOnly={isReadonly} value={value} onChange={onChange} />
             )}
           />
         </div>

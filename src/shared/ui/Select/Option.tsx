@@ -1,15 +1,14 @@
-import { FC } from 'react'
 import { classNames } from '@/shared/lib/classNames'
-import { SelectOption } from './Select'
+import { Value, SelectOption } from './Select'
 import s from './select.module.scss'
 
-interface OptionProps {
-  option: SelectOption
+interface OptionProps<T extends Value = string> {
+  option: SelectOption<T>
   selected: boolean
-  onSelect: (option: SelectOption) => void
+  onSelect: (option: SelectOption<T>) => void
 }
 
-export const Option: FC<OptionProps> = (props) => {
+export const Option = <T extends Value = string>(props: OptionProps<T>) => {
   const { option, selected, onSelect } = props
 
   const clickHandler = () => {
@@ -20,6 +19,7 @@ export const Option: FC<OptionProps> = (props) => {
 
   return (
     <span
+      data-testid='select-option'
       onClick={clickHandler}
       className={classNames(s.option, { [s.selected]: selected, [s.disabled]: option.disabled })}
     >

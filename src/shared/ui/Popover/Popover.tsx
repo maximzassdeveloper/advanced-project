@@ -1,9 +1,7 @@
 import { FC, HTMLAttributes, ReactElement, ReactNode, useCallback, useMemo } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { Align, Dialog, Placement } from '@/shared/ui/Dialog'
-import { classNames } from '@/shared/lib/classNames'
-import { useActualState } from '@/shared/hooks'
-import s from './popover.module.scss'
+import { useMergeState } from '@/shared/hooks'
 
 type VisibleTrigger = 'click' | 'hover' | 'focus'
 
@@ -37,7 +35,10 @@ export const Popover: FC<PopoverProps> = (props) => {
     boundary,
   } = props
 
-  const [visible, setVisible] = useActualState(outVisible, false, onVisibleChange)
+  const [visible, setVisible] = useMergeState(outVisible, {
+    defaultValue: false,
+    onChange: onVisibleChange,
+  })
 
   const togglePopover = useCallback(() => {
     setVisible((prev) => !prev)
@@ -83,12 +84,8 @@ export const Popover: FC<PopoverProps> = (props) => {
       offset={offset}
       boundary={boundary}
     >
-      <CSSTransition
-        in={visible}
-        timeout={300}
-        classNames='fade-down'
-      >
-        <div className={classNames(s.popover, className)}>{content}</div>
+      <CSSTransition in={visible} timeout={300} classNames='fade-down'>
+        <div className={className}>{content}</div>
       </CSSTransition>
     </Dialog>
   )

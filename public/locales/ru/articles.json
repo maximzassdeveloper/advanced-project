@@ -1,11 +1,20 @@
 {
   "listNotFound": "Статей не найдено",
   "search": {
-    "placeholder": "Поиск..."
+    "placeholder": "Поиск"
   },
   "sortBy": {
     "created_at": "По новизне",
     "popular": "По популярности"
   },
-  "title": "Список статей"
+  "title": "Список статей",
+  "publications_one": "публикация",
+  "publications_few": "публикаций",
+  "publications_many": "публикаций",
+  "publications_other": "публикаций",
+  "authors_one": "автор",
+  "authors_few": "авторов",
+  "authors_many": "авторов",
+  "authors_other": "авторов"
 }
+

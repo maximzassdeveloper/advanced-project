@@ -12,17 +12,19 @@ import { rtkApi } from '@/shared/api/rtkApi'
 import { UserSchema } from '@/entities/User'
 import { LoginSchema } from '@/features/Auth'
 import { ProfileSchema } from '@/features/EditableProfile'
-import { CommentsSchema } from '@/features/ArticleComments'
+import { CommentsSchema as ArticleCommentsSchema } from '@/features/ArticleComments'
 import { ArticlesSchema } from '@/pages/ArticlesPage/model/types/articlesSchema'
+import { CommentsSchema } from '@/widgets/PostComments'
 
 export interface StateSchema {
   user: UserSchema
+  postComments: CommentsSchema
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
   // async reducers
   login?: LoginSchema
   profile?: ProfileSchema
-  comments?: CommentsSchema
+  comments?: ArticleCommentsSchema
   articles?: ArticlesSchema
 }
 

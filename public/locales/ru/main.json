@@ -7,7 +7,8 @@
     },
     "loginBtn": "Войти",
     "password": "Пароль",
-    "title": "Вход",
+    "title": "Авторизация",
     "username": "Имя"
   }
 }
+

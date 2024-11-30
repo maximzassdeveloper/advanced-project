@@ -27,14 +27,14 @@
   --font-xxs: var(--font-size-xxs) / var(--font-height-xxs) var(--font-family-main);
 
   // Margins/Padding
-  --window-padding-x: 20px;
+  --window-padding-x: 0;
 
   // Header
   --header-height: 54px;
   // --header-bg-color
 
   // Sidebar
-  --sidebar-width: 300px;
+  --sidebar-width: 230px;
   --sidebar-collapsed-width: 62px;
   // --sidebar-bg-color
 }

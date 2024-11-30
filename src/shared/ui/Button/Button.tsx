@@ -7,7 +7,7 @@ import { classNames } from '@/shared/lib/classNames'
 import { mergeProps } from '@/shared/lib/mergeProps'
 import s from './button.module.scss'
 
-type ButtonTheme = 'primary' | 'outline' | 'clear'
+type ButtonTheme = 'primary' | 'outline' | 'clear' | 'icon'
 type ButtonSize = 'xs' | 's' | 'm'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

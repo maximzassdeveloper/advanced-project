@@ -15,6 +15,43 @@
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     }
   ],
+  "categories": [
+    {
+      "id": "1",
+      "slug": "it",
+      "name": "IT",
+      "authours_count": 10,
+      "publications_count": 20
+    },
+    {
+      "id": "2",
+      "slug": "sport",
+      "name": "Спорт",
+      "authours_count": 2,
+      "publications_count": 2
+    },
+    {
+      "id": "3",
+      "slug": "news",
+      "name": "Новости",
+      "authours_count": 1324,
+      "publications_count": 32578
+    },
+    {
+      "id": "4",
+      "slug": "design",
+      "name": "Дизайн",
+      "authours_count": 1,
+      "publications_count": 234
+    },
+    {
+      "id": "5",
+      "slug": "career",
+      "name": "Карьера",
+      "authours_count": 201,
+      "publications_count": 21590
+    }
+  ],
   "profile": [
     {
       "id": "1",

@@ -17,9 +17,10 @@ export const App: FC = () => {
   return (
     <div className='app'>
       <Suspense fallback={<Spinner fullPage />}>
-        <Header />
+        {/* <Header /> */}
+        {/* <h1 className='mainTitle'>Невероятный блог</h1> */}
         <div className='main'>
-          <Sidebar />
+          {/* <Sidebar /> */}
           <div className='page'>
             <AppRoutes />
           </div>

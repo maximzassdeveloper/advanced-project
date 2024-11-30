@@ -4,6 +4,7 @@ import { $api } from '@/shared/api/api'
 import { createReducerManager } from './reducerManager'
 import { StateSchema, StoreWithReducerManager, ThunkExtraArg } from './stateSchema'
 import { rtkApi } from '@/shared/api/rtkApi'
+import { commentsReducer } from '@/widgets/PostComments'
 
 export const createReduxStore = (
   initialState?: StateSchema,
@@ -12,6 +13,7 @@ export const createReduxStore = (
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
     [rtkApi.reducerPath]: rtkApi.reducer,
+    postComments: commentsReducer,
     user: userReducer,
   }
 

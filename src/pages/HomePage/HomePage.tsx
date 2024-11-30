@@ -1,93 +1,55 @@
-import { FC, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useUserActions } from '@/entities/User'
-import { Button, Input, Modal, Popover, Select, Switch, Title } from '@/shared/ui'
-import s from './home.module.scss'
+import { FC } from 'react'
+import { PostComments } from '@/widgets/PostComments'
+import { Collapse } from '@/shared/ui/Collapse'
+import { Carousel, CarouselList, Slide } from '@/shared/ui/Carousel'
 
 export const HomePage: FC = () => {
-  const { t } = useTranslation(['common'])
-
-  const [checked, setChecked] = useState(undefined)
-  const [visible, setVisible] = useState(false)
-  const [className, setClassName] = useState(1000)
-
   return (
-    <div className={s.home}>
-      {/* <Button onClick={() => setVisible((v) => !v)}>Toggle modal</Button> */}
-      {/* <Button disabled>{t('common:buttons.update', 'Обновить')}</Button> */}
-      {/* <Switch checked={checked} onChange={setChecked} /> */}
-      {/* <Modal visible={visible} onClose={() => setVisible(false)}>
-        <div>
-          <Button>Отправить</Button>
-        </div>
-      </Modal> */}
-      <Popover
-        content={
-          <div style={{ width: 300 }}>
-            <Title level='h2'>Title</Title>
-            <p>Какой-то тектсggggggggggggggggggggg</p>
-            <p>Какой-то тектсggggggggggggggggggggg</p>
-            <p>Какой-то тектсggggggggggggggggggggg</p>
-            <p>Какой-то тектсggggggggggggggggggggg</p>
-            <p>Какой-то тектсggggggggggggggggggggg</p>
-            <p>Какой-то тектсggggggggggggggggggggg</p>
-          </div>
-        }
-      >
-        <Button>Открыть</Button>
-      </Popover>
-      {/* <Switch
-        disabled
-        checked={false}
-      /> */}
-      {/* <Select
-        options={[
-          { label: 'option 1', value: 'option1' },
-          { label: 'option 2', value: 'option2' },
-          { label: 'option 3', value: 'option3', disabled: true },
-        ]}
+    <div style={{ maxWidth: 800, width: '100%', margin: '80px auto' }}>
+      <PostComments />
+
+      {/* <Carousel>
+        <CarouselList>
+          <Slide>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt saepe officia nam
+              voluptatum voluptates ab, deleniti incidunt sunt. Sed alias accusamus totam voluptatum
+              itaque obcaecati, dolorem quod fuga tempora ipsam!
+            </p>
+          </Slide>
+
+          <Slide>
+            <p style={{ background: 'darkgreen' }}>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt saepe officia nam
+              voluptatum voluptates ab, deleniti incidunt sunt. Sed alias accusamus totam voluptatum
+              itaque obcaecati, dolorem quod fuga tempora ipsam!
+            </p>
+          </Slide>
+
+          <Slide>
+            <p style={{ background: 'darkred' }}>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt saepe officia nam
+              voluptatum voluptates ab, deleniti incidunt sunt. Sed alias accusamus totam voluptatum
+              itaque obcaecati, dolorem quod fuga tempora ipsam!
+            </p>
+          </Slide>
+        </CarouselList>
+      </Carousel> */}
+
+      {/* <Collapse
+        title='Как сделать чтобы все работало?'
+        // eslint-disable-next-line
+        content='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem voluptatum perspiciatis nemo quas. Consectetur, esse dolorem iure ad amet dignissimos aliquam totam ullam repellendus nobis porro placeat magni dolorum ea consequatur eaque magnam provident sit aperiam quae? Vel, sunt dicta!'
       />
-      <Select
-        search
-        options={[
-          { label: 'option 1', value: 'option1' },
-          { label: 'option 2', value: 'option2' },
-          { label: 'option 3', value: 'option3', disabled: true },
-        ]}
-      /> */}
-      {/* <Switch
-        disabled
-        checked={true}
-      />
-      <Input
-        value={t('common:buttons.default', 'Default')}
-        readOnly
-      />
-      <Input placeholder='Placeholder' />
-      <Input
-        disabled
-        value='Default'
+
+      <Collapse
+        title='Как сделать чтобы все 22222?'
+        defaultExpanded
+        // eslint-disable-next-line
+        content='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem voluptatum perspiciatis nemo quas. '
       /> */}
 
-      {/* <Popover content={<Button>Yes</Button>}>
-        <Button>Popover</Button>
-      </Popover> */}
-
-      {/* {checked && (
-        <Modal
-          visible={visible}
-          onClose={() => setVisible(false)}
-        >
-          <Button onClick={() => setClassName(2000)}>Кнопка to v</Button>
-          <Button onClick={() => setClassName(1000)}>Кнопка to a</Button>
-          <Switch
-            checked={checked}
-            onChange={setChecked}
-          />
-        </Modal>
-      )}
-
-      <div style={{ height: '140vh', display: 'block' }}>block for scroll</div> */}
+      <p>Элементы далее</p>
     </div>
   )
 }
